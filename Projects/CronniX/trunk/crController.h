@@ -26,22 +26,22 @@ static NSString *UserSelectedNotification __attribute__ ((unused)) = @"UserSelec
 @class Toolbar;
 
 @interface crController : NSObject {
-    NSTableView *crTable;
-    NSWindow    *winMain;
-    NSMenuItem  *mInsertProgram;
-    NSMenuItem  *mSave;
-    NSMenuItem  *showHideMenuItem;
-    NSMenuItem  *deleteMenuItem;
-    NSMenuItem  *duplicateMenuItem;
-    NSMenuItem  *editTaskMenuItem;
-    NSMenuItem  *runNowMenuItem;
+  NSTableView *crTable;
+  NSWindow    *winMain;
+  NSMenuItem  *mInsertProgram;
+  NSMenuItem  *mSave;
+  NSMenuItem  *showHideMenuItem;
+  NSMenuItem  *deleteMenuItem;
+  NSMenuItem  *duplicateMenuItem;
+  NSMenuItem  *editTaskMenuItem;
+  NSMenuItem  *runNowMenuItem;
 	NSTextField *infoTextField;
 	NSMenu      *contextMenu;
 	id          draggedObjects;
-
-    NSString *crontabForUser;
-    BOOL isDirty;
-    Toolbar *toolbar;
+  
+  NSString *crontabForUser;
+  BOOL isDirty;
+  Toolbar *toolbar;
 	Crontab *currentCrontab;
 	NSTableColumn *userColumn;
 	NSTableColumn *commandColumn;
@@ -57,13 +57,13 @@ static NSString *UserSelectedNotification __attribute__ ((unused)) = @"UserSelec
 
 - (void)writeCrontab;
 
+- (id)defaultTask;
+
 - (void)newLine;
-
-- (void)newLineWithCommand:(NSString *)cmd;
-
 - (void)newLineWithDialog;
-
 - (void)newLineWithTask: (TaskObject *)aTask;
+- (void)newLineWithCommand: (NSString *)cmd;
+
 - (void)taskCreated: (NSNotification *)notification;
 
 - (void)editSelectedTask;

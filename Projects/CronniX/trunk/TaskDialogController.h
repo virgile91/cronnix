@@ -15,39 +15,38 @@ static NSString *CommandChangedNotification __attribute__ ((unused)) = @"Command
 
 static NSString *openCommand __attribute__ ((unused)) = @"/usr/bin/open";
 
-@interface TaskDialogController : NSObject
-{
-    IBOutlet id anyHourCheckbox;
-    IBOutlet id anyMdayCheckbox;
-    IBOutlet id anyMinuteCheckbox;
-    IBOutlet id anyMonthCheckbox;
-    IBOutlet id anyWdayCheckbox;
-    IBOutlet id browseButton;
-    IBOutlet id commandTextField;
-    IBOutlet id frCheckbox;
-    IBOutlet id hourSlider;
-    IBOutlet id hourTextField;
-    IBOutlet id mdaySlider;
-    IBOutlet id mdayTextField;
-    IBOutlet id minuteSlider;
-    IBOutlet id minuteTextField;
-    IBOutlet id moCheckbox;
-    IBOutlet id monthSlider;
-    IBOutlet id monthTextField;
-    IBOutlet id openCheckbox;
-    IBOutlet id saCheckbox;
-    IBOutlet id simpleHourTextField;
-    IBOutlet id simpleMdayTextField;
-    IBOutlet id simpleMinuteTextField;
-    IBOutlet id simpleMonthTextField;
-    IBOutlet id suCheckbox;
-    IBOutlet id thCheckbox;
-    IBOutlet id tuCheckbox;
-    IBOutlet id wdayTextField;
-    IBOutlet id weCheckbox;
-	IBOutlet id submitButton;
-    IBOutlet id window;
-
+@interface TaskDialogController : NSObject {
+  IBOutlet id anyHourCheckbox;
+  IBOutlet id anyMdayCheckbox;
+  IBOutlet id anyMinuteCheckbox;
+  IBOutlet id anyMonthCheckbox;
+  IBOutlet id anyWdayCheckbox;
+  IBOutlet id browseButton;
+  IBOutlet id commandTextField;
+  IBOutlet id frCheckbox;
+  IBOutlet id hourSlider;
+  IBOutlet id hourTextField;
+  IBOutlet id mdaySlider;
+  IBOutlet id mdayTextField;
+  IBOutlet id minuteSlider;
+  IBOutlet id minuteTextField;
+  IBOutlet id moCheckbox;
+  IBOutlet id monthSlider;
+  IBOutlet id monthTextField;
+  IBOutlet id openCheckbox;
+  IBOutlet id saCheckbox;
+  IBOutlet id simpleHourTextField;
+  IBOutlet id simpleMdayTextField;
+  IBOutlet id simpleMinuteTextField;
+  IBOutlet id simpleMonthTextField;
+  IBOutlet id suCheckbox;
+  IBOutlet id thCheckbox;
+  IBOutlet id tuCheckbox;
+  IBOutlet id wdayTextField;
+  IBOutlet id weCheckbox;
+  IBOutlet id submitButton;
+  IBOutlet id window;
+  
 	TaskObject *task;
 }
 

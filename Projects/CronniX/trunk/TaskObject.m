@@ -19,17 +19,17 @@
 
 
 - (id)initWithString:(NSString *)string forSystem: (BOOL)isSystemCrontab {
-    [super init];
-    task = [[ NSMutableDictionary alloc ] init ];
-    isSystemCrontabTask = isSystemCrontab;
-    
-    NS_DURING
-	[ self parseString: string ];
-    NS_HANDLER
-	NSLog( @"Error parsing line: %@", string );
-    NS_ENDHANDLER
-    
-    return self;
+  [super init];
+  task = [[ NSMutableDictionary alloc ] init ];
+  isSystemCrontabTask = isSystemCrontab;
+  
+  NS_DURING
+    [ self parseString: string ];
+  NS_HANDLER
+    NSLog( @"Error parsing line: %@", string );
+  NS_ENDHANDLER
+  
+  return self;
 }
 
 
@@ -50,11 +50,6 @@
     return [[ value copy ] autorelease ];
 }
 
-+ (id)defaultTask {
-    return [[ TaskObject alloc ] initWithString:
-	NSLocalizedString( @"0 0 1 1 * echo \"Happy New Year!\"",
-			   @"default string for new tasks" ) ];
-}
 
 - (void)dealloc {
     [ task release ];

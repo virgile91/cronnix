@@ -11,9 +11,9 @@
 }
 */
 
-- (id)init {
+- (id)initWithTask: (TaskObject *)aTask {
 	[ super init ];
-	[ self setTask: [ TaskObject defaultTask ]];
+	[ self setTask: aTask ];
 	[ submitButton setTitle: NSLocalizedString( @"New", @"New task dialog submit button text" ) ];
 	return self;
 }

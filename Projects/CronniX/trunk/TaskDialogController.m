@@ -30,44 +30,6 @@
     return self;
 }
 
-/*
- - (id)init {
-     return [ self initWithTask: nil ];
- }
- 
- 
- - (id)initWithTask: (TaskObject *)aTask {
-     if (sharedInstance) {
-	 [self dealloc];
-     } else {
-	 [super init];
-	 sharedInstance = self;
-	 [ NSBundle loadNibNamed:@"TaskDialog" owner:self ];
-	 
-	 [[ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(minuteChanged:)
-							name: MinuteChangedNotification object: nil ];
-	 [[ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(hourChanged:) 
-							name: HourChangedNotification object: nil ];
-	 [[ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(mdayChanged:) 
-							name: MdayChangedNotification object: nil ];
-	 [[ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(monthChanged:) 
-							name: MonthChangedNotification object: nil ];
-	 [[ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(wdayChanged:) 
-							name: WdayChangedNotification object: nil ];
-	 [[ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(commandChanged:) 
-							name: CommandChangedNotification object: nil ];
-     }
-     self = sharedInstance;
-     
-     if ( aTask ) {
-	 [ self setTask: aTask ];
-     } else {
-	 [ self setTask: [ TaskObject defaultTask ]];
-     }
-     
-     return sharedInstance;
- }
- */
 
 - (void)dealloc {
     [[ NSNotificationCenter defaultCenter ] removeObserver: self ];

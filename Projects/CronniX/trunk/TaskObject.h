@@ -20,11 +20,9 @@ static NSString *DisableTag __attribute__ ((unused)) = @"#CronniX";
 - (id)initWithString:(NSString *)string forSystem: (BOOL)isSystemCrontab;
 - (id)initWithString:(NSString *)string;
 - (id)initWithTask:(id)aTask;
-//- (id)initWithTask:(id)aTask forSystem: (BOOL)isSystemCrontab;
 
 + (id)taskWithString:(NSString *)string;
 + (id)taskWithTask:(id)task;
-+ (id)defaultTask;
 
 + (BOOL)isContainedInString: (NSString *)line;
 

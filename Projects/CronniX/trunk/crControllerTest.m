@@ -41,6 +41,19 @@ NSString *crontabString =
 }
 
 
+// ---- tests ----
+
+
+- (void)test_addTaskToSystemCrontab {
+	[controller openSystemCrontab];
+  [controller newLine];
+  id data = [[controller currentCrontab] data];
+  id s = [[NSString alloc] initWithData: data encoding: [NSString defaultCStringEncoding]];
+  id lines = [s componentsSeparatedByString: @"\n"];
+  id lastLine = [lines objectAtIndex: [lines count]-2];
+  [self assert: lastLine equals: @"0	0	1	1	*	root	echo \"Happy New Year!\""];
+}
+
 
 - (void)testDuplicateTwoLines {
 	id list = [ NSMutableArray array ];

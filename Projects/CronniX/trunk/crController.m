@@ -565,29 +565,40 @@ static NSString *cronnixHomepage = @"http://www.abstracture.de/cronnix";
 }
 
 
+- (id)defaultTask {
+  NSString *string;
+  NSString *cmd = NSLocalizedString( @"echo \"Happy New Year!\"", 
+                                     @"default command for new crontab tasks" );
+  if ( [ self isSystemCrontab ] ) {
+    string = [NSString stringWithFormat: @"0 0 1 1 * root %@", cmd];
+  } else {
+    string = [NSString stringWithFormat: @"0 0 1 1 * %@", cmd];
+  }
+  TaskObject *task = [[TaskObject alloc] initWithString: string 
+                                              forSystem: [self isSystemCrontab]];
+  return [task autorelease];
+}
 
+
+- (void)newLineWithCommand: (NSString *)cmd {
+  id task = [self defaultTask];
+  [task setCommand: cmd];
+  [self newLineWithTask: task];
+}
 
 
 - (void)newLine {
-  [ self newLineWithCommand: NSLocalizedString( @"echo \"Happy New Year!\"", @"default command for new crontab tasks" ) ];
+  [self newLineWithTask: [self defaultTask]];
 }
 
-- (void)newLineWithCommand: (NSString* )cmd {
-  NSString *string = [ NSString stringWithFormat: @"0 0 1 1 * %@", cmd ];
-  TaskObject *task = [[ TaskObject alloc ] initWithString: string ];
-  if ( [ self isSystemCrontab ] )
-		[ task setUser: @"root" ];
-  //	[ task setUser: systemCrontabUser ];
-  
-  [ self newLineWithTask: task ];
-}
 
 - (void)newLineWithDialog {
   [ crTable deselectAll: nil ];
-  id dialog = [[ NewTaskDialogController alloc ] init ];
+  id dialog = [[ NewTaskDialogController alloc ] initWithTask: [self defaultTask]];
   //[ NewTaskDialogController sharedInstance ];
   [ dialog modalForWindow: [ self window ] ];
 }
+
 
 - (void)newLineWithTask: (TaskObject *)aTask {
   if ( [ self isSystemCrontab ] )

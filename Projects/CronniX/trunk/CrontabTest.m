@@ -72,6 +72,16 @@ NSString *identicalTasks =
 
 @implementation CrontabTest
 
+
+- (void)test_dataForSystemCrontab {
+  NSString * s = @"15 3 * * * root periodic daily\n";
+  id ct = [[Crontab alloc] initWithString: s forUser: @"system"];
+  id outString = [[NSString alloc] initWithData: [ct data] encoding: [NSString defaultCStringEncoding]];
+  [self assert: outString equals: @"15	3	*	*	*	root	periodic daily\n"];
+  
+}
+
+
 - (void)testBugReport_andreasZys_20041015 {
   NSString * s = @"15      3       *       *       *       root    periodic daily\n";
   id ct = [[ Crontab alloc ] initWithString: s forUser: @"system" ];
