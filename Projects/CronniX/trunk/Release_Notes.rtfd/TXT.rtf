@@ -11,14 +11,27 @@
 \f1\b0\fs20 \cf2 October 6, 2004 \cf0 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
-\fs24 Version 3.0 is a major update with the following changes:\
+\f0\b\fs36 \cf0 What's New? \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b0\fs24 \cf0 \
+Version 3.0 is a major update with the following changes:\
 \
 \pard\tx560\tx780\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li760\fi-760\ql\qnatural
 \cf0 	\'a5 New crontab parsing: preserving unknown/unparsable content \
 	\'a5 Drag and drop of tasks and environment variables (within CronniX and cross applications \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 \cf0 \
+To elaborate on this: The crontab parsing is new in this version. It is a lot safer to use that the 2.1 parsing which wouldn't write back content it couldn't parse.\
+\
+People using Norton Utilities were having problems with that. NU writes information in crontab comments that it relies on for operation. CronniX 2.1 would not preserve these comments. Another unparsed item were "@"-commands.\
+\
+CronniX 3 keeps everything it can't parse 100% as-is and rewrites it on save. So the version bump might not be apparent on the surface, but interally a lot of things have changed.\
+\
+Oh, and you can reorder tasks now via drag and drop.\
+\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
 \f0\b\fs36 \cf0 CronniX Help \
