@@ -18,7 +18,11 @@ NSString *crontabString =
 @"ENV7 =value\n"
 @"ENV8 =value +more\n"
 @"#CrInfo another test...\n"
-@" 1      2       3       4       *       echo \"Happy New Year!\"\n";
+@" 1      2       3       4       *       task 0\n"
+@"#CrInfo another test...\n"
+@" 1      2       3       4       *       task 1\n"
+@"#CrInfo another test...\n"
+@" 1      2       3       4       *       task 2\n";
 
 
 @implementation crControllerTest
@@ -26,7 +30,9 @@ NSString *crontabString =
 
 - (void)setUp {
 	controller = [[ crController alloc ] init ];
+	[ controller initDataSource ];
 	cronData = [[ crontabString dataUsingEncoding: [ NSString defaultCStringEncoding ]] retain ];
+	[ controller parseCrontab: cronData ];
 }
 
 - (void)tearDown {
@@ -35,15 +41,36 @@ NSString *crontabString =
 }
 
 
-- (void)testInitCurrentCrontab {
-	Crontab *ct = [[ Crontab alloc ] initWithData: cronData forUser: nil ];
-	[ self assertNotNil: ct ];
-	[ ct release ];
+- (void)testDuplicateTwoLines {
+	id list = [ NSMutableArray array ];
+	[ list addObject: [ NSNumber numberWithInt: 0 ]];
+	[ list addObject: [ NSNumber numberWithInt: 2 ]];
+	[ controller duplicateLinesInList: [ list objectEnumerator ]];
+	id ct = [ controller currentCrontab ];
+	[ self assertInt: [ ct taskCount ] equals: 5 ];
+	[ self assert: [[ ct taskAtIndex: 0 ] command ] equals: @"task 0" ];
+	[ self assert: [[ ct taskAtIndex: 1 ] command ] equals: @"task 1" ];
+	[ self assert: [[ ct taskAtIndex: 2 ] command ] equals: @"task 2" ];
+	[ self assert: [[ ct taskAtIndex: 3 ] command ] equals: @"task 0" ];
+	[ self assert: [[ ct taskAtIndex: 4 ] command ] equals: @"task 2" ];
 }
 
+- (void)testDuplicateLastLine {
+	id i = [ NSNumber numberWithInt: 2 ];
+	id list = [ NSArray arrayWithObject: i ];
+	[ controller duplicateLinesInList: [ list objectEnumerator ]];
+	id ct = [ controller currentCrontab ];
+	[ self assertInt: [ ct taskCount ] equals: 4 ];
+	[ self assert: [[ ct taskAtIndex: 0 ] command ] equals: @"task 0" ];
+	[ self assert: [[ ct taskAtIndex: 1 ] command ] equals: @"task 1" ];
+	[ self assert: [[ ct taskAtIndex: 2 ] command ] equals: @"task 2" ];
+	[ self assert: [[ ct taskAtIndex: 3 ] command ] equals: @"task 2" ];
+}
+
+
 - (void)testParseCrontab {
-	[ self assertNotNil: cronData message: @"cronData" ];
-	[ controller parseCrontab: cronData ];
+	id ctr = [[ crController alloc ] init ];
+	[ ctr parseCrontab: cronData ];
 	[ self assertNotNil: [ controller currentCrontab ]];
 }
 

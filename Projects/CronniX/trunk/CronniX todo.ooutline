@@ -52,7 +52,7 @@
 		<string>1</string>
 	</dict>
 	<key>IsNoteExpanded</key>
-	<true/>
+	<false/>
 	<key>NoteColumn</key>
 	<string>c11a4aaa3d6f41824a2b0104</string>
 	<key>NoteHeight</key>
@@ -63,13 +63,13 @@
 		<data>
 		BAt0eXBlZHN0cmVhbYED6IQBQISEhAtOU1ByaW50SW5mbwGEhAhOU09iamVj
 		dACFkoSEhBNOU011dGFibGVEaWN0aW9uYXJ5AISEDE5TRGljdGlvbmFyeQCU
-		hAFpCJKEhIQITlNTdHJpbmcBlIQBKw5OU0JvdHRvbU1hcmdpboaShISECE5T
-		TnVtYmVyAISEB05TVmFsdWUAlIQBKoSEAWadJIaShJmZFk5TSG9yaXpvbnRh
-		bGx5Q2VudGVyZWSGkoSbnISEAXOeAIaShJmZDE5TTGVmdE1hcmdpboaShJuc
-		nZ0khpKEmZkNTlNSaWdodE1hcmdpboaShJucnZ0khpKEmZkUTlNWZXJ0aWNh
-		bFBhZ2luYXRpb26GkoSbnKCeAIaShJmZFE5TVmVydGljYWxseUNlbnRlcmVk
-		hpKfkoSZmQtOU1RvcE1hcmdpboaShJucnZ0khpKEmZkVTlNIb3Jpem9uYWxQ
-		YWdpbmF0aW9uhpKEm5ygngCGhoY=
+		hAFpCJKEhIQITlNTdHJpbmcBlIQBKxZOU0hvcml6b250YWxseUNlbnRlcmVk
+		hpKEhIQITlNOdW1iZXIAhIQHTlNWYWx1ZQCUhAEqhIQBc50AhpKEmZkNTlNS
+		aWdodE1hcmdpboaShJuchIQBZp4khpKEmZkOTlNCb3R0b21NYXJnaW6GkoSb
+		nKCeJIaShJmZFE5TVmVydGljYWxQYWdpbmF0aW9uhpKEm5ydnQCGkoSZmRRO
+		U1ZlcnRpY2FsbHlDZW50ZXJlZIaSmpKEmZkMTlNMZWZ0TWFyZ2luhpKEm5yg
+		niSGkoSZmQtOU1RvcE1hcmdpboaShJucoJ4khpKEmZkVTlNIb3Jpem9uYWxQ
+		YWdpbmF0aW9uhpKEm5ydnQCGhoY=
 		</data>
 		<key>SpellCheckingEnabled</key>
 		<false/>
@@ -89,13 +89,130 @@
 }</string>
 					<string>{\rtf1\mac\ansicpg10000\cocoartf102
 {\fonttbl\f0\fswiss\fcharset77 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
-\f0\fs24 \cf2 Bug: line breaks in info string}</string>
+\f0\fs24 \cf0 Bug: line breaks in info string}</string>
 				</array>
 			</dict>
 			<dict>
+				<key>Children</key>
+				<array>
+					<dict>
+						<key>Cols</key>
+						<array>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\fs24 \cf2 Bug: Insert new env var at beginning of object list (or rather after the last env var)}</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Cols</key>
+						<array>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\fs24 \cf2 index out of bounds on duplicate last line}</string>
+						</array>
+						<key>State</key>
+						<integer>1</integer>
+					</dict>
+					<dict>
+						<key>Cols</key>
+						<array>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\fs24 \cf2 keep "@" commands}</string>
+						</array>
+						<key>State</key>
+						<integer>1</integer>
+					</dict>
+					<dict>
+						<key>Cols</key>
+						<array>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\fs24 \cf2 display "@" commands}</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Children</key>
+						<array>
+							<dict>
+								<key>Cols</key>
+								<array>
+									<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+									<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\fs24 \cf2 tasks are copied right now instead of moved}</string>
+								</array>
+							</dict>
+						</array>
+						<key>Cols</key>
+						<array>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\fs24 \cf2 allow rearranging of tasks}</string>
+						</array>
+						<key>Expanded</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>Cols</key>
+						<array>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+							<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\f0\fs24 \cf2 allow rearranging of env vars}</string>
+						</array>
+					</dict>
+				</array>
 				<key>Cols</key>
 				<array>
 					<string>{\rtf1\mac\ansicpg10000\cocoartf102
@@ -107,7 +224,26 @@
 {\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
 
-\f0\fs24 \cf2 Document Info text field}</string>
+\f0\fs24 \cf2 2.0 Todo, bugs}</string>
+				</array>
+				<key>Expanded</key>
+				<true/>
+				<key>State</key>
+				<integer>2</integer>
+			</dict>
+			<dict>
+				<key>Cols</key>
+				<array>
+					<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+					<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\fs24 \cf0 Document Info text field}</string>
 				</array>
 			</dict>
 			<dict>
@@ -119,10 +255,10 @@
 }</string>
 					<string>{\rtf1\mac\ansicpg10000\cocoartf102
 {\fonttbl\f0\fswiss\fcharset77 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
-\f0\fs24 \cf2 Warn about multi lines in info text}</string>
+\f0\fs24 \cf0 Warn about multi lines in info text}</string>
 				</array>
 			</dict>
 			<dict>
@@ -134,10 +270,10 @@
 }</string>
 					<string>{\rtf1\mac\ansicpg10000\cocoartf102
 {\fonttbl\f0\fswiss\fcharset77 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
-\f0\fs24 \cf2 sendmail instructions (folder locations)}</string>
+\f0\fs24 \cf0 sendmail instructions (folder locations)}</string>
 				</array>
 			</dict>
 			<dict>
@@ -149,11 +285,13 @@
 }</string>
 					<string>{\rtf1\mac\ansicpg10000\cocoartf102
 {\fonttbl\f0\fswiss\fcharset77 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
-\f0\fs24 \cf2 Keep structure of 'non-parsed' content (Norton Scheduler)}</string>
+\f0\fs24 \cf0 Keep structure of 'non-parsed' content (Norton Scheduler)}</string>
 				</array>
+				<key>State</key>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>Children</key>
@@ -277,23 +415,6 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
-\f0\fs24 \cf0 Bug: add user for new system crontab line}</string>
-				</array>
-				<key>State</key>
-				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>Cols</key>
-				<array>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl}
-{\colortbl;\red255\green255\blue255;}
-}</string>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
-
 \f0\fs24 \cf0 Network crontab (ssh)}</string>
 				</array>
 			</dict>
@@ -309,54 +430,7 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
-\f0\fs24 \cf0 bug: catch nil values in e.g. wday (per anderson)}</string>
-				</array>
-				<key>State</key>
-				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>Cols</key>
-				<array>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl}
-{\colortbl;\red255\green255\blue255;}
-}</string>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
-
-\f0\fs24 \cf0 sample submission on webpage}</string>
-				</array>
-			</dict>
-			<dict>
-				<key>Cols</key>
-				<array>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl}
-{\colortbl;\red255\green255\blue255;}
-}</string>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
-
 \f0\fs24 \cf0 include "man 5 crontab" in docs}</string>
-				</array>
-			</dict>
-			<dict>
-				<key>Cols</key>
-				<array>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl}
-{\colortbl;\red255\green255\blue255;}
-}</string>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
-
-\f0\fs24 \cf0 parse (or at least keep) "@" commands}</string>
 				</array>
 			</dict>
 			<dict>
@@ -431,21 +505,6 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
-\f0\fs24 \cf0 Line reordering}</string>
-				</array>
-			</dict>
-			<dict>
-				<key>Cols</key>
-				<array>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl}
-{\colortbl;\red255\green255\blue255;}
-}</string>
-					<string>{\rtf1\mac\ansicpg10000\cocoartf102
-{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
-
 \f0\fs24 \cf0 Crontab write preview}</string>
 				</array>
 			</dict>
@@ -477,7 +536,7 @@
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
 
 \f0\fs24 \cf0 anacron 
-\f1\fs20 \cf2 \ul http://sourceforge.net/projects/anacron}</string>
+\f1\fs20 \cf2 \ul \ulc2 http://sourceforge.net/projects/anacron}</string>
 				</array>
 			</dict>
 			<dict>
@@ -494,6 +553,57 @@
 
 \f0\fs24 \cf0 at}</string>
 				</array>
+			</dict>
+			<dict>
+				<key>Cols</key>
+				<array>
+					<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+					<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\fs24 \cf0 Bug: add user for new system crontab line}</string>
+				</array>
+				<key>State</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>Cols</key>
+				<array>
+					<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+					<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\fs24 \cf0 bug: catch nil values in e.g. wday (per anderson)}</string>
+				</array>
+				<key>State</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>Cols</key>
+				<array>
+					<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl}
+{\colortbl;\red255\green255\blue255;}
+}</string>
+					<string>{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\fs24 \cf0 sample submission on webpage}</string>
+				</array>
+				<key>State</key>
+				<integer>1</integer>
 			</dict>
 			<dict>
 				<key>Cols</key>
@@ -725,6 +835,15 @@
 				<key>size</key>
 				<real>1.200000e+01</real>
 			</dict>
+		</dict>
+		<dict>
+			<key>Heading</key>
+			<dict>
+				<key>type</key>
+				<string>None</string>
+			</dict>
+			<key>ShouldAllowSorting</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>Heading</key>

@@ -13,11 +13,16 @@
 
 @implementation Crontab
 
+- (id)init {
+	return [ self initWithData: nil forUser: nil ];
+}
+
 - (id)initWithContentsOfFile: (NSString *)path forUser: (NSString *)aUser {
     NSData *data = [ NSData dataWithContentsOfFile: path ];
     return [ self initWithData: data forUser: aUser ];
 }
 
+// designated constructor
 - (id)initWithData: (NSData *)data forUser: (NSString *)aUser {
     [super init];
     
@@ -230,8 +235,12 @@
 
 
 - (void)insertTask: (TaskObject *)aTask atIndex: (int)index {
-    int objIndex = [ self objectIndexOfTaskAtIndex: index ];
-    [ objects insertObject: aTask atIndex: objIndex ];
+	if ( index > [ self taskCount ] -1 ) {
+		[ objects addObject: aTask ];
+	} else {
+		int objIndex = [ self objectIndexOfTaskAtIndex: index ];
+		[ objects insertObject: aTask atIndex: objIndex ];
+	}
 }
 
 - (void)replaceTaskAtIndex: (int)index withTask: (TaskObject *)aTask {
@@ -269,6 +278,12 @@
 	}
 	
 	return data;
+}
+
+
+- (NSString *)description {
+	id string = [[ NSString alloc ] initWithData: [ self data ] encoding: [ NSString defaultCStringEncoding ]];
+	return [ string autorelease ];
 }
 
 

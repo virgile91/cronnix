@@ -46,6 +46,7 @@ static NSString *UserSelectedNotification __attribute__ ((unused)) = @"UserSelec
 	NSTableColumn *commandColumn;
 }
 
+- (void)initDataSource;
 
 - (void)loadCrontab;
 
@@ -76,10 +77,6 @@ static NSString *UserSelectedNotification __attribute__ ((unused)) = @"UserSelec
 - (void)removeLineAtRow: (int)row;
 
 - (void)removeLinesInList: (NSEnumerator *)list;
-
-- (void)duplicateLine;
-
-- (void)duplicateLineAtRow: (int)row;
 
 - (void)duplicateLinesInList: (NSEnumerator *)list;
 

@@ -54,6 +54,22 @@ NSString *normalizedTestString =
 
 @implementation CrontabTest
 
+- (void)testAddTask {
+	id aTask = [ TaskObject taskWithString: @"1 2 3 4 * new task" ];
+	[ crontab addTask: aTask ];
+    [ self assertInt: [ crontab taskCount ] equals: 5 message: @"wrong task count" ];
+    [ self assert: [[ crontab taskAtIndex: 0 ] command ] equals: @"echo \"Happy New Year!\""
+		  message: @"wrong task at index 0" ];
+    [ self assert: [[ crontab taskAtIndex: 1 ] command ] equals: @"second Task"
+		  message: @"wrong task at index 1" ];
+    [ self assert: [[ crontab taskAtIndex: 2 ] command ] equals: @"third Task"
+		  message: @"wrong task at index 2" ];
+    [ self assert: [[ crontab taskAtIndex: 3 ] command ] equals: @"inactive Task"
+		  message: @"wrong task at index 3" ];
+    [ self assert: [[ crontab taskAtIndex: 4 ] command ] equals: @"new task"
+		  message: @"wrong task at index 4" ];
+}
+
 - (void)testData {
 	id data = [ crontab data ];
 	id string = [[ NSString alloc ] initWithData: data encoding: [ NSString defaultCStringEncoding]];

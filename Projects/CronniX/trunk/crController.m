@@ -667,31 +667,6 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 }
 
 
-- (void)duplicateLine {
-    [ self duplicateLineAtRow: [ crTable selectedRow ] ];
-}
-
-
-- (void)duplicateLineAtRow: (int)row {
-	NSLog( @"row: %i\n", row );
-	NSLog( @"task count: %i\n", [ currentCrontab taskCount ] );
-	NSLog( @"table count: %i\n", [ crTable numberOfRows ] );
-    if ( row < 0 || row > [ crTable numberOfRows ]-1 ) {
-        NSBeep();
-        return;
-    }
-    {
-		TaskObject *duplicate = [ TaskObject taskWithTask: [ currentCrontab taskAtIndex: row]];
-        [ currentCrontab addTask: duplicate ];
-        [ crTable reloadData ];
-        [ self setDirty: YES ];
-        // make sure that the last row remains selected
-        if ( [ crTable selectedRow ] == -1 ) {
-            [ crTable selectRow: [ crTable numberOfRows ] -1 byExtendingSelection: NO ];
-        }
-    }
-}
-
 
 - (void)duplicateLinesInList: (NSEnumerator *)list {
     id index;
@@ -1055,6 +1030,15 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 // application
 
+- (void)initDataSource {
+    [ crTable setAutosaveName: @"TaskTable" ];
+    [ crTable setAutosaveTableColumns: YES ];
+    [ crTable setDataSource: self ];
+	[ crTable setDelegate: self ];
+    [ self loadCrontab ];
+}
+
+
 - (void)awakeFromNib {
     NSMutableArray *types = [NSMutableArray arrayWithObjects: NSStringPboardType, NSFilenamesPboardType, nil ];
     
@@ -1063,14 +1047,11 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     
     [ winMain makeKeyAndOrderFront: nil ];
     
+	[ self initDataSource ];
+	
     [ self setupActiveColumn ];
     [ userColumn retain ]; // need to retain this, because it might be removed by the autosave feature below
 						   //[ self setupUserColumn ];
-    
-    [ crTable setAutosaveName: @"TaskTable" ];
-    [ crTable setAutosaveTableColumns: YES ];
-    [ crTable setDataSource: self ];
-    [ self loadCrontab ];
     
     [ crTable registerForDraggedTypes: types ];
     //    [ winMain makeFirstResponder: crTable ];
@@ -1232,27 +1213,34 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 			  row: (int)row
     dropOperation: (NSTableViewDropOperation)operation {
     NSPasteboard *pboard = [info draggingPasteboard];
-    NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObjects: NSStringPboardType, 										NSFilenamesPboardType, nil ] ];
-    NSMutableString *cmd;
+    NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObjects: NSStringPboardType, 										NSFilenamesPboardType, NSTabularTextPboardType, nil ] ];
     
     if ( ! type ) return NO;
-    
-    if ( [ type isEqualToString: NSStringPboardType ] ) {
+
+	if ( [ type isEqualToString: NSStringPboardType ] ) {
         NSData *data = [ pboard dataForType: NSStringPboardType ];
-        cmd = [ [ NSString alloc ] initWithData: data encoding: [ NSString defaultCStringEncoding ] ];
+        id string = [ [ NSString alloc ] initWithData: data encoding: [ NSString defaultCStringEncoding ]];
 		
-        if ( row == -1 ) { // new line
-            [ self newLineWithCommand: cmd ];
-        } else { // modify existing line
-            [[ currentCrontab taskAtIndex: row ] setObject: cmd forKey: @"Command" ];
-            [ self setDirty: YES ];
-        }
+		if ( [ TaskObject isContainedInString: string ] ) {
+			id task = [ TaskObject taskWithString: string ];
+			[ currentCrontab insertTask: task atIndex: row ];
+			[ crTable reloadData ];
+			[ self setDirty: YES ];
+		} else {
+			// treat it as a drop on the command field (old behavior)
+			if ( row == -1 ) { // new line
+				[ self newLineWithCommand: string ];
+			} else { // modify existing line
+				[[ currentCrontab taskAtIndex: row ] setObject: string forKey: @"Command" ];
+				[ self setDirty: YES ];
+			}
+		}
 		
-        [ cmd release ];
-    }
+		return YES;
+
+    } else if ( [ type isEqualToString: NSFilenamesPboardType ] ) {
     
-    if ( [ type isEqualToString: NSFilenamesPboardType ] ) {
-        NSArray *filenames = [pboard propertyListForType:NSFilenamesPboardType];
+		NSArray *filenames = [pboard propertyListForType: NSFilenamesPboardType];
         NSEnumerator *iter = [ filenames  reverseObjectEnumerator ];
         NSString *fname;
         if ( row == -1 ) { // insertProgramWithString works differently depending on the selection
@@ -1264,18 +1252,25 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
             [ self insertProgramWithString: fname ];
             [ crTable deselectAll: nil ];
 		}
+		return YES;
     }
     
-    return YES;
+    return NO;
 }
 
-- (unsigned int)tableView:(NSTableView*)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation {
-    NSPasteboard *pboard = [info draggingPasteboard];
-    NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObjects: NSStringPboardType, 										NSFilenamesPboardType, nil ] ];
+
+- (unsigned int)tableView:(NSTableView*)tableView 
+			 validateDrop:(id <NSDraggingInfo>)info 
+			  proposedRow:(int)row 
+	proposedDropOperation:(NSTableViewDropOperation)operation {
+    
+	NSPasteboard *pboard = [info draggingPasteboard];
+	NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObjects: NSStringPboardType,                                                                            NSFilenamesPboardType, NSTabularTextPboardType, nil ] ];
+	NSLog( @"type: %@", type );
     if ( type ) {
-        //NSLog( @"type: %s", [ type cString ] );
         if ( [ type isEqualToString: NSStringPboardType ] || 
-             [ type isEqualToString: NSFilenamesPboardType ] ) {
+             [ type isEqualToString: NSFilenamesPboardType ] ||
+			 [ type isEqualToString: NSTabularTextPboardType ] ) {
             return NSDragOperationGeneric;
         }
     }
@@ -1284,6 +1279,24 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 }
 
 
+- (BOOL)tableView:(NSTableView *)aTableView
+		writeRows:(NSArray *)rows
+	 toPasteboard:(NSPasteboard *)pboard {
+	
+	id cr = [[[ Crontab alloc] init ] autorelease ];
+	id iter = [rows objectEnumerator];
+	id index;
+	while ( index = [ iter nextObject ] ) {
+		id task = [ currentCrontab taskAtIndex: [index intValue]];
+		NSLog( @"adding task: %@", task );
+		[ cr addTask: task ];
+	}
+	NSLog( @"tasks: %i\n", [ cr taskCount ] );
+	NSLog( @"writing data to pboard: %@\n", cr );
+	[ pboard declareTypes: [ NSArray arrayWithObject: NSStringPboardType ] owner: nil ];
+	[ pboard setString: [ cr description ] forType: NSStringPboardType ];
+	return YES;
+}
 
 
 // toolbar menu actions

@@ -276,6 +276,11 @@
     return data;	
 }
 
+- (NSString *)description {
+	id string = [[ NSString alloc ] initWithData: [ self data ] encoding: [ NSString defaultCStringEncoding ]];
+	return [ string autorelease ];
+}
+
 
 // accessors
 
