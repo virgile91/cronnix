@@ -11,9 +11,6 @@ ropertyList-1.0.dtd">
 		<array>
 			<string>New crontab parsing: preserving unknown/unparsable content</string>
 			<string>Drag and drop of tasks and environment variables (within CronniX and cross applications</string>
-			<string>Added grey frame to the "Any" checkbox section of the Task dialog to better seperate it</string>
-			<string>Bugfix: month and mday would not keep '*' when typed in the edit fields of the Task dialog</string>
-			<string>Default user for system crontab tasks is now "root" instead of "system"</string>
 		</array>
 </dict>
 </plist>
