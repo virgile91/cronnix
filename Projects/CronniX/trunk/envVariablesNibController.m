@@ -32,7 +32,7 @@ static envVariablesNibController *sharedInstance = nil;
         NSString *imagePath = nil;
         NSString *itemName;
         NSToolbarItem *item;
-
+	
         //NSLog( @"init" );
         [super init];
         sharedInstance = self;
@@ -102,11 +102,11 @@ static envVariablesNibController *sharedInstance = nil;
 }
 
 
-- (void)setEnvArray: (id)aValue {
-    if ( envArray != aValue ) {
-        [ envArray release ];
-        envArray = [[ NSMutableArray alloc ] initWithArray: aValue ];
-		[ self reloadData ];
+- (void)setCrontab: (id)aCrontab {
+    if ( crontab != aCrontab ) {
+        [ crontab release ];
+	crontab = [ aCrontab retain ];
+	[ self reloadData ];
     }
 }
 
@@ -132,7 +132,7 @@ static envVariablesNibController *sharedInstance = nil;
             return;
         }
     }
-	[ window setMenu:nil];
+    [ window setMenu:nil];
     [ window setFrameUsingName: @"EnvVariablesWindow" ];
     [ window setFrameAutosaveName: @"EnvVariablesWindow" ];
     [ window makeKeyAndOrderFront:nil];
@@ -169,12 +169,12 @@ static envVariablesNibController *sharedInstance = nil;
 
 - (void)removeLine {
     //NSLog( @"remove" );
-	int row = [ envTable selectedRow ];
+    int row = [ envTable selectedRow ];
     if ( row == -1 ) {
         NSBeep();
         return;
     }
-	id deletedObject = [ NSDictionary dictionaryWithDictionary: [ envArray objectAtIndex: row ]];
+    id deletedObject = [ NSDictionary dictionaryWithDictionary: [ envArray objectAtIndex: row ]];
     [ envArray removeObjectAtIndex: row ];
     [ envTable reloadData ];
     
@@ -182,7 +182,7 @@ static envVariablesNibController *sharedInstance = nil;
     if ( [ envTable selectedRow ] == -1 ) {
         [ envTable selectRow: [ envTable numberOfRows ] -1 byExtendingSelection: NO ];
     }
-
+    
     [[ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
     [[ NSNotificationCenter defaultCenter ] postNotificationName: EnvVariableDeletedNotification object: deletedObject ];
 }
@@ -194,12 +194,12 @@ static envVariablesNibController *sharedInstance = nil;
     }
     [ envArray insertObject: [ [ envArray objectAtIndex: [ envTable selectedRow ] ] copy ] atIndex: [ envTable selectedRow ] ];
     [ envTable reloadData ];
-
+    
     // make sure that the last row remains selected
     if ( [ envTable selectedRow ] == -1 ) {
         [ envTable selectRow: [ envTable numberOfRows ] -1 byExtendingSelection: NO ];
     }
-
+    
     [ [ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
 }
 
@@ -211,20 +211,20 @@ static envVariablesNibController *sharedInstance = nil;
 }
 
 - (void)addLine {
-    NSMutableDictionary *dict = [ NSMutableDictionary dictionary ];
-    //NSLog( @"add" );
-    [ dict setObject: NSLocalizedString( @"SOME_ENV", @"env. variable name template" ) forKey: @"Env" ];    
-    [ dict setObject: NSLocalizedString( @"value", @"env. variable value template" ) forKey: @"Value" ];
-    [ envArray addObject: dict ];
+    EnvVariable *env = [ EnvVariable envVariableWithValue: NSLocalizedString( @"value", 
+									      @"env. variable value template" ) 
+						   forKey: NSLocalizedString( @"SOME_ENV", 
+									      @"env. variable name template" ) ];
+    [ envArray addObject: env ];
     [ envTable reloadData ];
     [[ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
-    [[ NSNotificationCenter defaultCenter ] postNotificationName: EnvVariableAddedNotification object: dict ];
+    [[ NSNotificationCenter defaultCenter ] postNotificationName: EnvVariableAddedNotification object: env ];
 }
 
 
 - (void)clear {
-	[ envArray removeAllObjects ];
-	[ self reloadData ];
+    [ envArray removeAllObjects ];
+    [ self reloadData ];
 }
 
 // ib actions
@@ -256,11 +256,11 @@ static envVariablesNibController *sharedInstance = nil;
 
 - (id)tableView:(NSTableView *)table
         objectValueForTableColumn:(NSTableColumn *)col
-        row:(int)row {
+	    row:(int)row {
     id rec;
     if ( row >= 0 && row < [ envArray count ] ) {
         rec = [ envArray objectAtIndex: row ];
-		//		NSLog( @"%@=%@", [ col identifier ], [ rec objectForKey: [ col identifier ]] );
+	//		NSLog( @"%@=%@", [ col identifier ], [ rec objectForKey: [ col identifier ]] );
 	return [ rec objectForKey: [ col identifier ] ];
     } else {
         return nil;
@@ -268,9 +268,9 @@ static envVariablesNibController *sharedInstance = nil;
 }
 
 - (void)tableView: (NSTableView *)table
-        setObjectValue: (id)obj
-        forTableColumn: (NSTableColumn *)col
-        row: (int)row {
+   setObjectValue: (id)obj
+   forTableColumn: (NSTableColumn *)col
+	      row: (int)row {
     id rec;
     //NSLog( @"insert %@ for %@ in row %i", obj, [ col identifier ], row );
     if ( row >= 0 && row < [ envArray count ] ) {
@@ -288,24 +288,15 @@ static envVariablesNibController *sharedInstance = nil;
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
     [ [ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
-
+    
     id ed = [ [ aNotification userInfo ] objectForKey: @"NSFieldEditor" ];
-	int edrow = [ envTable editedRow ];
-	if ( edrow != -1 ) {
-		NSTableColumn *col = [[ envTable tableColumns ] objectAtIndex: [ envTable editedColumn ]];
-		id obj = [[ ed string ] copy ];
-
-		id editedEnv = [ envArray objectAtIndex: edrow ];
-		id oldEnv = [ NSDictionary dictionaryWithDictionary: editedEnv ];
-		
-		[ editedEnv setObject: obj forKey: [ col identifier ]];
-		[ obj release ];
-
-		id notificationObject = [ NSMutableDictionary dictionary ];
-		[ notificationObject setObject: oldEnv forKey: @"OldEnv" ];
-		[ notificationObject setObject: editedEnv forKey: @"NewEnv" ];
-		[[ NSNotificationCenter defaultCenter ] postNotificationName: EnvVariableEditedNotification object: notificationObject ];
-	}
+    int edrow = [ envTable editedRow ];
+    if ( edrow != -1 ) {
+	NSTableColumn *col = [[ envTable tableColumns ] objectAtIndex: [ envTable editedColumn ]];
+	
+	id editedEnv = [ envArray objectAtIndex: edrow ];
+	[ editedEnv setValue: [ ed string ] forKey: [ col identifier ]];
+    }
 }
 
 
@@ -319,7 +310,7 @@ static envVariablesNibController *sharedInstance = nil;
     NSMutableArray *arr = [ NSMutableArray array ];
     [ arr addObject: @"New" ];
     [ arr addObject: @"Delete" ];
-/*    [ arr addObject: ItemName2 ];
+    /*    [ arr addObject: ItemName2 ];
     [ arr addObject: ItemName3 ];
     [ arr addObject: ItemName4 ];
     [ arr addObject: ItemName5 ]; */

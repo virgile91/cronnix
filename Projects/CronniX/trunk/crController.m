@@ -28,9 +28,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 - (id)init {
     if ( self = [ super init ] ) {
         [ [ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(documentModified:) 
-            name: DocumentModifiedNotification object: nil ];
+							name: DocumentModifiedNotification object: nil ];
         [ [ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(userSelected:) 
-            name: UserSelectedNotification object: nil ];
+							name: UserSelectedNotification object: nil ];
         [ [ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(taskCreated:)
 							name: TaskCreatedNotification object: nil ];
         [ [ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(taskEdited:)
@@ -40,9 +40,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 }
 
 - (void)dealloc {
-	[[ NSNotificationCenter defaultCenter ] removeObserver: self ];
+    [[ NSNotificationCenter defaultCenter ] removeObserver: self ];
     [ toolbar release ];
-	[ currentCrontab release ];
+    [ currentCrontab release ];
     [ super dealloc];
 }
 
@@ -117,14 +117,14 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 - (void)crontabShouldLoad {
     if ( [ self isDirty ] ) {
         NSBeginAlertSheet(
-						  NSLocalizedString( @"Unsaved Data", @"Unsaved data alert sheet title" ),
-						  NSLocalizedString( @"Save", @"Save in dialog" ),
-						  NSLocalizedString( @"Discard", @"discard in dialog" ),
-						  NSLocalizedString( @"Cancel", @"Cancel in dialog" ),
-						  winMain, self, NULL,
-						  @selector(didEndLoadSheet:returnCode:contextInfo:), nil,
-						  NSLocalizedString( @"You have modified your crontab. Save changes?",
-						   @"unsaved changes warning in alert sheet" ) );
+			  NSLocalizedString( @"Unsaved Data", @"Unsaved data alert sheet title" ),
+			  NSLocalizedString( @"Save", @"Save in dialog" ),
+			  NSLocalizedString( @"Discard", @"discard in dialog" ),
+			  NSLocalizedString( @"Cancel", @"Cancel in dialog" ),
+			  winMain, self, NULL,
+			  @selector(didEndLoadSheet:returnCode:contextInfo:), nil,
+			  NSLocalizedString( @"You have modified your crontab. Save changes?",
+					     @"unsaved changes warning in alert sheet" ) );
     } else {
         [ self openForUser ];
     }
@@ -133,14 +133,14 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 - (void)systemCrontabShouldLoad {
     if ( [ self isDirty ] ) {
         NSBeginAlertSheet(
-						  NSLocalizedString( @"Unsaved Data", @"Unsaved data alert sheet title" ),
-						  NSLocalizedString( @"Save", @"Save in dialog" ),
-						  NSLocalizedString( @"Discard", @"discard in dialog" ),
-						  NSLocalizedString( @"Cancel", @"Cancel in dialog" ),
-						  winMain, self, NULL,
-						  @selector(didEndLoadSytemCrontabSheet:returnCode:contextInfo:), nil,
-						  NSLocalizedString( @"You have modified your crontab. Save changes?",
-						   @"unsaved changes warning in alert sheet" ) );
+			  NSLocalizedString( @"Unsaved Data", @"Unsaved data alert sheet title" ),
+			  NSLocalizedString( @"Save", @"Save in dialog" ),
+			  NSLocalizedString( @"Discard", @"discard in dialog" ),
+			  NSLocalizedString( @"Cancel", @"Cancel in dialog" ),
+			  winMain, self, NULL,
+			  @selector(didEndLoadSytemCrontabSheet:returnCode:contextInfo:), nil,
+			  NSLocalizedString( @"You have modified your crontab. Save changes?",
+					     @"unsaved changes warning in alert sheet" ) );
     } else {
         [ self openSystemCrontab ];
     }
@@ -150,14 +150,14 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 - (void)crontabShouldImport {
     if ( [ self isDirty ] ) {
         NSBeginAlertSheet(
-						  NSLocalizedString( @"Unsaved Data", @"Unsaved data alert sheet title" ),
-						  NSLocalizedString( @"Save", @"Save in dialog" ),
-						  NSLocalizedString( @"Discard", @"discard in dialog" ),
-						  NSLocalizedString( @"Cancel", @"Cancel in dialog" ),
-						  winMain, self, NULL,
-						  @selector(didEndImportCrontabSheet:returnCode:contextInfo:), nil,
-						  NSLocalizedString( @"You have modified your crontab. Save changes?",
-						   @"unsaved changes warning in alert sheet" ) );
+			  NSLocalizedString( @"Unsaved Data", @"Unsaved data alert sheet title" ),
+			  NSLocalizedString( @"Save", @"Save in dialog" ),
+			  NSLocalizedString( @"Discard", @"discard in dialog" ),
+			  NSLocalizedString( @"Cancel", @"Cancel in dialog" ),
+			  winMain, self, NULL,
+			  @selector(didEndImportCrontabSheet:returnCode:contextInfo:), nil,
+			  NSLocalizedString( @"You have modified your crontab. Save changes?",
+					     @"unsaved changes warning in alert sheet" ) );
     } else {
         [ self importCrontab ];
     }
@@ -217,11 +217,11 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     NSData *crondata;
     if ( fh ) {
         crondata = [ fh readDataToEndOfFile ];
-		if ( ! crondata ) return; // pop up an error sheet...
-		[ self clearCrontab ];
+	if ( ! crondata ) return; // pop up an error sheet...
+	[ self clearCrontab ];
         // need to set this early, because "system" parsing is slightly different
         [ self setCrontabForUser: @"system" ];
-		[ self parseCrontab: crondata ];
+	[ self parseCrontab: crondata ];
         [ self setDirty: NO ];
     }
 }
@@ -263,7 +263,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     NSString *cmd = [ [ self selectedTask ] objectForKey: @"Command" ];
     NSData *output;
     NSString *outputString;
-
+    
     [ [ RunNowNibController sharedInstance ] showWindow ];
     //   NSLog( @"Running command %@", cmd );
     [ tv setEditable: YES ];
@@ -276,7 +276,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         outputString = @"- no output from command -";
     else
         outputString = [ [ [ NSString alloc ] initWithData: output
-												  encoding: [ NSString defaultCStringEncoding ] ] autorelease ];
+						  encoding: [ NSString defaultCStringEncoding ] ] autorelease ];
     //NSLog( outputString );
     [ tv setEditable: YES ];
     [ tv insertText: outputString ];
@@ -305,7 +305,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         outputString = @"- no output from command -";
     else
         outputString = [ [ [ NSString alloc ] initWithData: output 
-                            encoding: [ NSString defaultCStringEncoding ] ] autorelease ];
+						  encoding: [ NSString defaultCStringEncoding ] ] autorelease ];
     //NSLog( outputString );
     [ tv setEditable: YES ];
     [ tv insertText: outputString ];
@@ -315,74 +315,74 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (IBAction)openHomepage:(id)sender {
-	[[ NSWorkspace sharedWorkspace ] openURL: [ NSURL URLWithString: cronnixHomepage ]];
+    [[ NSWorkspace sharedWorkspace ] openURL: [ NSURL URLWithString: cronnixHomepage ]];
 }
 
 
 - (IBAction)checkForUpdates:(id)sender {
-	NSString *currentVersion = [[[ NSBundle bundleForClass: [ self class ]] infoDictionary ]
+    NSString *currentVersion = [[[ NSBundle bundleForClass: [ self class ]] infoDictionary ]
 		objectForKey: @"CFBundleVersion" ];
-	NSString *url = [ NSString stringWithFormat: @"%@/%@", cronnixHomepage, @"version.xml" ];
-	NSDictionary *dict = [ NSDictionary dictionaryWithContentsOfURL: [ NSURL URLWithString: url ]];
-
-	if ( ! dict ) {
+    NSString *url = [ NSString stringWithFormat: @"%@/%@", cronnixHomepage, @"version.xml" ];
+    NSDictionary *dict = [ NSDictionary dictionaryWithContentsOfURL: [ NSURL URLWithString: url ]];
+    
+    if ( ! dict ) {
         NSBeginAlertSheet(
-						  NSLocalizedString( @"Connection failure",
-						   @"Check for update failure sheet title" ),
-						  NSLocalizedString( @"Bummer",
-						   @"Check for update connection failure acknowledgement button title" ),
-						  nil,
-						  nil,
-						  winMain, self, NULL,
-						  nil, nil,
-						  NSLocalizedString( @"Someone tripped over the wire to the internet. Or maybe it's the rain. Wait for clear skies and try again.",
-						   @"update check connection failure dialog text" ) );
-	}
+			  NSLocalizedString( @"Connection failure",
+					     @"Check for update failure sheet title" ),
+			  NSLocalizedString( @"Bummer",
+					     @"Check for update connection failure acknowledgement button title" ),
+			  nil,
+			  nil,
+			  winMain, self, NULL,
+			  nil, nil,
+			  NSLocalizedString( @"Someone tripped over the wire to the internet. Or maybe it's the rain. Wait for clear skies and try again.",
+					     @"update check connection failure dialog text" ) );
+    }
+    
+    NSString *latestVersion = [ dict valueForKey: @"Version" ];
+    
+    if ( ! [ latestVersion isEqualToString: currentVersion ] ) {
+	id changes = [ dict objectForKey: @"Changes" ];
 	
-	NSString *latestVersion = [ dict valueForKey: @"Version" ];
-
-	if ( ! [ latestVersion isEqualToString: currentVersion ] ) {
-		id changes = [ dict objectForKey: @"Changes" ];
-
-		NSString *msg = [ NSString stringWithFormat: NSLocalizedString( @"There's a new version available at %@.\n\nChanges in version %@:\n", @"new version available dialog text" ),
-			cronnixHomepage, latestVersion ];
-		NSString *s = [ changes componentsJoinedByString: @"\n¥ " ];
-	s = [ NSString stringWithFormat: @"%@\n¥ %@", msg, s ];
+	NSString *msg = [ NSString stringWithFormat: NSLocalizedString( @"There's a new version available at %@.\n\nChanges in version %@:\n", @"new version available dialog text" ),
+	    cronnixHomepage, latestVersion ];
+	NSString *s = [ changes componentsJoinedByString: @"\n¥ " ];
+    s = [ NSString stringWithFormat: @"%@\n¥ %@", msg, s ];
+    NSBeginAlertSheet(
+		      NSLocalizedString( @"Update Available",
+					 @"Update available alert sheet title" ),
+		      NSLocalizedString( @"Go to download page",
+					 @"go to download page button title in 'update available' dialog" ),
+		      nil,
+		      NSLocalizedString( @"Cancel", @"Cancel in dialog" ),
+		      winMain, self, NULL,
+		      @selector(didEndUpdateAvailableSheet:returnCode:contextInfo:), nil,
+		      s );
+    } else {
         NSBeginAlertSheet(
-						  NSLocalizedString( @"Update Available",
-						   @"Update available alert sheet title" ),
-						  NSLocalizedString( @"Go to download page",
-						   @"go to download page button title in 'update available' dialog" ),
-						  nil,
-						  NSLocalizedString( @"Cancel", @"Cancel in dialog" ),
-						  winMain, self, NULL,
-						  @selector(didEndUpdateAvailableSheet:returnCode:contextInfo:), nil,
-						  s );
-	} else {
-        NSBeginAlertSheet(
-						  NSLocalizedString( @"No Update Available",
-						   @"No update available alert sheet title" ),
-						  NSLocalizedString( @"Too bad",
-						   @"confirmation button title in 'no update available' dialog" ),
-						  nil,
-						  nil,
-						  winMain, self, NULL,
-						  nil, nil,
-						  NSLocalizedString( @"There's no new version available.",
-						   @"no new version available dialog text" ) );
-	}
+			  NSLocalizedString( @"No Update Available",
+					     @"No update available alert sheet title" ),
+			  NSLocalizedString( @"Too bad",
+					     @"confirmation button title in 'no update available' dialog" ),
+			  nil,
+			  nil,
+			  winMain, self, NULL,
+			  nil, nil,
+			  NSLocalizedString( @"There's no new version available.",
+					     @"no new version available dialog text" ) );
+    }
 }
 
 // --------------------------------------------------------------------------------------------------------------
 // workhorses
 
 - (void)alertForNonExistentUser: (NSString *)user{
-	NSBeginAlertSheet(
-				   NSLocalizedString( @"User does not exist", @"user doesn't exist warning in open failure alert sheet" ),
-				   NSLocalizedString( @"OK", @"Ok in dialog" ),
-				   nil, nil, winMain, winMain, NULL, NULL, nil,
-				   NSLocalizedString( @"I couldn't find a home directory for '%@' on your system. Maybe you mistyped the name or (god no!) deleted the directory. Better have look...", @"Home directory not found warning in open failure alert sheet" ),
-				   user );
+    NSBeginAlertSheet(
+		      NSLocalizedString( @"User does not exist", @"user doesn't exist warning in open failure alert sheet" ),
+		      NSLocalizedString( @"OK", @"Ok in dialog" ),
+		      nil, nil, winMain, winMain, NULL, NULL, nil,
+		      NSLocalizedString( @"I couldn't find a home directory for '%@' on your system. Maybe you mistyped the name or (god no!) deleted the directory. Better have look...", @"Home directory not found warning in open failure alert sheet" ),
+		      user );
 }
 
 - (void)loadCrontab {
@@ -392,48 +392,48 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (void)loadCrontabForUser: (NSString *)user {
-
-	if ( ! user || [ user isEqualToString: NSUserName() ] ) {
-		[ self loadCrontabForDefaultUser ];
-	} else if ( [ user isEqualToString: @"system" ] ) {
-		[ self openSystemCrontab ];
-		return;
-	} else {
+    
+    if ( ! user || [ user isEqualToString: NSUserName() ] ) {
+	[ self loadCrontabForDefaultUser ];
+    } else if ( [ user isEqualToString: @"system" ] ) {
+	[ self openSystemCrontab ];
+	return;
+    } else {
         NSMutableArray *args = [ NSMutableArray array ];
         NSString *cronString;
         BLAuthentication *authObj = [ BLAuthentication sharedInstance ];
-
-		// best solution found to test for user existence
-		NSString *userHome = NSHomeDirectoryForUser( user );
-		if ( ! userHome ) {
-			[ self alertForNonExistentUser: user ];
-			return;
-		}
+	
+	// best solution found to test for user existence
+	NSString *userHome = NSHomeDirectoryForUser( user );
+	if ( ! userHome ) {
+	    [ self alertForNonExistentUser: user ];
+	    return;
+	}
         
         //NSLog( @"Loading for user %@", user );
-
+	
         [ args addObject: @"-u" ];
         [ args addObject: user ];
         [ args addObject: @"-l" ];
-            
+	
         cronString = [ authObj executeCommand: [ self suCronCommand ] withArgs: args ];
         //NSLog( @"------- Received cronstring of length: %i", [ cronString length ] );
         //NSLog( cronString );
-
+	
         if ( [ cronString length ] != 0 ) {
             NSData *cronData = [ NSData dataWithData: [ cronString dataUsingEncoding: [ NSString defaultCStringEncoding ] ] ];
-			[ self clearCrontab ];
+	    [ self clearCrontab ];
             [ self setCrontabForUser: user ]; // setting this before parsing is important!
             [ self parseCrontab: cronData ];
             [ self setDirty: NO ];
             //NSLog( @"Opened for user: %@", user );
         } else {
             NSBeginAlertSheet( 
-                NSLocalizedString( @"Empty Crontab", @"empty crontab alert sheet" ), 
-                NSLocalizedString( @"OK", @"Ok in dialog" ), 
-                nil, nil, winMain, winMain, NULL, NULL, nil, 
-                NSLocalizedString( @"The system returned an empty crontab for '%s'. This probably just means that there's no crontab for this user yet. Pressing OK will allow you to edit and install a new crontab and you will never see this alert sheet again. If, however, you are sure that '%s' does have a crontab, then you may have encountered an temporal anomaly. Contact the author (see the About box) and complain like there's no tomorrow.", @"descriptive text in empty crontab alert sheet (make sure translations preserve the sarcastic tone ;-)" ),
-                [ user cString ], [ user cString ] );
+			       NSLocalizedString( @"Empty Crontab", @"empty crontab alert sheet" ), 
+			       NSLocalizedString( @"OK", @"Ok in dialog" ), 
+			       nil, nil, winMain, winMain, NULL, NULL, nil, 
+			       NSLocalizedString( @"The system returned an empty crontab for '%s'. This probably just means that there's no crontab for this user yet. Pressing OK will allow you to edit and install a new crontab and you will never see this alert sheet again. If, however, you are sure that '%s' does have a crontab, then you may have encountered an temporal anomaly. Contact the author (see the About box) and complain like there's no tomorrow.", @"descriptive text in empty crontab alert sheet (make sure translations preserve the sarcastic tone ;-)" ),
+			       [ user cString ], [ user cString ] );
             [ self clearCrontab ];
             [ self setCrontabForUser: user ];
             [ self setDirty: NO ];
@@ -454,7 +454,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     NSData *cronData;
     NSData *stdErrData;
     NSString *stdErrString;
-
+    
     [ args addObject: @"-l" ];
     
     task = [[ NSTask alloc ] init ];
@@ -463,42 +463,42 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     [ task setArguments: args ];
     [ task setStandardOutput: stdOutPipe ];
     [ task setStandardError: stdErrPipe ];
-
+    
     [ task launch ];
     [ task waitUntilExit ];
-
+    
     cronData = [ [ NSData alloc ] initWithData :[ stdOutReadHandle readDataToEndOfFile ] ];
     stdErrData = [ [ NSData alloc ] initWithData :[ stdErrReadHandle readDataToEndOfFile ] ];
-
+    
     status = [ task terminationStatus ];
     [ task release ];
     
-
+    
     stdErrString = [ [ NSString alloc ] initWithData: stdErrData encoding: [ NSString defaultCStringEncoding ] ];
     // Check for "no crontab for" in stderr: If we get this, this user doesn't have a crontab, yet. Not a problem,
     // we just parse the empty cronData below.
     if ( [ stdErrString isLike: @"*no crontab for*" ] ) {
         status = 0; // set status OK
     }
-
-
+    
+    
     switch ( status ) {
         case 0: // everything ok
-			[ self clearCrontab ];
+	    [ self clearCrontab ];
             [ self setCrontabForUser: nil ];
             [ self parseCrontab: cronData ];
             [ self setDirty: NO ];
             break;
         case 1: // failure (not privileged)
             NSBeginAlertSheet( 
-                NSLocalizedString( @"Failure", @"open failure alert sheet" ), 
-                NSLocalizedString( @"OK", @"Ok in dialog" ), 
-                nil, nil, winMain, winMain, NULL, NULL, nil, 
-                NSLocalizedString( @"Something prevented me from reading your crontab - maybe some ion storm in the asteroid belt. See if it's that and fix it or otherwise mail the author (see the About box) and complain like there's no tomorrow.", @"descriptive text in generic failure alert sheet. Try to get fatalism and ignorance across in translation..." ) );
+			       NSLocalizedString( @"Failure", @"open failure alert sheet" ), 
+			       NSLocalizedString( @"OK", @"Ok in dialog" ), 
+			       nil, nil, winMain, winMain, NULL, NULL, nil, 
+			       NSLocalizedString( @"Something prevented me from reading your crontab - maybe some ion storm in the asteroid belt. See if it's that and fix it or otherwise mail the author (see the About box) and complain like there's no tomorrow.", @"descriptive text in generic failure alert sheet. Try to get fatalism and ignorance across in translation..." ) );
             //[ self setCrontabForUser: nil ];
             break;
     }
-
+    
     [ cronData release ];
     [ stdErrData release ];
     [ stdErrString release ];
@@ -506,58 +506,58 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (void)clearCrontab {
-	[ crTable deselectAll: nil ];
-	[ currentCrontab clear ];
-	[ crTable reloadData ];
+    [ crTable deselectAll: nil ];
+    [ currentCrontab clear ];
+    [ crTable reloadData ];
     [[ envVariablesNibController sharedInstance ] clear ];
-	[ infoTextField setStringValue: @"" ];
+    [ infoTextField setStringValue: @"" ];
     [ self setDirty: NO ];
 }
 
 
 
 - (void)showUserColumn {
-	int commandColPos = [ crTable columnWithIdentifier: [ commandColumn identifier ]];
-	if ( [ crTable columnWithIdentifier: [ userColumn identifier ]] == -1 ) {
-		[ crTable addTableColumn: userColumn ];
-	}
-	if ( commandColPos < [ crTable columnWithIdentifier: [ userColumn identifier ]] )
-		[ crTable moveColumn: [ crTable columnWithIdentifier: [ userColumn identifier ]]
-								toColumn: commandColPos ];	
+    int commandColPos = [ crTable columnWithIdentifier: [ commandColumn identifier ]];
+    if ( [ crTable columnWithIdentifier: [ userColumn identifier ]] == -1 ) {
+	[ crTable addTableColumn: userColumn ];
+    }
+    if ( commandColPos < [ crTable columnWithIdentifier: [ userColumn identifier ]] )
+	[ crTable moveColumn: [ crTable columnWithIdentifier: [ userColumn identifier ]]
+		    toColumn: commandColPos ];	
 }
 
 
 
 - (void)hideUserColumn {
-	if ( [ crTable columnWithIdentifier: [ userColumn identifier ]] != -1 )
-		[ crTable removeTableColumn: userColumn ];
+    if ( [ crTable columnWithIdentifier: [ userColumn identifier ]] != -1 )
+	[ crTable removeTableColumn: userColumn ];
 }
 
 
 
 - (void)parseCrontab: (NSData *)data {
-	//[ currentCrontab autorelease ];
-	[ currentCrontab release ]; // culprit, but why???
-	currentCrontab = [[ Crontab alloc ] initWithData: data forUser: [ self crontabForUser ] ];
-
+    //[ currentCrontab autorelease ];
+    [ currentCrontab release ]; // culprit, but why???
+    currentCrontab = [[ Crontab alloc ] initWithData: data forUser: [ self crontabForUser ] ];
+    
     [ crTable reloadData ];
-
-	[[ envVariablesNibController sharedInstance ] setEnvArray: [ currentCrontab envVariablesArray ]];
-
+    
+    [[ envVariablesNibController sharedInstance ] setCrontab: currentCrontab ];
+    
     [ self isSystemCrontab ] ? [ self showUserColumn ] : [ self hideUserColumn ];
 }
 
 
 - (void)openCrontabFromFile: (NSString *)path {
-	[ currentCrontab release ];
-	currentCrontab = [[ Crontab alloc ] initWithContentsOfFile: path forUser: NSUserName() ];
-	[ self setCrontabForUser: nil ];
-
+    [ currentCrontab release ];
+    currentCrontab = [[ Crontab alloc ] initWithContentsOfFile: path forUser: NSUserName() ];
+    [ self setCrontabForUser: nil ];
+    
     [ crTable reloadData ];
-
-	[[ envVariablesNibController sharedInstance ] setEnvArray: [ currentCrontab envVariablesArray ]];
-
-	[ self setDirty: NO ];
+    
+    [[ envVariablesNibController sharedInstance ] setCrontab: currentCrontab ];
+    
+    [ self setDirty: NO ];
 }
 
 
@@ -569,60 +569,60 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 }
 
 - (void)newLineWithCommand: (NSString* )cmd {
-	NSString *string = [ NSString stringWithFormat: @"0 0 1 1 * %@", cmd ];
-	TaskObject *task = [[ TaskObject alloc ] initWithString: string ];
-	if ( [ self isSystemCrontab ] )
-		[ task setUser: @"root" ];
-	//	[ task setUser: systemCrontabUser ];
-
-	[ self newLineWithTask: task ];
+    NSString *string = [ NSString stringWithFormat: @"0 0 1 1 * %@", cmd ];
+    TaskObject *task = [[ TaskObject alloc ] initWithString: string ];
+    if ( [ self isSystemCrontab ] )
+	[ task setUser: @"root" ];
+    //	[ task setUser: systemCrontabUser ];
+    
+    [ self newLineWithTask: task ];
 }
 
 - (void)newLineWithDialog {
-	[ crTable deselectAll: nil ];
-	id dialog = [[ NewTaskDialogController alloc ] init ];
-	//[ NewTaskDialogController sharedInstance ];
-	[ dialog modalForWindow: [ self window ] ];
+    [ crTable deselectAll: nil ];
+    id dialog = [[ NewTaskDialogController alloc ] init ];
+    //[ NewTaskDialogController sharedInstance ];
+    [ dialog modalForWindow: [ self window ] ];
 }
 
 - (void)newLineWithTask: (TaskObject *)aTask {
-	if ( [ self isSystemCrontab ] )
-		[ aTask setUser: @"root" ];
-	[ currentCrontab addTask: aTask ];
+    if ( [ self isSystemCrontab ] )
+	[ aTask setUser: @"root" ];
+    [ currentCrontab addTask: aTask ];
     [ crTable reloadData ];
-	[ crTable selectRow: [ currentCrontab indexOfTask: aTask ] byExtendingSelection: NO ];
+    [ crTable selectRow: [ currentCrontab indexOfTask: aTask ] byExtendingSelection: NO ];
     [ self setDirty: YES ];	
 }
 
 
 - (void)editSelectedTask: (id)sender {
-	[ self editSelectedTask ];
+    [ self editSelectedTask ];
 }
 
 - (void)editSelectedTask {
-	id task = [ self selectedTask ];
-	id dialog = [[ EditTaskDialogController alloc ] initWithTask: task ];
-	//[ EditTaskDialogController sharedInstanceWithTask: task ];
-	[ dialog modalForWindow: [ self window ]];
+    id task = [ self selectedTask ];
+    id dialog = [[ EditTaskDialogController alloc ] initWithTask: task ];
+    //[ EditTaskDialogController sharedInstanceWithTask: task ];
+    [ dialog modalForWindow: [ self window ]];
 }
 
 - (void)insertProgramWithString: (NSString *)path {
     int row = [ crTable selectedRow ];
     NSMutableString *cmd;
-
+    
     //NSLog( @"adding %@", path );
-
+    
     if ( [ path isLike: @"* *" ] )
         cmd = [ NSString stringWithFormat: @"/usr/bin/open \"%s\"", [ path cString ] ];
     else
         cmd = [ NSString stringWithFormat: @"/usr/bin/open %s", [ path cString ] ];
-
+    
     if ( row == -1 ) { // new line
         [ self newLineWithCommand: cmd ];
     } else { // modify existing line
         [ [ currentCrontab taskAtIndex: row ] setObject: cmd forKey: @"Command" ];
     }
-	[ self setDirty: YES ];
+    [ self setDirty: YES ];
 }
 
 
@@ -643,7 +643,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (void)replaceLineAtRow: (int)row withObject: (id)obj {
-	if ( row < 0 || row > [ crTable numberOfRows ]-1 ) {
+    if ( row < 0 || row > [ crTable numberOfRows ]-1 ) {
         NSBeep();
         return;
     }
@@ -678,7 +678,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         return;
     }
     {
-		TaskObject *duplicate = [ TaskObject taskWithTask: [ currentCrontab taskAtIndex: row]];
+	TaskObject *duplicate = [ TaskObject taskWithTask: [ currentCrontab taskAtIndex: row]];
         [ currentCrontab addTask: duplicate ];
         [ crTable reloadData ];
         [ self setDirty: YES ];
@@ -694,28 +694,28 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     id index;
     BOOL firstInList = YES;
     int insertionPoint = 0;
-	int listCount = 0;
-	list = [[ list allObjects ] reverseObjectEnumerator ];
-
-	while ( index = [ list nextObject ] ) {
+    int listCount = 0;
+    list = [[ list allObjects ] reverseObjectEnumerator ];
+    
+    while ( index = [ list nextObject ] ) {
         if ( firstInList ) {
-			insertionPoint = [ index intValue ] +1;
+	    insertionPoint = [ index intValue ] +1;
             firstInList = NO;
         }
-		id duplicate = [ TaskObject taskWithTask: [ currentCrontab taskAtIndex: [ index intValue ]]];
+	id duplicate = [ TaskObject taskWithTask: [ currentCrontab taskAtIndex: [ index intValue ]]];
         [ currentCrontab insertTask: duplicate atIndex: insertionPoint ];
-		listCount++;
+	listCount++;
     }
-
+    
     [ crTable reloadData ];
     [ self setDirty: YES ];
-	
+    
     // select the newly created rows
-	[ crTable selectRow: insertionPoint byExtendingSelection: NO ];
-	int i;
-	for ( i = 1; i < listCount; i++ ) {
-		[ crTable selectRow: insertionPoint +i byExtendingSelection: YES ];
-	}
+    [ crTable selectRow: insertionPoint byExtendingSelection: NO ];
+    int i;
+    for ( i = 1; i < listCount; i++ ) {
+	[ crTable selectRow: insertionPoint +i byExtendingSelection: YES ];
+    }
 }
 
 
@@ -724,17 +724,17 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     NSPipe *pipe = [ NSPipe pipe ];
     NSFileHandle *writeHandle = [ pipe fileHandleForWriting ];
     NSMutableData *cronData = [ currentCrontab data ];
-	NSMutableArray *args = [ NSMutableArray array ];
-	BLAuthentication *authObj = [ BLAuthentication sharedInstance ];
-
-	[ args addObject: @"/etc/crontab" ];
-
-	[ writeHandle writeData: cronData ];
-	[ writeHandle closeFile ];
-
-	[ authObj executeCommand: @"/usr/bin/tee" withArgs: args withPipe: pipe ];
-	// error handling???
-	return 0;
+    NSMutableArray *args = [ NSMutableArray array ];
+    BLAuthentication *authObj = [ BLAuthentication sharedInstance ];
+    
+    [ args addObject: @"/etc/crontab" ];
+    
+    [ writeHandle writeData: cronData ];
+    [ writeHandle closeFile ];
+    
+    [ authObj executeCommand: @"/usr/bin/tee" withArgs: args withPipe: pipe ];
+    // error handling???
+    return 0;
 }
 
 
@@ -742,20 +742,20 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     NSPipe *pipe = [ NSPipe pipe ];
     NSFileHandle *writeHandle = [ pipe fileHandleForWriting ];
     NSMutableData *cronData = [ currentCrontab data ];
-	NSMutableArray *args = [ NSMutableArray array ];
-	BLAuthentication *authObj = [ BLAuthentication sharedInstance ];
-	[ args addObject: [ NSString stringWithFormat: @"-u" ] ];
-	[ args addObject: [ self crontabForUser ] ];
-	[ args addObject: @"-" ];
-
-	//NSLog( @"Writing for user: %@", [ self loadedForUser ] );
-
-	[ writeHandle writeData: cronData ];
-	[ writeHandle closeFile ];
-
-	[ authObj executeCommand: [ self suCronCommand ] withArgs: args withPipe: pipe ];
-	// error handling???
-	return 0;
+    NSMutableArray *args = [ NSMutableArray array ];
+    BLAuthentication *authObj = [ BLAuthentication sharedInstance ];
+    [ args addObject: [ NSString stringWithFormat: @"-u" ] ];
+    [ args addObject: [ self crontabForUser ] ];
+    [ args addObject: @"-" ];
+    
+    //NSLog( @"Writing for user: %@", [ self loadedForUser ] );
+    
+    [ writeHandle writeData: cronData ];
+    [ writeHandle closeFile ];
+    
+    [ authObj executeCommand: [ self suCronCommand ] withArgs: args withPipe: pipe ];
+    // error handling???
+    return 0;
 }
 
 
@@ -763,95 +763,95 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     NSPipe *pipe = [ NSPipe pipe ];
     NSFileHandle *writeHandle = [ pipe fileHandleForWriting ];
     NSMutableData *cronData = [ currentCrontab data ];
-	NSTask *task;
-	int status;
-	NSMutableArray *args = [ NSMutableArray array ];
-	[ args addObject: @"-" ];
-
-	task = [[ NSTask alloc ] init ];
-	[ task setCurrentDirectoryPath: @"." ];
-	[ task setLaunchPath: cronCommand ];
-	[ task setArguments: args ];
-	[ task setStandardInput: pipe ];
-
-	[ task launch ];
-	if ( [ task isRunning ] ) {
-		[ writeHandle writeData: cronData ];
-		[ writeHandle closeFile ];
-	}
-
-	[ task waitUntilExit ];
-
-	status = [ task terminationStatus ];
-	[ task release ];
-	return status;
+    NSTask *task;
+    int status;
+    NSMutableArray *args = [ NSMutableArray array ];
+    [ args addObject: @"-" ];
+    
+    task = [[ NSTask alloc ] init ];
+    [ task setCurrentDirectoryPath: @"." ];
+    [ task setLaunchPath: cronCommand ];
+    [ task setArguments: args ];
+    [ task setStandardInput: pipe ];
+    
+    [ task launch ];
+    if ( [ task isRunning ] ) {
+	[ writeHandle writeData: cronData ];
+	[ writeHandle closeFile ];
+    }
+    
+    [ task waitUntilExit ];
+    
+    status = [ task terminationStatus ];
+    [ task release ];
+    return status;
 }
 
 // 2.0
 - (void)writeCrontab {
-
-	int status;
-
-	//NSLog( "write:\n%s", [ [ cronData description ] cString ] );
-	//return;
-	
-	if ( [ self isSystemCrontab ] ) {
-		status = [ self writeSystemCrontab ];
+    
+    int status;
+    
+    //NSLog( "write:\n%s", [ [ cronData description ] cString ] );
+    //return;
+    
+    if ( [ self isSystemCrontab ] ) {
+	status = [ self writeSystemCrontab ];
     } else if ( [ self crontabForUser ] ) {
-		status = [ self writeUserCrontab ];
+	status = [ self writeUserCrontab ];
     } else {
-		status = [ self writeStandardCrontab ];
-	}
-
-	//NSLog( @"writeCrontab status: %i", status );
-
-	switch ( status ) {
-		case 0: // everything ok
-			[ self setDirty: NO ];
-			break;
-		case 1: // not privileged to open with username
-			if ( [ self crontabForUser ] ) {
-				NSBeginAlertSheet(
-					  NSLocalizedString( @"Failure", @"write failure alert sheet" ),
-					  NSLocalizedString( @"OK", @"Ok in dialog" ),
-					  nil, nil, winMain, winMain, NULL, NULL, nil,
-					  NSLocalizedString( @"Insufficient privileges to write crontab for user \"%s\".", @"descriptive  text in write failure alert sheet" ),
-					  [ [ self crontabForUser ] cString ] );
-			} else {
-				NSBeginAlertSheet(
-					  NSLocalizedString( @"Failure", @"write failure alert sheet" ),
-					  NSLocalizedString( @"OK", @"Ok in dialog" ),
-					  nil, nil, winMain, winMain, NULL, NULL, nil,
-					  NSLocalizedString( @"Insufficient privileges to write crontab.", @"descriptive  text in write failure alert sheet" ) );
-			}
-			break;
-	}
-
+	status = [ self writeStandardCrontab ];
+    }
+    
+    //NSLog( @"writeCrontab status: %i", status );
+    
+    switch ( status ) {
+	case 0: // everything ok
+	    [ self setDirty: NO ];
+	    break;
+	case 1: // not privileged to open with username
+	    if ( [ self crontabForUser ] ) {
+		NSBeginAlertSheet(
+				  NSLocalizedString( @"Failure", @"write failure alert sheet" ),
+				  NSLocalizedString( @"OK", @"Ok in dialog" ),
+				  nil, nil, winMain, winMain, NULL, NULL, nil,
+				  NSLocalizedString( @"Insufficient privileges to write crontab for user \"%s\".", @"descriptive  text in write failure alert sheet" ),
+				  [ [ self crontabForUser ] cString ] );
+	    } else {
+		NSBeginAlertSheet(
+				  NSLocalizedString( @"Failure", @"write failure alert sheet" ),
+				  NSLocalizedString( @"OK", @"Ok in dialog" ),
+				  nil, nil, winMain, winMain, NULL, NULL, nil,
+				  NSLocalizedString( @"Insufficient privileges to write crontab.", @"descriptive  text in write failure alert sheet" ) );
+	    }
+	    break;
+    }
+    
 }
 
 
 - (void)exportCrontab: (id)sender {
-	NSSavePanel *savePanel = [ NSSavePanel savePanel ];
-
+    NSSavePanel *savePanel = [ NSSavePanel savePanel ];
+    
     [ savePanel setPrompt: NSLocalizedString( @"Export", @"Export dialog button title" ) ];
     int result = [ savePanel runModalForDirectory: NSHomeDirectory()
-				file: [ NSString stringWithFormat: @"%@.crontab", NSLocalizedString( @"untitled", @"new crontab file name" ) ]];
+					     file: [ NSString stringWithFormat: @"%@.crontab", NSLocalizedString( @"untitled", @"new crontab file name" ) ]];
     if ( result == NSFileHandlingPanelOKButton ) {
         NSString *filename = [ savePanel filename ];
-		BOOL success = [[ self currentCrontab ] writeAtPath: filename ];
-		if ( ! success ) {
-			NSBeginAlertSheet(
-					 NSLocalizedString( @"Export failure",
+	BOOL success = [[ self currentCrontab ] writeAtPath: filename ];
+	if ( ! success ) {
+	    NSBeginAlertSheet(
+			      NSLocalizedString( @"Export failure",
 						 @"Export failure sheet title" ),
-					 NSLocalizedString( @"Darn!",
+			      NSLocalizedString( @"Darn!",
 						 @"Export failure acknowledgement button title" ),
-					 nil,
-					 nil,
-					 winMain, self, NULL,
-					 nil, nil,
-					 NSLocalizedString( @"Could not export crontab. Are you sure you have a hard drive?",
+			      nil,
+			      nil,
+			      winMain, self, NULL,
+			      nil, nil,
+			      NSLocalizedString( @"Could not export crontab. Are you sure you have a hard drive?",
 						 @"export failure dialog text" ) );
-		}
+	}
     }
 }
 
@@ -859,54 +859,54 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (void)importCrontab: (id)sender {
-	[ self crontabShouldImport ];
+    [ self crontabShouldImport ];
 }
 
 - (void)importCrontab {
-	NSOpenPanel *openPanel = [ NSOpenPanel openPanel ];
-
+    NSOpenPanel *openPanel = [ NSOpenPanel openPanel ];
+    
     [ openPanel setAllowsMultipleSelection: NO ];
     [ openPanel setPrompt: NSLocalizedString( @"Import", @"Import file dialog: alternative label for open button" ) ];
-
-	NSArray *fileTypes = [NSArray arrayWithObject:@"crontab"];
-	int result = [ openPanel runModalForDirectory: NSHomeDirectory() file: nil types: fileTypes ];
+    
+    NSArray *fileTypes = [NSArray arrayWithObject:@"crontab"];
+    int result = [ openPanel runModalForDirectory: NSHomeDirectory() file: nil types: fileTypes ];
     if (result == NSOKButton) {
         NSString *filename = [ openPanel filename ];
-		[ self openCrontabFromFile: filename ];
-		// set the dirty flag after importing
-		[ self setDirty: YES ];
+	[ self openCrontabFromFile: filename ];
+	// set the dirty flag after importing
+	[ self setDirty: YES ];
     }	
 }
 
 
 - (void)setupUserColumn {
-	NSLog( @"Setting up userColumn" );
-	userColumn = [ [ NSTableColumn alloc ] initWithIdentifier: @"User" ];
-	[ [ userColumn headerCell ] setStringValue: @"User" ];
-	[ userColumn setWidth: 50 ];
-	[ [ userColumn headerCell ] setFont: [NSFont systemFontOfSize:[NSFont systemFontSize]] ];
-	[ [ userColumn headerCell ]
+    NSLog( @"Setting up userColumn" );
+    userColumn = [ [ NSTableColumn alloc ] initWithIdentifier: @"User" ];
+    [ [ userColumn headerCell ] setStringValue: @"User" ];
+    [ userColumn setWidth: 50 ];
+    [ [ userColumn headerCell ] setFont: [NSFont systemFontOfSize:[NSFont systemFontSize]] ];
+    [ [ userColumn headerCell ]
             setTitle: NSLocalizedString( @"User", @"Column title for extra column in system crontab. Generated programmatically (i.e. not in a nib) with width: 50" ) ];
-//	[ crTable addTableColumn: userColumn ];
-//	[ crTable moveColumn: [ crTable numberOfColumns ] -1 toColumn: [ crTable numberOfColumns ] -2 ];
-//	[ userColumn release ];
+    //	[ crTable addTableColumn: userColumn ];
+    //	[ crTable moveColumn: [ crTable numberOfColumns ] -1 toColumn: [ crTable numberOfColumns ] -2 ];
+    //	[ userColumn release ];
 }
 
 // Setting up the "Active" column
 - (void)setupActiveColumn {
-	NSTableColumn *col = [[ crTable tableColumns] objectAtIndex: 0];
-	NSButtonCell *cell = [[NSButtonCell alloc] init];
-	//SwitchFormatter *formatter = [ [ SwitchFormatter alloc ] init ];
-
-	//[ cell setFormatter: formatter ];
-	[ cell setButtonType: NSSwitchButton ];
-	[ cell setAction: @selector(activeButtonToggled) ];
-	[ cell setTarget: self ];
-
-	[ col setDataCell: cell ];
-
-	[ cell release ];
-	//[ formatter release ];
+    NSTableColumn *col = [[ crTable tableColumns] objectAtIndex: 0];
+    NSButtonCell *cell = [[NSButtonCell alloc] init];
+    //SwitchFormatter *formatter = [ [ SwitchFormatter alloc ] init ];
+    
+    //[ cell setFormatter: formatter ];
+    [ cell setButtonType: NSSwitchButton ];
+    [ cell setAction: @selector(activeButtonToggled) ];
+    [ cell setTarget: self ];
+    
+    [ col setDataCell: cell ];
+    
+    [ cell release ];
+    //[ formatter release ];
 }
 
 
@@ -937,7 +937,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     loadCrontabController *lcc = [ loadCrontabController sharedInstance ];
     NSString *username = [ lcc username ];
     int returnCode = [ lcc returnCode ];
-
+    
     switch ( returnCode ) {
         case 0: // cancel
             break;  // don't do anything
@@ -951,11 +951,11 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 }
 
 - (void)taskCreated: (NSNotification *)notification {
-	[ self newLineWithTask: [ notification object ]];
+    [ self newLineWithTask: [ notification object ]];
 }
 
 - (void)taskEdited: (NSNotification *)notification {
-	[ self replaceLineAtRow: [ self selectedRow ] withObject: [ notification object ]];
+    [ self replaceLineAtRow: [ self selectedRow ] withObject: [ notification object ]];
 }
 
 
@@ -989,9 +989,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     if ( [ menuItem isEqual: editTaskMenuItem ] ) {
         return [ crTable selectedRow ] != -1;
     }
-	if ( [[ menuItem menu ] isEqual: contextMenu ] ) {
-		return [ crTable selectedRow ] != -1;
-	}
+    if ( [[ menuItem menu ] isEqual: contextMenu ] ) {
+	return [ crTable selectedRow ] != -1;
+    }
     return YES;
 }
 
@@ -1025,8 +1025,8 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (id)selectedTask {
-	if ( [ crTable selectedRow ] == -1 ) return nil;
-	return [ currentCrontab taskAtIndex: [ crTable selectedRow ] ];
+    if ( [ crTable selectedRow ] == -1 ) return nil;
+    return [ currentCrontab taskAtIndex: [ crTable selectedRow ] ];
 }
 
 
@@ -1036,14 +1036,14 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (void)showInfoForTask:(int)index {
-	id task = [ currentCrontab taskAtIndex: index ];
-	NSString *info = [ task info ] ? [ task info ] : @"";
-	[ infoTextField setStringValue: info ];
+    id task = [ currentCrontab taskAtIndex: index ];
+    NSString *info = [ task info ] ? [ task info ] : @"";
+    [ infoTextField setStringValue: info ];
 }
 
 
 - (Crontab *)currentCrontab {
-	return currentCrontab;
+    return currentCrontab;
 }
 
 
@@ -1054,30 +1054,30 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 - (void)awakeFromNib {
     NSMutableArray *types = [NSMutableArray arrayWithObjects: NSStringPboardType, NSFilenamesPboardType, nil ];
-
+    
     [ winMain setFrameUsingName: @"MainWindow" ];
     [ winMain setFrameAutosaveName: @"MainWindow" ];
-
+    
     [ winMain makeKeyAndOrderFront: nil ];
-
-	[ self setupActiveColumn ];
-	[ userColumn retain ]; // need to retain this, because it might be removed by the autosave feature below
-	//[ self setupUserColumn ];
-	
-	[ crTable setAutosaveName: @"TaskTable" ];
-	[ crTable setAutosaveTableColumns: YES ];
+    
+    [ self setupActiveColumn ];
+    [ userColumn retain ]; // need to retain this, because it might be removed by the autosave feature below
+			   //[ self setupUserColumn ];
+    
+    [ crTable setAutosaveName: @"TaskTable" ];
+    [ crTable setAutosaveTableColumns: YES ];
     [ crTable setDataSource: self ];
     [ self loadCrontab ];
     
     [ crTable registerForDraggedTypes: types ];
     //    [ winMain makeFirstResponder: crTable ];
-
+    
     /*{
         NSEnumerator *iter = [ [ crTable tableColumns ] objectEnumerator ];
         NSTableColumn *col;
         NSMenu *menu = [ [ NSMenu alloc ] init ];
         [ menu addItemWithTitle: NSLocalizedString( @"Run now", @"Run now context menu item" ) 
-            action: @selector(runSelectedCommand) keyEquivalent: @"" ];
+			 action: @selector(runSelectedCommand) keyEquivalent: @"" ];
         while ( col = [ iter nextObject ] )
             [ [ col dataCell ] setMenu: menu ];
         [ menu release ];        
@@ -1101,9 +1101,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 - (id)tableView:(NSTableView *)table
         objectValueForTableColumn:(NSTableColumn *)col
-        row:(int)row {
+	    row:(int)row {
     if ( row >= 0 && row < [ currentCrontab taskCount ] ) {
-		//NSLog( [ [ tasks objectAtIndex: row ] objectForKey: [ col identifier ] ] );
+	//NSLog( [ [ tasks objectAtIndex: row ] objectForKey: [ col identifier ] ] );
         return [[ currentCrontab taskAtIndex: row ] objectForKey: [ col identifier ] ];
     } else {
         return nil;
@@ -1111,9 +1111,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 }
 
 - (void)tableView: (NSTableView *)table
-        setObjectValue: (id)obj
-        forTableColumn: (NSTableColumn *)col
-        row: (int)row {
+   setObjectValue: (id)obj
+   forTableColumn: (NSTableColumn *)col
+	      row: (int)row {
     if ( row >= 0 && row < [ currentCrontab taskCount ] ) {
         if ( [[ col identifier ] isEqual: @"Active" ] ) {
             // we need special treatment of the Active column because unless we explicitely put in strings, writing won't work
@@ -1127,47 +1127,47 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification {
-	[ infoTextField setEnabled: [crTable selectedRow] != -1 ];
-	if ( [ crTable selectedRow ] != -1 ) {
-		[ self showInfoForTask: [ crTable selectedRow ]];
-	}
-//    BOOL state = ( [ crTable selectedRow ] != -1 );
+    [ infoTextField setEnabled: [crTable selectedRow] != -1 ];
+    if ( [ crTable selectedRow ] != -1 ) {
+	[ self showInfoForTask: [ crTable selectedRow ]];
+    }
+    //    BOOL state = ( [ crTable selectedRow ] != -1 );
 }
 
 
 - (void)tableView:(NSTableView *)view
-    willDisplayCell:(id)cell
-    forTableColumn:(NSTableColumn *)col
-    row:(int)row {
-     
-/* 	if ( [ [ col identifier ] isEqualTo: @"Min" ] ) {
-        SwitchFormatter *formatter = [ [ SwitchFormatter alloc ] init ];
-        NSLog( @"Min column displaying" );
- 		//[cell setImage: [self theAppropriateImageForThisRow: row]];
-        
-        [ cell setFormatter: formatter ];
- 	} */
+  willDisplayCell:(id)cell
+   forTableColumn:(NSTableColumn *)col
+	      row:(int)row {
+    
+    /* 	if ( [ [ col identifier ] isEqualTo: @"Min" ] ) {
+    SwitchFormatter *formatter = [ [ SwitchFormatter alloc ] init ];
+    NSLog( @"Min column displaying" );
+    //[cell setImage: [self theAppropriateImageForThisRow: row]];
+    
+    [ cell setFormatter: formatter ];
+    } */
 }
 
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
     id ed = [ [ aNotification userInfo ] objectForKey: @"NSFieldEditor" ];
-	int selrow = [ crTable selectedRow ];
-	int edrow = [ crTable editedRow ];
+    int selrow = [ crTable selectedRow ];
+    int edrow = [ crTable editedRow ];
     //NSLog( @"ed: %@", ed );
-	if ( [[ed superview] superview] == infoTextField && selrow != -1 ) {
-		NSString *info = [[ ed string ] copy ];
-		TaskObject *task = [ currentCrontab taskAtIndex: selrow ];
-		[ task setInfo: info ];
-		[ self setDirty: YES ];
-		[ info release ];
-	} else if ( edrow != -1 ) {
-		NSTableColumn *col = [[ crTable tableColumns ] objectAtIndex: [ crTable editedColumn ]];
-		id obj = [[ ed string ] copy ];
-		[[ currentCrontab taskAtIndex: edrow ] setObject: obj forKey: [ col identifier ]];
-		[ self setDirty: YES ];
-		[ obj release ];
-	}
+    if ( [[ed superview] superview] == infoTextField && selrow != -1 ) {
+	NSString *info = [[ ed string ] copy ];
+	TaskObject *task = [ currentCrontab taskAtIndex: selrow ];
+	[ task setInfo: info ];
+	[ self setDirty: YES ];
+	[ info release ];
+    } else if ( edrow != -1 ) {
+	NSTableColumn *col = [[ crTable tableColumns ] objectAtIndex: [ crTable editedColumn ]];
+	id obj = [[ ed string ] copy ];
+	[[ currentCrontab taskAtIndex: edrow ] setObject: obj forKey: [ col identifier ]];
+	[ self setDirty: YES ];
+	[ obj release ];
+    }
 }
 
 
@@ -1181,13 +1181,13 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 - (NSApplicationTerminateReply)applicationShouldTerminate:(id)sender {
     if ( [ self isDirty ] ) {
         NSBeginAlertSheet( 
-            NSLocalizedString( @"Unsaved Data", @"Unsaved data alert sheet title" ), 
-            NSLocalizedString( @"Save", @"Save button label" ),
-            NSLocalizedString( @"Discard", @"Discard chanes button label" ),
-            NSLocalizedString( @"Cancel", @"Cancel in dialogs" ),
-            winMain, self, NULL,
-            @selector(didEndTerminateSheet:returnCode:contextInfo:), nil, 
-            NSLocalizedString( @"You have modified your crontab. Save changes?", @"descriptive text in save changes alert sheet" ) );
+			   NSLocalizedString( @"Unsaved Data", @"Unsaved data alert sheet title" ), 
+			   NSLocalizedString( @"Save", @"Save button label" ),
+			   NSLocalizedString( @"Discard", @"Discard chanes button label" ),
+			   NSLocalizedString( @"Cancel", @"Cancel in dialogs" ),
+			   winMain, self, NULL,
+			   @selector(didEndTerminateSheet:returnCode:contextInfo:), nil, 
+			   NSLocalizedString( @"You have modified your crontab. Save changes?", @"descriptive text in save changes alert sheet" ) );
         return NO;
     }
     return YES;
@@ -1209,11 +1209,11 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 }
 
 - (void)didEndUpdateAvailableSheet:(NSWindow *)sheet
-									returnCode:(int)returnCode
-									contextInfo:(void *)contextInfo {
+			returnCode:(int)returnCode
+		       contextInfo:(void *)contextInfo {
     switch ( returnCode ) {
         case NSAlertDefaultReturn: // yes, save
-			[ self openHomepage: nil ];
+	    [ self openHomepage: nil ];
             break;
         case NSAlertOtherReturn: // cancel, go back
             break;
@@ -1225,9 +1225,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 // Dragging
 
 - (BOOL)tableView: (NSTableView *)table
-        acceptDrop: (id <NSDraggingInfo>)info
-        row: (int)row
-        dropOperation: (NSTableViewDropOperation)operation {
+       acceptDrop: (id <NSDraggingInfo>)info
+	      row: (int)row
+    dropOperation: (NSTableViewDropOperation)operation {
     NSPasteboard *pboard = [info draggingPasteboard];
     NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObjects: NSStringPboardType, 										NSFilenamesPboardType, nil ] ];
     NSMutableString *cmd;
@@ -1237,17 +1237,17 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     if ( [ type isEqualToString: NSStringPboardType ] ) {
         NSData *data = [ pboard dataForType: NSStringPboardType ];
         cmd = [ [ NSString alloc ] initWithData: data encoding: [ NSString defaultCStringEncoding ] ];
-
+	
         if ( row == -1 ) { // new line
             [ self newLineWithCommand: cmd ];
         } else { // modify existing line
             [[ currentCrontab taskAtIndex: row ] setObject: cmd forKey: @"Command" ];
             [ self setDirty: YES ];
         }
-
+	
         [ cmd release ];
     }
-
+    
     if ( [ type isEqualToString: NSFilenamesPboardType ] ) {
         NSArray *filenames = [pboard propertyListForType:NSFilenamesPboardType];
         NSEnumerator *iter = [ filenames  reverseObjectEnumerator ];
@@ -1260,9 +1260,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         while ( fname = [ iter nextObject ] ) {
             [ self insertProgramWithString: fname ];
             [ crTable deselectAll: nil ];
-		}
+	}
     }
-
+    
     return YES;
 }
 
@@ -1295,17 +1295,17 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     if ( [ [ NSApp keyWindow ] isEqual: winMain ] ) {
         [ toolbar showhide: sender ];
         [ toolbar isVisible ] ? [ [ self mainWindow ] setTitle: @"CronniX" ]
-            : [ [ self mainWindow ] setTitle: [ @"CronniX - " stringByAppendingString: 
-                                                            crontabForUser ? crontabForUser : NSUserName() ] ];
+			      : [ [ self mainWindow ] setTitle: [ @"CronniX - " stringByAppendingString: 
+								       crontabForUser ? crontabForUser : NSUserName() ] ];
     }
     if ( [ [ NSApp keyWindow ] isEqual: [ self envVarWindow ] ] )
         [ [ envVariablesNibController sharedInstance ] showhide: sender ];
-
-/*    if ( [ [ sender title ] isEqualToString: @"Hide Toolbar" ] ) {
-        [ sender setTitle: @"Show Toolbar" ];
+    
+    /*    if ( [ [ sender title ] isEqualToString: @"Hide Toolbar" ] ) {
+    [ sender setTitle: @"Show Toolbar" ];
     } else {
         [ sender setTitle: @"Hide Toolbar" ];
-    } */
+} */
 }
 
 
@@ -1313,8 +1313,8 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 // test
 
 - (NSData *)runCliCommand: (NSString *)cmd
-        WithArgs: (NSArray *)args
-        {
+		 WithArgs: (NSArray *)args
+{
     int status;
     NSTask *task = [[ NSTask alloc ] init ];
     NSPipe *pipe = [ NSPipe pipe ];
@@ -1328,15 +1328,15 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     if ( args )
         [ task setArguments: args ];
     [ task setStandardOutput: pipe ];
-        
+    
     [ task launch ];
     [ task waitUntilExit ];
-
+    
     cmdOutput = [ [ NSData alloc ] initWithData :[ readHandle readDataToEndOfFile ] ];
     
     status = [ task terminationStatus ];
     //NSLog( @"Exit status %i", status );
-
+    
     [ task release ];
     
     return [ cmdOutput autorelease ];

@@ -18,8 +18,6 @@ static id sharedInstance = nil;
     return sharedInstance ? sharedInstance : [[self alloc] init];
 }
 
-- (void)setEnvArray: (id)array { }
-
 - (void)clear { }
 
 @end

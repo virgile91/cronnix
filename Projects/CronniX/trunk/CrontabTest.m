@@ -39,18 +39,27 @@ NSString *testString =
 
 
 - (void)testRemoveEnvVariable {
-
-	write test!
-
+    id env = [ crontab envVariableAtIndex: 1 ];
+    [ crontab removeEnvVariable: env ];
+    [ self assertInt: [ crontab envVariableCount ] equals: 7 message: @"wrong env variable count" ];
+    [ self assert: [[ crontab envVariableAtIndex: 0 ] key ] equals: @"ENV1" message: @"wrong env at index 0" ];
+    [ self assert: [[ crontab envVariableAtIndex: 1 ] key ] equals: @"ENV3" message: @"wrong env at index 1" ];
+    [ self assert: [[ crontab envVariableAtIndex: 2 ] key ] equals: @"ENV4" message: @"wrong env at index 2" ];
 }
 
 
 - (void)testRemoveEnvVariableWithKey {
-
-	write test! (plus adapt crController)
-
+    [ crontab removeEnvVariableWithKey: @"ENV6" ];
+    [ self assertInt: [ crontab envVariableCount ] equals: 7 message: @"wrong env variable count" ];
+    [ self assert: [[ crontab envVariableAtIndex: 4 ] key ] equals: @"ENV5" message: @"wrong env at index 4" ];
+    [ self assert: [[ crontab envVariableAtIndex: 5 ] key ] equals: @"ENV7" message: @"wrong env at index 5" ];
+    [ self assert: [[ crontab envVariableAtIndex: 6 ] key ] equals: @"ENV8" message: @"wrong env at index 6" ];
 }
 
+- (void)testRemoveEnvVariableWithNonexistingKey {
+    [ crontab removeEnvVariableWithKey: @"ENV10" ];
+    [ self assertInt: [ crontab envVariableCount ] equals: 8 message: @"wrong env variable count" ];
+}
 
 - (void)testReplaceTaskAtIndex {
 	id aTask = [ TaskObject taskWithString: @"1 2 3 4 * new task" ];

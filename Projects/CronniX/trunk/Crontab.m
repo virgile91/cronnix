@@ -34,18 +34,6 @@
 							      object: [ self tasks ]];
     }
     
-    [[ NSNotificationCenter defaultCenter ] addObserver: self 
-					       selector:@selector(envVariableAdded:)
-						   name: EnvVariableAddedNotification 
-						 object: nil ];
-    [[ NSNotificationCenter defaultCenter ] addObserver: self 
-					       selector:@selector(envVariableEdited:)
-						   name: EnvVariableEditedNotification 
-						 object: nil ];
-    [[ NSNotificationCenter defaultCenter ] addObserver: self 
-					       selector:@selector(envVariableDeleted:)
-						   name: EnvVariableDeletedNotification 
-						 object: nil ];
     return self;
 }
 
@@ -158,7 +146,7 @@
 }
 
 - (void)removeEnvVariableWithKey: (NSString *)key {
-	NSEnumerator envs = [ self envVariables ];
+	NSEnumerator *envs = [ self envVariables ];
 	id env;
 	while ( env = [ envs nextObject ] ) {
 		if ( [[ env key ] isEqualToString: key ] ) {
@@ -166,11 +154,6 @@
 			break;
 		}
 	}
-}
-
-- (void)replaceEnv: (NSDictionary *)oldEnv with: (NSDictionary *)newEnv {
-    [ self removeEnv: oldEnv ];
-    [ self addEnv: newEnv ];
 }
 
 
@@ -206,24 +189,6 @@
 - (void)addTaskWithString: (NSString *)string {
     [ objects addObject: [ TaskObject taskWithString: string ] ];
 }
-
-/*
-- (NSArray *)envVariablesArray {
-    NSMutableArray *envArray = [ NSMutableArray array ];
-    NSEnumerator *enumerator = [[ self envVariables ] keyEnumerator ];
-    id key;
-    
-    while ((key = [enumerator nextObject])) {
-	id obj = [[ self envVariables ] objectForKey: key ];
-	NSMutableDictionary *dict = [ NSMutableDictionary dictionary ];
-	[ dict setObject: key forKey: @"Env" ];
-	[ dict setObject: obj forKey: @"Value" ];
-	[ envArray addObject: dict ];
-    }
-    
-    return envArray;
-}
-*/
 
 - (NSEnumerator *)envVariables {
 	return [ self objectEnumeratorForClass: [ EnvVariable class ]];
@@ -328,23 +293,6 @@
     NS_ENDHANDLER
 }
 
-
-// notification handlers
-
-- (void)envVariableAdded: (NSNotification *)notification {
-    id dict = [ notification object ];
-    [ self addEnv: dict ];
-}
-
-- (void)envVariableEdited: (NSNotification *)notification {
-    id dict = [ notification object ];
-    [ self replaceEnv: [ dict objectForKey: @"OldEnv" ] with: [ dict objectForKey: @"NewEnv" ]];
-}
-
-- (void)envVariableDeleted: (NSNotification *)notification {
-    id dict = [ notification object ];
-    [ self removeEnv: dict ];
-}
 
 
 @end

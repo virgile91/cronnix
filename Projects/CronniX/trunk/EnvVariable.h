@@ -15,6 +15,7 @@
 }
 
 - (id)initWithString: (NSString *)string;
++ (id)envVariableWithEnvVariable: (id)anEnv;
 + (id)envVariableWithString: (NSString *)string;
 + (id)envVariableWithValue: (NSString *)aValue forKey: (NSString *)aKey;
 
@@ -22,6 +23,7 @@
 
 - (NSString *)key;
 - (NSString *)value;
+- (void) setValue: (id)aValue forKey: (id)aKey;
 
 - (void)parseString: (NSString *)string;
 

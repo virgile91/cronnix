@@ -31,6 +31,12 @@
 	[ value release ];
 }
 
++ (id)envVariableWithEnvVariable: (id)anEnv {
+    id env = [[ EnvVariable alloc ] init];
+    [ env setValue: [ anEnv value ] forKey: [ anEnv key ]];
+    return [ env autorelease ];
+}
+
 + (id)envVariableWithString: (NSString *)string {
     return [[[ EnvVariable alloc ] initWithString: string ] autorelease ];
 }
@@ -52,11 +58,11 @@
 - (void) setValue: (id)aValue forKey: (id)aKey {
 	if ( aValue != value ) {
 		[ value release ];
-		value = [ aValue retain ];
+		value = [ aValue copy ];
 	}
 	if ( aKey != key ) {
 		[ key release ];
-		key   = [ aKey retain ];
+		key   = [ aKey copy ];
 	}
 }
 
