@@ -53,8 +53,31 @@ NSString *normalizedTestString =
 @"#CrInfo inactive Task\n"
 @"#CronniX 30\t5\t6\t4\t*\tinactive Task\n";
 
+NSString *identicalTasks =
+@"A = a\n"
+@"#CronniX */5    *       *       *       *       0\n"
+@"#CrInfo 1.1\n"
+@"#CrInfo 1.2\n"
+@"0       0       1       1       *       1\n"
+@"B = b\n"
+@"C = c\n"
+@"D = d\n"
+@"#CrInfo 2.1\n"
+@"0       0       1       1       *       2\n"
+@"#CrInfo 3.1\n"
+@"#CrInfo 3.2\n"
+@"#CrInfo 3.3\n"
+@"0       0       1       1       *       2\n";
+
 
 @implementation CrontabTest
+
+- (void)testIdenticalTasks {
+	id ct = [[ Crontab alloc ] initWithString: identicalTasks ];
+	[ self assertInt: [ ct taskCount ] equals: 4 ];
+	[ self assertInt: [ ct envVariableCount ] equals: 4 ];
+}
+
 
 - (void)testMultilineInfo {
 	NSString *tab =
@@ -241,18 +264,6 @@ NSString *normalizedTestString =
 }
 
 
-- (void)testLineCount {
-    [ self assertInt: [[ crontab lines ] count ] equals: 21 ];
-}
-
-
-- (void)testSetLines {
-    NSArray *a1 = [ NSArray arrayWithObjects: @"A", @"B", nil ];
-    [ crontab setLines: a1 ];
-    [ self assert: [[ crontab lines ] objectAtIndex: 0] equals: @"A" message: @"content" ];
-    [ self assertInt: [[ crontab lines ] count ] equals: 2 message: @"length" ];
-}
-
 - (void)testTaskCount {
     [ self assertInt: [ crontab taskCount ] equals: 4 ];
 }
@@ -307,9 +318,7 @@ NSString *normalizedTestString =
 
 
 - (void)setUp {
-    crontab = [[ Crontab alloc ] 
-				initWithData: [ testString dataUsingEncoding: [ NSString defaultCStringEncoding ]]
-				     forUser: nil ];
+    crontab = [[ Crontab alloc ] initWithString: testString ];
 }
 
 - (void)tearDown {

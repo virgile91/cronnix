@@ -90,7 +90,10 @@ static envVariablesNibController *sharedInstance = nil;
     [ super dealloc ];
 }
 
-
+- (void)awakeFromNib {
+	// register d&d
+	[ envTable registerForDraggedTypes: [ NSArray arrayWithObject: NSStringPboardType ]];	
+}
 
 // accessors
 
@@ -158,22 +161,25 @@ static envVariablesNibController *sharedInstance = nil;
 }
 
 - (void)removeLine {
-    //NSLog( @"remove" );
-    int row = [ envTable selectedRow ];
-    if ( row == -1 ) {
-        NSBeep();
-        return;
+	[ self removeLinesInList: [ envTable selectedRowEnumerator ]];
+}
+
+- (void)removeLinesInList: (NSEnumerator *)list {
+    id item;
+    list = [[ list allObjects ] reverseObjectEnumerator ];
+    while ( item = [ list nextObject ] ) {
+        [ crontab removeEnvVariableAtIndex: [ item intValue ] ];
     }
-    [ crontab removeEnvVariableAtIndex: row ];
     [ envTable reloadData ];
-    
+	
     // make sure that the last row remains selected
     if ( [ envTable selectedRow ] == -1 ) {
         [ envTable selectRow: [ envTable numberOfRows ] -1 byExtendingSelection: NO ];
     }
     
-    [[ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
+	[ self postModifiedNotification ];
 }
+
 
 - (void)duplicateLine {
     if ( [ envTable selectedRow ] == -1 ) {
@@ -190,7 +196,7 @@ static envVariablesNibController *sharedInstance = nil;
         [ envTable selectRow: [ envTable numberOfRows ] -1 byExtendingSelection: NO ];
     }
     
-    [ [ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
+	[ self postModifiedNotification ];
 }
 
 
@@ -205,12 +211,14 @@ static envVariablesNibController *sharedInstance = nil;
 																			  @"env. variable value template" ) 
 												   forKey: NSLocalizedString( @"SOME_ENV", 
 																			  @"env. variable name template" ) ];
-    [ crontab addEnvVariable: env ];
-    [ envTable reloadData ];
-    [[ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
-    [[ NSNotificationCenter defaultCenter ] postNotificationName: EnvVariableAddedNotification object: env ];
+	[ self addEnvVariable: env ];
 }
 
+- (void)addEnvVariable: (EnvVariable *)env {
+    [ crontab addEnvVariable: env ];
+    [ envTable reloadData ];
+	[ self postAddedNotification: env ];
+}
 
 - (void)clear {
     [ crontab removeAllEnvVariables ];
@@ -272,8 +280,101 @@ static envVariablesNibController *sharedInstance = nil;
 }
 
 
+// --------------------------------------------------------------------------------------------
+// Dragging
+
+- (BOOL)tableView: (NSTableView *)table
+       acceptDrop: (id <NSDraggingInfo>)info
+			  row: (int)row
+    dropOperation: (NSTableViewDropOperation)operation {
+
+	NSLog( @"acceptDrop ");
+	NSPasteboard *pboard = [ info draggingPasteboard ];
+    NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObject...: NSStringPboardType ]];
+    NSLog( @"type: %@\n", type );
+    if ( ! type ) return NO;
+	
+	if ( [ type isEqualToString: NSStringPboardType ] ) {
+        NSData *data = [ pboard dataForType: NSStringPboardType ];
+        id string = [ [ NSString alloc ] initWithData: data encoding: [ NSString defaultCStringEncoding ]];
+		
+		if ( [ EnvVariable isContainedInString: string ] ) {
+			id cr = [[ Crontab alloc ] initWithString: string ];
+			id iter = [ cr reverseEnvVariables ];
+			id env;
+			while ( env = [ iter nextObject ] ) {
+				[ crontab insertEnvVariable: env atIndex: row ];
+				[ self postAddedNotification: env ];
+			}
+			[ envTable reloadData ];
+			[ cr release ];
+		}
+		
+		return YES;		
+    }
+    
+    return NO;
+}
+
+
+- (unsigned int)tableView:(NSTableView*)tableView 
+			 validateDrop:(id <NSDraggingInfo>)info 
+			  proposedRow:(int)row 
+	proposedDropOperation:(NSTableViewDropOperation)operation {
+	NSPasteboard *pboard = [info draggingPasteboard];
+	NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObject: NSStringPboardType ]];
+    if ( type ) {
+        if ( [ type isEqualToString: NSStringPboardType ] ) {
+            return NSDragOperationGeneric;
+        }
+    }
+    return NSDragOperationNone;
+}
+
+
+- (BOOL)tableView:(NSTableView *)aTableView
+		writeRows:(NSArray *)rows
+	 toPasteboard:(NSPasteboard *)pboard {
+    NSLog( @"writeRows\n" );
+	[ self setDraggedObjects: rows ];
+	[ pboard declareTypes: [ NSArray arrayWithObject: NSStringPboardType ] owner: self ];
+	return YES;
+}
+
+- (void)pasteboard:(NSPasteboard *)sender provideDataForType:(NSString *)type {
+    NSLog( @"provideDataForType\n" );
+	id cr = [[[ Crontab alloc] init ] autorelease ];
+	id iter = [ draggedObjects objectEnumerator ];
+	id index;
+	while ( index = [ iter nextObject ] ) {
+		id env = [ crontab envVariableAtIndex: [ index intValue ]];
+		[ cr addEnvVariable: env ];
+	}
+	
+	[ sender setString: [ cr description ] forType: NSStringPboardType ];
+}
+
+- (void)setDraggedObjects: (NSArray *)indexList {
+	if ( draggedObjects != indexList ) {
+		[ draggedObjects release ];
+		draggedObjects = [ indexList retain ];
+	}
+}
+
+- (void)draggedImage:(NSImage *)anImage endedAt:(NSPoint)aPoint operation:(NSDragOperation)operation {
+	NSLog( @"draggedImage:endedAt:\n" );
+	if ( operation & NSDragOperationMove ||
+		 operation & NSDragOperationGeneric ) {
+		[ self removeLinesInList: [ draggedObjects objectEnumerator ]];
+	}
+}
+
+
+
+// -----------------------------------------------------------------
+
 - (void)controlTextDidChange:(NSNotification *)aNotification {
-    [ [ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
+	[ self postModifiedNotification ];
     
     id ed = [ [ aNotification userInfo ] objectForKey: @"NSFieldEditor" ];
     int edrow = [ envTable editedRow ];
@@ -338,6 +439,18 @@ static envVariablesNibController *sharedInstance = nil;
 
 - (void)removeLineToolbarItemClicked:(NSToolbarItem*)item {
     [ self removeLine ];
+}
+
+
+// notifications
+
+- (void)postModifiedNotification {
+    [[ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
+}
+
+- (void)postAddedNotification: (id)addedObject {
+	[ self postModifiedNotification ];
+    [[ NSNotificationCenter defaultCenter ] postNotificationName: EnvVariableAddedNotification object: addedObject ];
 }
 
 

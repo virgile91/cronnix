@@ -9,6 +9,7 @@
     Crontab *crontab;
     NSToolbar *toolbar;
     NSMutableDictionary *items;
+	id          draggedObjects;
 }
 
 + (envVariablesNibController *)sharedInstance;
@@ -30,14 +31,18 @@
 - (int)selectedRow;
 
 - (void)addLine;
+- (void)addEnvVariable: (EnvVariable *)env;
 
 - (void)newLine; // identical to addLine
 
 - (void)removeLine;
+- (void)removeLinesInList: (NSEnumerator *)list;
 
 - (void)duplicateLine;
 
 - (void)clear;
+
+- (void)setDraggedObjects: (NSArray *)indexList;
 
 // ib actions
 - (IBAction)hideWindow:(id)sender;
@@ -57,5 +62,11 @@
 // toolbar menu actions
 - (void)customize:(id)sender;
 - (void)showhide:(id)sender;
+
+// notifications
+
+- (void)postModifiedNotification;
+- (void)postAddedNotification: (id)addedObject;
+
 
 @end
