@@ -920,6 +920,14 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
+		5A167EA6072D80E90077CB3A = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = text.script.sh;
+			path = make_release.sh;
+			refType = 4;
+			sourceTree = "<group>";
+		};
 		5A180767061317760053BB44 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1321,6 +1329,7 @@
 		};
 		5A57A6EE03E177C400000104 = {
 			children = (
+				5A167EA6072D80E90077CB3A,
 				5ACBB10503DB2BA900000104,
 				5A47A99B03DCB3E000000104,
 				5A57A6EC03E177A800000104,

@@ -653,6 +653,8 @@ static NSString *cronnixHomepage = @"http://www.abstracture.de/cronnix";
     [ currentCrontab removeTaskAtIndex: [ item intValue ] ];
   }
   [ crTable reloadData ];
+  if ( [crTable selectedRow] != -1 )
+    [self showInfoForTask: [crTable selectedRow]];
   [ self setDirty: YES ];
 }
 

@@ -6,13 +6,12 @@ ropertyList-1.0.dtd">
         <key>Product</key>
         <string>CronniX</string>
 		<key>Version</key>
-		<string>3.0b2</string>
+		<string>3.0b3</string>
 		<key>Changes</key>
 		<array>
-      <string>Fixed column resizing in the English version</string>
-      <string>Updated Japanese localization</string>
-      <string>Updated French localization</string>
-      <string>Included all remaining localizations</string>
+      <string>Fixed parsing bug: User column of system crontab was ignored</string>
+      <string>Fixed parsing bug: '=' sign in command string caused tasks to be read in a environment variables</string>
+      <string>Fixed display issue: Info text field was not updated after deletes</string>
 		</array>
 </dict>
 </plist>
