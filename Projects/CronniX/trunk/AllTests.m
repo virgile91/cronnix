@@ -9,6 +9,7 @@
 #import "AllTests.h"
 #import "CrontabTest.h"
 #import "TaskObjectTest.h"
+#import "EnvVariableTest.h"
 #import "crControllerTest.h"
 #import "SasStringTest.h"
 
@@ -19,6 +20,7 @@
 
 	[ suite addTest: [ TestSuite suiteWithClass: [ CrontabTest class ]]];
 	[ suite addTest: [ TestSuite suiteWithClass: [ TaskObjectTest class ]]];
+	[ suite addTest: [ TestSuite suiteWithClass: [ EnvVariableTest class ]]];
 	[ suite addTest: [ TestSuite suiteWithClass: [ crControllerTest class ]]];
 	[ suite addTest: [ TestSuite suiteWithClass: [ SasStringTest class ]]];
 	
