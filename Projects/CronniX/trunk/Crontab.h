@@ -42,61 +42,21 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 - (void)clear;
 
 - (NSMutableArray *)linesFromData: (NSData *)data;
-/*!
-	@method parseData
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)parseData;
-/*!
-	@method removeShortLines
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)removeShortLines;
-/*!
-	@method removeCommentLines
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)removeCommentLines;
-/*!
-	@method replaceWhitespaceWithSingleTabs
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)replaceWhitespaceWithSingleTabs;
-/*!
-	@method findEnvironmentVariables
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)findEnvironmentVariables;
-/*!
-	@method findTasks
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)findTasks;
-/*!
-	@method hasEnvType1InWords
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (BOOL)hasEnvType1InWords: (NSArray *)words;
-/*!
-	@method hasEnvType2InWords
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (BOOL)hasEnvType2InWords: (NSArray *)words;
 
 - (BOOL)hasEnvType3InWords: (NSArray *)words;
@@ -105,65 +65,26 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 
 - (BOOL)isSystemCrontab;
 
+- (BOOL)isShortLine: (NSString *)line;
+
 - (BOOL)writeAtPath: (NSString *)path;
 
 // accessors
 
-/*!
-	@method lines
-	@abstract 
-	@discussion 
-	@result 
-*/
 - (NSMutableArray *)lines;
-/*!
-	@method setLines
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)setLines: (NSArray *)aVal;
-/*!
-	@method tasks
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (NSMutableArray *)tasks;
-/*!
-	@method setTasks
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)setTasks: (NSMutableArray *)aVal;
-/*!
-	@method user
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (NSString *)user;
-/*!
-	@method setUser
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)setUser: (NSString *)aVal;
-/*!
-	@method envVariables
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (NSMutableDictionary *)envVariables;
-/*!
-	@method setEnvVariables
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)setEnvVariables: (NSMutableDictionary *)aVal;
 
 - (void)addEnv: (NSDictionary *)env;

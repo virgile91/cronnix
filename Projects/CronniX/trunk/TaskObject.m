@@ -8,67 +8,83 @@
 
 #import "TaskObject.h"
 #import "Crontab.h"
+#import "SasString.h"
 
 
 @implementation TaskObject
 
 - (id)init {
-	return [ self initWithString: nil ];
+    return [ self initWithString: nil ];
 }
 
 
 - (id)initWithString:(NSString *)string forSystem: (BOOL)isSystemCrontab {
-	[super init];
-	task = [[ NSMutableDictionary alloc ] init ];
-	isSystemCrontabTask = isSystemCrontab;
-
-	NS_DURING
-		[ self parseString: string ];
-	NS_HANDLER
-		NSLog( @"Error parsing line: %@", string );
-	NS_ENDHANDLER
-		
-	return self;
+    [super init];
+    task = [[ NSMutableDictionary alloc ] init ];
+    isSystemCrontabTask = isSystemCrontab;
+    
+    NS_DURING
+	[ self parseString: string ];
+    NS_HANDLER
+	NSLog( @"Error parsing line: %@", string );
+    NS_ENDHANDLER
+    
+    return self;
 }
 
 
 - (id)initWithString:(NSString *)string {
-	return [ self initWithString: string forSystem: NO ];
+    return [ self initWithString: string forSystem: NO ];
 }
 
 - (id)initWithTask:(id)aTask {
-	return [ aTask copy ];
+    return [ aTask copy ];
 }
 
 + (id)taskWithTask:(id)value {
-	return [[ value copy ] autorelease ];
+    return [[ value copy ] autorelease ];
 }
 
 + (id)defaultTask {
-	return [[ TaskObject alloc ] initWithString:
-		NSLocalizedString( @"0 0 1 1 * echo \"Happy New Year!\"",
-					 @"default string for new tasks" ) ];
+    return [[ TaskObject alloc ] initWithString:
+	NSLocalizedString( @"0 0 1 1 * echo \"Happy New Year!\"",
+			   @"default string for new tasks" ) ];
 }
 
 - (void)dealloc {
-	[ task release ];
-	[ super dealloc ];
+    [ task release ];
+    [ super dealloc ];
 }
 
 
 - (id)copy {
-	id newTask = [[ TaskObject alloc ] init ];
-	[ newTask setDictionary: task ];
-	[ newTask setIsSystemCrontabTask: [ self isSystemCrontabTask ]];
-	return newTask;
+    id newTask = [[ TaskObject alloc ] init ];
+    [ newTask setDictionary: task ];
+    [ newTask setIsSystemCrontabTask: [ self isSystemCrontabTask ]];
+    return newTask;
 }
 
 
 
 // ----------
 
++ (BOOL)isContainedInString: (NSString *)line {
+    if ( [ line hasPrefix: @"#" ] ) return NO;
+    
+    {
+	//NSCharacterSet *ws = [ NSCharacterSet whitespaceCharacterSet ];
+	int fieldCount = 6;//[ obj fieldCountSeperatedBy: ws ];
+	if ( fieldCount < 6 ) return NO;
+    }
+    
+    return NO;
+}
+
+
+
+
 - (void)parseString: (NSString *)string {
-	NSScanner *scanner;
+    NSScanner *scanner;
     NSCharacterSet *whitespace = [ NSCharacterSet whitespaceCharacterSet ];
     NSString *min;
     NSString *hour;
@@ -77,20 +93,20 @@
     NSString *wday;
     NSString *user;
     NSString *command = nil;
-	unsigned cind;
-
-	if ( ! string ) return;
-	
-	//	NSLog( @"Parsing string: %@", string );
-	
-	if ( [ string hasPrefix: disableComment ] ) {
-		string = [ string substringFromIndex: [ disableComment length ]];
-		[ self setActive: NO ];
-	} else {
-		[ self setActive: YES ];
-	}
-
-	scanner =  [ NSScanner scannerWithString: string ];
+    unsigned cind;
+    
+    if ( ! string ) return;
+    
+    //	NSLog( @"Parsing string: %@", string );
+    
+    if ( [ string hasPrefix: disableComment ] ) {
+	string = [ string substringFromIndex: [ disableComment length ]];
+	[ self setActive: NO ];
+    } else {
+	[ self setActive: YES ];
+    }
+    
+    scanner =  [ NSScanner scannerWithString: string ];
     [ scanner scanUpToCharactersFromSet: whitespace intoString: &min ];
     [ scanner scanUpToCharactersFromSet: whitespace intoString: &hour ];
     [ scanner scanUpToCharactersFromSet: whitespace intoString: &mday ];
@@ -98,35 +114,35 @@
     [ scanner scanUpToCharactersFromSet: whitespace intoString: &wday ];
     if ( [ self isSystemCrontabTask ] )
         [ scanner scanUpToCharactersFromSet: whitespace intoString: &user ];
-
+    
     cind = [ scanner scanLocation ] + 1;
     if ( cind <= [ string length ] ) {
         command = [ string substringFromIndex: cind ];
-		command = [ command stringByTrimmingCharactersInSet: whitespace ];
-	}
-	
-
-	[ self setMinute: min ];
-	[ self setHour: hour ];
-	[ self setMday: mday ];
-	[ self setMonth: month ];
-	[ self setWday: wday ];
-	if ( [ self isSystemCrontabTask ] )
-		[ self setUser: user ];
-	[ self setCommand: command ];
+	command = [ command stringByTrimmingCharactersInSet: whitespace ];
+    }
+    
+    
+    [ self setMinute: min ];
+    [ self setHour: hour ];
+    [ self setMday: mday ];
+    [ self setMonth: month ];
+    [ self setWday: wday ];
+    if ( [ self isSystemCrontabTask ] )
+	[ self setUser: user ];
+    [ self setCommand: command ];
 }
 
 
 - (void)setObject:(id)anObject forKey:(id)aKey {
-	[ task setObject: anObject forKey: aKey ];
+    [ task setObject: anObject forKey: aKey ];
 }
 
 - (id)objectForKey:(id)aKey {
-	return [ task objectForKey: aKey ];
+    return [ task objectForKey: aKey ];
 }
 
 - (void)setActive: (BOOL)value {
-	[ self setObject: [ NSString stringWithFormat: @"%u", value ] forKey: @"Active" ];
+    [ self setObject: [ NSString stringWithFormat: @"%u", value ] forKey: @"Active" ];
 }
 
 - (BOOL)isActive {
@@ -135,7 +151,7 @@
 
 
 - (void)setMinute: (NSString *)value {
-	[ self setObject: value forKey: @"Min" ];
+    [ self setObject: value forKey: @"Min" ];
 }
 
 - (NSString *)minute {
@@ -144,7 +160,7 @@
 
 
 - (void)setHour: (NSString *)value {
-	[ self setObject: value forKey: @"Hour" ];
+    [ self setObject: value forKey: @"Hour" ];
 }
 
 - (NSString *)hour {
@@ -153,7 +169,7 @@
 
 
 - (void)setMday: (NSString *)value {
-	[ self setObject: value forKey: @"Mday" ];
+    [ self setObject: value forKey: @"Mday" ];
 }
 
 - (NSString *)mday {
@@ -162,7 +178,7 @@
 
 
 - (void)setMonth: (NSString *)value {
-	[ self setObject: value forKey: @"Month" ];
+    [ self setObject: value forKey: @"Month" ];
 }
 
 - (NSString *)month {
@@ -171,7 +187,7 @@
 
 
 - (void)setWday: (NSString *)value {
-	[ self setObject: value forKey: @"Wday" ];
+    [ self setObject: value forKey: @"Wday" ];
 }
 
 - (NSString *)wday {
@@ -180,7 +196,7 @@
 
 
 - (void)setCommand: (NSString *)value {
-	[ self setObject: value forKey: @"Command" ];
+    [ self setObject: value forKey: @"Command" ];
 }
 
 - (NSString *)command {
@@ -189,7 +205,7 @@
 
 
 - (void)setUser: (NSString *)value {
-	[ self setObject: value forKey: @"User" ];
+    [ self setObject: value forKey: @"User" ];
 }
 
 - (NSString *)user {
@@ -203,14 +219,14 @@
 }
 
 - (void)setInfo: (NSString *)aValue {
-	[ self setObject: aValue forKey: @"Info" ];
+    [ self setObject: aValue forKey: @"Info" ];
 }
 
 
 // accessors
 
 - (void)setDictionary:(NSDictionary *)dict {
-	task = [[ NSMutableDictionary alloc ] initWithDictionary: dict ];
+    task = [[ NSMutableDictionary alloc ] initWithDictionary: dict ];
 }
 
 - (BOOL)isSystemCrontabTask {
@@ -218,7 +234,7 @@
 }
 
 - (void)setIsSystemCrontabTask: (BOOL)aValue {
-	isSystemCrontabTask = aValue;
+    isSystemCrontabTask = aValue;
 }
 
 
@@ -226,34 +242,34 @@
 
 /* essential forwarding methods
 - (void)forwardInvocation: (NSInvocation *)invocation {
-	NSLog( @"forward" );
+    NSLog( @"forward" );
     if ( [[ self task ] respondsToSelector: [invocation selector] ] ) {
         [ invocation invokeWithTarget: [ self task ] ];
-	}
+    }
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
-	if ( [ self respondsToSelector: aSelector ] ) {
-		return [ self methodSignatureForSelector: aSelector ];
-	} else {
-		return [[ self task ] methodSignatureForSelector: aSelector ];
-	}
+    if ( [ self respondsToSelector: aSelector ] ) {
+	return [ self methodSignatureForSelector: aSelector ];
+    } else {
+	return [[ self task ] methodSignatureForSelector: aSelector ];
+    }
 } */
 
 
 /* not really needed
 - (BOOL)respondsToSelector: (SEL)aSelector {
-	NSLog( @"responds" );
-	return [ super respondsToSelector: aSelector ] || [[ self task ] respondsToSelector: aSelector ];
+    NSLog( @"responds" );
+    return [ super respondsToSelector: aSelector ] || [[ self task ] respondsToSelector: aSelector ];
 }
 
 - (BOOL)isKindOfClass:(Class)aClass {
-	return [[ self task ] isKindOfClass: aClass ];
+    return [[ self task ] isKindOfClass: aClass ];
 }
 
 + (BOOL)instancesRespondToSelector:(SEL)aSelector {
-	NSLog( @"instance responds" );
-	return [ self instancesRespondToSelector: aSelector ] || [[ self task ] instancesRespondToSelector: aSelector ];
+    NSLog( @"instance responds" );
+    return [ self instancesRespondToSelector: aSelector ] || [[ self task ] instancesRespondToSelector: aSelector ];
 }*/
 
 

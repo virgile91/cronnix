@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CrontabLineParsing.h"
 
 
-@interface TaskObject : NSObject {
+@interface TaskObject : NSObject <CrontabLineParsing> {
 	NSMutableDictionary *task;
 	BOOL isSystemCrontabTask;
 }
@@ -22,6 +23,8 @@
 
 + (id)taskWithTask:(id)task;
 + (id)defaultTask;
+
++ (BOOL)isContainedInString: (NSString *)line;
 
 - (void)parseString: (NSString *)string;
 

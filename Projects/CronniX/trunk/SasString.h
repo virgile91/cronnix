@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "NSString.h"
-
 
 @interface NSString( SasString )
 
 - (BOOL)startsWithNumber;
+- (int)fieldCountSeperatedBy: (NSCharacterSet *)charSet;
 
 @end

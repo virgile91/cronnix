@@ -10,7 +10,7 @@
 #import "CrontabTest.h"
 #import "TaskObjectTest.h"
 #import "crControllerTest.h"
-
+#import "SasStringTest.h"
 
 @implementation AllTests
 
@@ -20,6 +20,7 @@
 	[ suite addTest: [ TestSuite suiteWithClass: [ CrontabTest class ]]];
 	[ suite addTest: [ TestSuite suiteWithClass: [ TaskObjectTest class ]]];
 	[ suite addTest: [ TestSuite suiteWithClass: [ crControllerTest class ]]];
+	[ suite addTest: [ TestSuite suiteWithClass: [ SasStringTest class ]]];
 	
 	return suite;
 }

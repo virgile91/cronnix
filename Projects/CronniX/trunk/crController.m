@@ -32,9 +32,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         [ [ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(userSelected:) 
             name: UserSelectedNotification object: nil ];
         [ [ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(taskCreated:)
-														name: TaskCreatedNotification object: nil ];
+							name: TaskCreatedNotification object: nil ];
         [ [ NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(taskEdited:)
-														name: TaskEditedNotification object: nil ];
+							name: TaskEditedNotification object: nil ];
     }
     return self;
 }

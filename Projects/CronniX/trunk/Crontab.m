@@ -7,7 +7,8 @@
 //
 
 #import "Crontab.h"
-
+#import "EnvVariable.h"
+#import "CommentLine.h"
 
 
 @implementation Crontab
@@ -80,39 +81,29 @@
 }
 
 
-- (void)parseDataOld {
-    //NSLog( @"removeShortLines" );
-    [ self removeShortLines ];
-    //NSLog( @"removeCommentLines" );
-    [ self removeCommentLines ];
-    //NSLog( @"replaceWhitespaceWithSingleTabs" );
-    //[ self replaceWhitespaceWithSingleTabs ];
-    //NSLog( @"findEnvironmentVariables" );
-    [ self findEnvironmentVariables ];
-    //NSLog( @"findTasks" );
-    [ self findTasks ];
-}
-
-
 - (void)parseData {
-	NSEnumerator *en = [[ self lines ] objectEnumerator ];
-	id line;
-	while ( line = [ en nextObject ] ) {
-		if ( [ self isShortLine: line ] ) {
-			[ objects addObject: line ];
-			continue;
-		}
-		if ( [ self isEnvironmentVariable: line ] ) {
-			env = [ EnvVariable envVariableFromString: line ];
-			[ envVariables setObject: env forKey: someKey ];
-			[ objects addObject: env ];
-		}
+    NSEnumerator *en = [[ self lines ] objectEnumerator ];
+    id line;
+    while ( line = [ en nextObject ] ) {
+	id obj = nil;
+
+	if ( [ EnvVariable isContainedInString: line ] ) {
+	    obj = [[ EnvVariable alloc ] initWithString: line ];
+	    //[ envVariables setObject: obj forKey: someKey ];
+	} else if( [ CommentLine isContainedInString: line ] ) {
+	    obj = [[ CommentLine alloc ] initWithString: line ];
+	} else if ( [ TaskObject isContainedInString: line ] ) {
+	    obj = [[ TaskObject alloc ] initWithString: line ];
 	}
+	[ obj autorelease ];
+	
+	if ( obj ) [ objects addObject: obj ];
+    }
 }
 
 - (BOOL)isShortLine: (NSString *)line {
-	if ( [ line length ] < 3 ) return YES;
-	else return NO;
+    if ( [ line length ] < 3 ) return YES;
+    else return NO;
 }
 
 - (void)removeShortLines {
@@ -221,24 +212,24 @@
 // ENV= value [+more]
 - (BOOL)hasEnvType1InWords: (NSArray *)words {
     if ( [ words count ] >= 2 && [ [ words objectAtIndex: 0 ] isLike: @"*=" ] ) {
-		return YES;
+	return YES;
     } else {
-		return NO;
-	}
+	return NO;
+    }
 }
 
 // ENV= value [+more]
 - (void)addEnvType1: (NSArray *)words {
-	int i;
-	NSString *word = [ [ words objectAtIndex: 0 ]
+    int i;
+    NSString *word = [ [ words objectAtIndex: 0 ]
 				substringToIndex: [ [ words objectAtIndex: 0 ] length ] -1 ];
-	NSMutableString *env = [ NSMutableString stringWithString: word ];
-	NSMutableString *value   = [ NSMutableString stringWithString: [ words objectAtIndex: 1 ]];
-	for ( i = 2; i < [ words count ]; i++ ) {
-	    [ value appendString: @" " ];
-	    [ value appendString: [ words objectAtIndex: i ] ];
-	}
-	[ self addEnv: env withValue: value ];
+    NSMutableString *env = [ NSMutableString stringWithString: word ];
+    NSMutableString *value   = [ NSMutableString stringWithString: [ words objectAtIndex: 1 ]];
+    for ( i = 2; i < [ words count ]; i++ ) {
+	[ value appendString: @" " ];
+	[ value appendString: [ words objectAtIndex: i ] ];
+    }
+    [ self addEnv: env withValue: value ];
 }
 
 

@@ -22,4 +22,15 @@
 	return [ numberSet characterIsMember: firstChar ];
 }
 
+- (int)fieldCountSeperatedBy: (NSCharacterSet *)charSet  {
+    NSScanner *scanner = [ NSScanner scannerWithString: self ];
+    NSString *dummy;
+    int fieldCount = 0;
+    while ( [ scanner scanUpToCharactersFromSet: charSet intoString: &dummy ] ) {
+	fieldCount++;
+    }
+    return fieldCount;
+}
+
+
 @end

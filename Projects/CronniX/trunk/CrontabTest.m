@@ -28,8 +28,8 @@ NSString *testString =
 @implementation CrontabTest
 
 - (void)setUp {
-	crontab = [[ Crontab alloc ] initWithData: [ testString dataUsingEncoding: [ NSString defaultCStringEncoding ]]
-								forUser: nil ];
+    crontab = [[ Crontab alloc ] initWithData: [ testString dataUsingEncoding: [ NSString defaultCStringEncoding ]]
+				      forUser: nil ];
 }
 
 - (void)tearDown {
