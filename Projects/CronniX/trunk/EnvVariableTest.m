@@ -20,6 +20,13 @@ NSString *envType8 = @"ENV8 =value +more";
 
 @implementation EnvVariableTest
 
+- (void)testBugReport_NoelJackson_20041014 {
+  NSString * s = 
+  @"  23     5       *       *       3,7     /Library/MySQL/bin/mysqldump --user=noel --password=blank --port=3360 --all-databases --host=127.0.0.1 > ~/Sites/MySQLDump.sql\n";
+  [ self assertTrue: ! [ EnvVariable isContainedInString: s ] ];
+}
+
+
 - (void)testDescription {
 	id env = [ EnvVariable envVariableWithString: envType1 ];
 	[ self assert: [ env description ] equals: @"ENV1 = value" ];

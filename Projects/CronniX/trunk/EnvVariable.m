@@ -51,8 +51,16 @@
 }
 
 + (BOOL)isContainedInString: (NSString *)string {
-    if ( [ string startsWithStringIgnoringWhitespace: @"#" ] ) return NO;
-	return [ string isLike: @"*=*" ];
+  if ( [ string startsWithStringIgnoringWhitespace: @"#" ] ) return NO;
+  id parts = [ string componentsSeparatedByString: @"=" ];
+  if ( [ parts count] != 2 ) return NO;
+  id lhs = [ parts objectAtIndex: 0 ];
+	int words = [ lhs fieldCountSeperatedBy: [ NSCharacterSet whitespaceCharacterSet ]];
+  if ( words > 1 ) {
+    return NO;
+  } else {
+    return YES;
+  }
 }
 
 - (NSString *)key { return key; }

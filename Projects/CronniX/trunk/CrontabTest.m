@@ -72,6 +72,22 @@ NSString *identicalTasks =
 
 @implementation CrontabTest
 
+- (void)testBugReport_andreasZys_20041015 {
+  NSString * s = @"15      3       *       *       *       root    periodic daily\n";
+  id ct = [[ Crontab alloc ] initWithString: s forUser: @"system" ];
+  [ self assertInt: [ ct taskCount ] equals: 1 ];
+  id task = [ ct taskAtIndex: 0 ];
+  [ self assert: [ task command ] equals: @"periodic daily" ];
+}
+
+
+- (void)testBugReport_NoelJackson_20041014 {
+  NSString * s = 
+  @"  23     5       *       *       3,7     /Library/MySQL/bin/mysqldump --user=noel --password=blank --port=3360 --all-databases --host=127.0.0.1 > ~/Sites/MySQLDump.sql\n";
+  id ct = [[ Crontab alloc ] initWithString: s ];
+  [ self assertInt: [ ct taskCount ] equals: 1 ];
+}
+
 
 - (void)testRemoveTaskWithIdenticals {
 	id ct = [[ Crontab alloc ] initWithString: identicalTasks ];

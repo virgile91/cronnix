@@ -104,7 +104,7 @@
 			
 		} else if ( [ TaskObject isContainedInString: line ] ) {
 			
-			obj = [[ TaskObject alloc ] initWithString: line ];
+      obj = [[ TaskObject alloc ] initWithString: line forSystem: [ self isSystemCrontab ]];
 			int index = [ lines indexOfObjectIdenticalTo: line ];
 			int i;
 			id infoStrings = [ NSMutableArray array ];
