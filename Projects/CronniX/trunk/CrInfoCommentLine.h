@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SimpleLine.h"
 
-static NSString *CrInfoComment __attribute__ ((unused)) = @"#CrInfo ";
+static NSString *CrInfoComment __attribute__ ((unused)) = @"#CrInfo";
 
 
 @interface CrInfoCommentLine : SimpleLine {

@@ -247,10 +247,9 @@ static envVariablesNibController *sharedInstance = nil;
 - (id)tableView:(NSTableView *)table
         objectValueForTableColumn:(NSTableColumn *)col
 			row:(int)row {
-    id env;
     if ( row >= 0 && row < [ crontab envVariableCount ] ) {
-        env = [ crontab envVariableAtIndex: row ];
-		return [ env valueForKey: [ col identifier ] ];
+        id env = [ crontab envVariableAtIndex: row ];
+		return [ env valueForKey: [ col identifier]];
     } else {
         return nil;
     }
@@ -260,10 +259,9 @@ static envVariablesNibController *sharedInstance = nil;
    setObjectValue: (id)obj
    forTableColumn: (NSTableColumn *)col
 			  row: (int)row {
-    id env;
     if ( row >= 0 && row < [ crontab envVariableCount ] ) {
-        env = [ crontab envVariableAtIndex: row ];
-        [ env setValue: obj forKey: [ col identifier ] ];
+        id env = [ crontab envVariableAtIndex: row ];
+		[ env setValue: obj forKey: [ col identifier ]];
     }
 }
 

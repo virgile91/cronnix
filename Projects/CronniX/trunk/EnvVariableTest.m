@@ -20,6 +20,11 @@ NSString *envType8 = @"ENV8 =value +more";
 
 @implementation EnvVariableTest
 
+- (void)testDescription {
+	id env = [ EnvVariable envVariableWithString: envType1 ];
+	[ self assert: [ env description ] equals: @"ENV1 = value" ];
+}
+
 - (void)testData {
 	id env = [ EnvVariable envVariableWithString: envType1 ];
 	id string = [[ NSString alloc ] initWithData: [ env data ] encoding: [ NSString defaultCStringEncoding]];

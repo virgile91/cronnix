@@ -87,7 +87,6 @@
 - (void)parseData {
     NSEnumerator *en = [[ self lines ] objectEnumerator ];
     id line;
-    id previousLine = nil;
     while ( line = [ en nextObject ] ) {
 		id obj = nil;
 		
@@ -98,32 +97,40 @@
 		} else if ( [ EnvVariable isContainedInString: line ] ) {
 			
 			obj = [[ EnvVariable alloc ] initWithString: line ];
+		} else if ( [ CrInfoCommentLine isContainedInString: line ] ) {
 			
-		} else if ( [ CommentLine isContainedInString: line ] &&
-					! [ CrInfoCommentLine isContainedInString: line ] ) {
+			// do nothing: TaskObject will check if there are info comments in lines before it
+			// make sure this stays in front of if ( [ CommentLine isContainedInString: line ] ) though
+			
+		} else if ( [ CommentLine isContainedInString: line ] ) {
 			
 			obj = [[ CommentLine alloc ] initWithString: line ];
 			
 		} else if ( [ TaskObject isContainedInString: line ] ) {
 			
 			obj = [[ TaskObject alloc ] initWithString: line ];
-			if ( [ CrInfoCommentLine isContainedInString: previousLine ] ) {
-				[ obj setInfo: previousLine ];
+			int index = [[ self lines ] indexOfObject: line ];
+			int i;
+			id infoStrings = [ NSMutableArray array ];
+			for ( i = index -1; i >= 0; i-- ) {
+				id prevLine = [[ self lines ] objectAtIndex: i ];
+				if ( [ CrInfoCommentLine isContainedInString: prevLine ] ) {
+					[ infoStrings insertObject: prevLine atIndex: 0 ];
+				} else {
+					break;
+				}
 			}
+			if ( [ infoStrings count ] > 0 )
+				[ obj setInfo: [ infoStrings componentsJoinedByString: @"\n" ]];
 			
 		} else {
 			
-			// info lines are parsed into the TaskObject above (setInfo), therefore skip them here
-			if ( ! [ CrInfoCommentLine isContainedInString: line ] )
-				obj = [[ UnparsedLine alloc ] initWithString: line ];
+			obj = [[ UnparsedLine alloc ] initWithString: line ];
 		}
 		[ obj autorelease ];
-		[ previousLine release ];
-		previousLine = [ line retain ];
 		
 		if ( obj ) [ objects addObject: obj ];
     }
-    [ previousLine release ];
 }
 
 

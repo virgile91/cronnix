@@ -33,7 +33,8 @@
 
 + (id)envVariableWithEnvVariable: (id)anEnv {
     id env = [[ EnvVariable alloc ] init];
-    [ env setValue: [ anEnv value ] forKey: [ anEnv key ]];
+	[ env setKey: [ anEnv key ]];
+    [ env setValue: [ anEnv value ]];
     return [ env autorelease ];
 }
 
@@ -43,7 +44,8 @@
 
 + (id)envVariableWithValue: (NSString *)aValue forKey: (NSString *)aKey {
 	id env = [[ EnvVariable alloc ] init];
-	[ env setValue: aValue forKey: aKey ];
+	[ env setKey: aKey ];
+	[ env setValue: aValue ];
 	return [ env autorelease ];
 }
 
@@ -55,33 +57,14 @@
 - (NSString *)key { return key; }
 - (NSString *)value { return value; }
 
-/*
- we use key value coding to map the env table contents to objects and need
- a slightly modified handling of the standard key value coding.
- The table columns have the identifiers "Env" and "Value", which are used as
- [ env valueForKey: @"Env" ];
- This would normally try to fetch an instance variable 'Env' which we don't have here.
- The method below maps this to the ivars key and value.
- */
-- (id)valueForKey: (id)aKey {
-	if ( [ aKey isEqualTo: @"key" ] ||
-		 [ aKey isEqualTo: @"Key" ] ||
-		 [ aKey isEqualTo: @"Env" ] ||
-		 [ aKey isEqualTo: @"env" ] ) {
-		 return [ self key ];
-	} else if ( [ aKey isEqualTo: @"Value" ] ||
-				[ aKey isEqualTo: @"value" ] ) {
-		return [ self value ];
-	}
-	return [ super valueForKey: aKey ];
-}
-
-
-- (void) setValue: (id)aValue forKey: (id)aKey {
+- (void) setValue: (id)aValue {
 	if ( aValue != value ) {
 		[ value release ];
 		value = [ aValue copy ];
 	}
+}
+
+- (void) setKey: (id)aKey {
 	if ( aKey != key ) {
 		[ key release ];
 		key   = [ aKey copy ];
@@ -97,7 +80,8 @@
 	aValue = [ string substringFromIndex: [ scanner scanLocation ]];
 	aKey = [ aKey stringByTrimmingCharactersInSet: [ NSCharacterSet whitespaceAndNewlineCharacterSet ]];
 	aValue = [ aValue stringByTrimmingCharactersInSet: [ NSCharacterSet whitespaceAndNewlineCharacterSet ]];
-	[ self setValue: aValue forKey: aKey ];
+	[ self setKey: aKey ];
+	[ self setValue: aValue ];
 }
 
 
@@ -109,6 +93,9 @@
     return envData;
 }
 
+- (NSString *)description {
+	return [ NSString stringWithFormat: @"%@ = %@", [ self key ], [ self value ]];
+}
 
 
 @end

@@ -28,6 +28,37 @@ NSString *inactiveTaskString2 = @"#CronniX\tMin Hour Mday Month Wday My \"Comman
 }
 
 
+- (void)testMultilineInfoData {
+	task = [[ TaskObject alloc ] initWithString: taskString ];
+	NSString *infoString =
+		@"#CrInfo info 1\n"
+		@"#CrInfo\tinfo 2\n"
+		@"#CrInfo info 3\n";
+	NSString *expectedString =
+		@"#CrInfo info 1\n"
+		@"#CrInfo info 2\n"
+		@"#CrInfo info 3\n"
+		@"Min\tHour\tMday\tMonth\tWday\tMy \"Command\"";
+	[ task setInfo: infoString ];
+	[ self assert: [ task description ] equals: expectedString ];
+}
+
+
+- (void)testMultilineInfo {
+	task = [[ TaskObject alloc ] initWithString: taskString ];
+	NSString *infoString =
+		@"#CrInfo info 1\n"
+		@"#CrInfo\tinfo 2\n"
+		@"#CrInfo info 3\n";
+	NSString *expectedInfo =
+		@"info 1\n"
+		@"info 2\n"
+		@"info 3";
+	[ task setInfo: infoString ];
+	[ self assert: [ task info ] equals: expectedInfo ];
+}
+
+
 - (void)testSetInfo {
 	[ task setInfo: @"#CrInfo another test...\n" ];
 	[ self assert: [ task info ] equals: @"another test..." ];

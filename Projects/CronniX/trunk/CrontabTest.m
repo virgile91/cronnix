@@ -56,6 +56,21 @@ NSString *normalizedTestString =
 
 @implementation CrontabTest
 
+- (void)testMultilineInfo {
+	NSString *tab =
+	    @"#CrInfo info 1\n"
+		@"#CrInfo\tinfo 2\n"
+		@"#CrInfo info 3\n"
+		@"1 2 3 4 * a task\n";
+	NSString *expectedInfo =
+		@"info 1\n"
+		@"info 2\n"
+		@"info 3";
+	id ct = [[ Crontab alloc ] initWithString: tab ];
+	id task = [ ct taskAtIndex: 0 ];
+	[ self assert: [ task info ] equals: expectedInfo ];
+}
+
 - (void)testIsContainedInString {
 	[ self assertTrue: [ Crontab isContainedInString: testString ]];
 	[ self assertTrue: [ Crontab isContainedInString: normalizedTestString ]];

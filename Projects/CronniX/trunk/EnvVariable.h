@@ -23,7 +23,8 @@
 
 - (NSString *)key;
 - (NSString *)value;
-- (void) setValue: (id)aValue forKey: (id)aKey;
+- (void) setKey: (id)aKey;
+- (void) setValue: (id)aValue;
 
 - (void)parseString: (NSString *)string;
 
