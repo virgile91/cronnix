@@ -7,6 +7,7 @@
 //
 
 #import "EnvVariable.h"
+#import "SasString.h"
 
 
 @implementation EnvVariable
@@ -50,8 +51,8 @@
 }
 
 + (BOOL)isContainedInString: (NSString *)string {
-	if ( ! [ string isLike: @"*=*" ] ) return NO;
-    return YES;
+    if ( [ string startsWithStringIgnoringWhitespace: @"#" ] ) return NO;
+	return [ string isLike: @"*=*" ];
 }
 
 - (NSString *)key { return key; }
