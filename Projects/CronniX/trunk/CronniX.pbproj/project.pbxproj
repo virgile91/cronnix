@@ -651,6 +651,7 @@
 				5ACBB10603DB324700000104,
 				5A57A6EE03E177C400000104,
 				5A565B7F03F5D38300000104,
+				5A3563AF0705638600B591CB,
 			);
 			isa = PBXGroup;
 			name = Resources;
@@ -1019,6 +1020,14 @@
 			lastKnownFileType = text.plist.strings;
 			name = Swedish;
 			path = Swedish.lproj/Localizable.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5A3563AF0705638600B591CB = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			path = "CronniX todo.ooutline";
 			refType = 4;
 			sourceTree = "<group>";
 		};

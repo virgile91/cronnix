@@ -72,6 +72,27 @@ NSString *identicalTasks =
 
 @implementation CrontabTest
 
+
+- (void)testRemoveTaskWithIdenticals {
+	id ct = [[ Crontab alloc ] initWithString: identicalTasks ];
+	id task2 = [ ct taskAtIndex: 2 ];
+	id task3 = [ ct taskAtIndex: 3 ];
+	[ ct removeTask: task2 ];
+	[ self assertInt: [ ct taskCount ] equals: 3 ];
+	[ self assert: [ ct taskAtIndex: 2 ] equals: task3 ];
+}
+
+
+- (void)testAddEnvToEmptyCrontab {
+	id ct = [[ Crontab alloc ] init ];
+	id env = [ EnvVariable envVariableWithString: @"newKey=testvalue" ];
+	[ ct addEnvVariable: env ];
+	[ self assertInt: [ ct envVariableCount ] equals: 1 ];
+	[ self assert: [ ct envVariableAtIndex: 0 ] equals: env ];
+	[ ct release ];
+}
+
+
 - (void)testIdenticalTasks {
 	id ct = [[ Crontab alloc ] initWithString: identicalTasks ];
 	[ self assertInt: [ ct taskCount ] equals: 4 ];
@@ -80,6 +101,7 @@ NSString *identicalTasks =
 	[ self assert: [ task2 info ] equals: @"2.1" ];
 	id task3 = [ ct taskAtIndex: 3 ];
 	[ self assert: [ task3 info ] equals: @"3.1\n3.2\n3.3" ];
+	[ ct release ];
 }
 
 
@@ -168,17 +190,50 @@ NSString *identicalTasks =
 }
 
 - (void)testInsertEnvVariable {
-    id env = [ EnvVariable envVariableWithString: @"newKey=testvalue" ];
-    [ crontab insertEnvVariable: env atIndex: 3 ];
-    [ self assertInt: [ crontab envVariableCount ] equals: 10 message: @"wrong env variable count" ];
-    [ self assert: [[ crontab envVariableAtIndex: 2 ] key ] equals: @"ENV3" message: @"wrong env at index 2" ];
-    [ self assert: [[ crontab envVariableAtIndex: 3 ] key ] equals: @"newKey" message: @"wrong env at index 3" ];
-    [ self assert: [[ crontab envVariableAtIndex: 4 ] key ] equals: @"ENV4" message: @"wrong env at index 4" ];
+  id env = [ EnvVariable envVariableWithString: @"newKey=testvalue" ];
+  [ crontab insertEnvVariable: env atIndex: 3 ];
+  [ self assertInt: [ crontab envVariableCount ] equals: 10 message: @"wrong env variable count" ];
+  [ self assert: [[ crontab envVariableAtIndex: 2 ] key ] equals: @"ENV3" message: @"wrong env at index 2" ];
+  [ self assert: [[ crontab envVariableAtIndex: 3 ] key ] equals: @"newKey" message: @"wrong env at index 3" ];
+  [ self assert: [[ crontab envVariableAtIndex: 4 ] key ] equals: @"ENV4" message: @"wrong env at index 4" ];
 	id string = [ crontab description ];
 	id lines = [ string componentsSeparatedByString: @"\n" ];
 	[ self assert: [ lines objectAtIndex: 2 ] equals: @"ENV3 = value" ];
 	[ self assert: [ lines objectAtIndex: 3 ] equals: @"newKey = testvalue" ];
 	[ self assert: [ lines objectAtIndex: 4 ] equals: @"ENV4 = value +more" ];
+}
+
+
+- (void)testInsertEnvVariable2 {
+  id env = [ EnvVariable envVariableWithString: @"newKey=testvalue" ];
+  [ crontab insertEnvVariable: env atIndex: 8 ];
+  [ self assertInt: [ crontab envVariableCount ] equals: 10 message: @"wrong env variable count" ];
+  [ self assert: [[ crontab envVariableAtIndex: 7 ] key ] equals: @"ENV8" message: @"wrong env at index 7" ];
+  [ self assert: [[ crontab envVariableAtIndex: 8 ] key ] equals: @"newKey" message: @"wrong env at index 8" ];
+  [ self assert: [[ crontab envVariableAtIndex: 9 ] key ] equals: @"ENV9" message: @"wrong env at index 9" ];
+	id string = [ crontab description ];
+	id lines = [ string componentsSeparatedByString: @"\n" ];
+	[ self assert: [ lines objectAtIndex: 14 ] equals: @"1	2	3	4	*	second Task" ];
+	[ self assert: [ lines objectAtIndex: 15 ] equals: @"newKey = testvalue" ];
+	[ self assert: [ lines objectAtIndex: 16 ] equals: @"ENV9 = value" ];
+}
+
+
+- (void)testInsertEnvVariable3 {
+  id env = [ EnvVariable envVariableWithString: @"newKey=testvalue" ];
+  [ crontab insertEnvVariable: env atIndex: 9 ];
+  [ self assertInt: [ crontab envVariableCount ] equals: 10 message: @"wrong env variable count" ];
+  [ self assert: [[ crontab envVariableAtIndex: 7 ] key ] 
+         equals: @"ENV8" message: @"wrong env at index 7" ];
+  [ self assert: [[ crontab envVariableAtIndex: 8 ] key ] 
+         equals: @"ENV9" message: @"wrong env at index 8" ];
+  [ self assert: [[ crontab envVariableAtIndex: 9 ] key ] 
+         equals: @"newKey" message: @"wrong env at index 9" ];
+	id string = [ crontab description ];
+	id lines = [ string componentsSeparatedByString: @"\n" ];
+	[ self assert: [ lines objectAtIndex: 14 ] equals: @"1	2	3	4	*	second Task" ];
+	[ self assert: [ lines objectAtIndex: 15 ] equals: @"ENV9 = value" ];
+	[ self assert: [ lines objectAtIndex: 16 ] equals: @"newKey = testvalue" ];
 }
 
 

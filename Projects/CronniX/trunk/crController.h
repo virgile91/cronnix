@@ -129,7 +129,7 @@ static NSString *UserSelectedNotification __attribute__ ((unused)) = @"UserSelec
 
 - (void)userSelected: (NSNotification *)notification;
 
-- (void)setDraggedObjects: (NSArray *)indexList;
+- (void)setDraggedObjects: (NSArray *)objects;
 
 - (NSString *)crontabForUser;
 

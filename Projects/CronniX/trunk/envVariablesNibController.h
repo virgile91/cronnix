@@ -42,7 +42,7 @@
 
 - (void)clear;
 
-- (void)setDraggedObjects: (NSArray *)indexList;
+- (void)setDraggedObjects: (NSArray *)list;
 
 // ib actions
 - (IBAction)hideWindow:(id)sender;
