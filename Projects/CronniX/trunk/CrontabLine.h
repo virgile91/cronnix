@@ -1,5 +1,5 @@
 
-@protocol CrontabLineParsing
+@protocol CrontabLine
 
 - (id)initWithString: (NSString *)line;
 + (BOOL)isContainedInString: (NSString *)line;

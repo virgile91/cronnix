@@ -9,6 +9,7 @@
 #import "Crontab.h"
 #import "CommentLine.h"
 #import "CrInfoCommentLine.h"
+#import "UnparsedLine.h"
 
 @implementation Crontab
 
@@ -25,13 +26,13 @@
     [ self setUser: aUser ];
     
     if ( data ) {
-	[ self setLines: [ self linesFromData: data ]];
-	
-	[ self parseData ];
-	
-	// tell the world that there's a new crontab
-	[[ NSNotificationCenter defaultCenter ] postNotificationName: NewCrontabParsedNotification
-							      object: [ self tasks ]];
+		[ self setLines: [ self linesFromData: data ]];
+		
+		[ self parseData ];
+		
+		// tell the world that there's a new crontab
+		[[ NSNotificationCenter defaultCenter ] postNotificationName: NewCrontabParsedNotification
+															  object: [ self tasks ]];
     }
     
     return self;
@@ -55,7 +56,7 @@
 
 - (NSMutableArray *)linesFromData: (NSData *)data {
     NSString *string = [ [ NSString alloc ] initWithData: data 
-						encoding: [ NSString defaultCStringEncoding ] ];
+												encoding: [ NSString defaultCStringEncoding ] ];
     NSMutableArray *array = [ NSMutableArray arrayWithArray: [ string componentsSeparatedByString: @"\n" ] ];
     [ string release ];
     return array;
@@ -67,30 +68,39 @@
     id line;
     id previousLine = nil;
     while ( line = [ en nextObject ] ) {
-	id obj = nil;
-	
-	if ( [ EnvVariable isContainedInString: line ] ) {
-	    
-	    obj = [[ EnvVariable alloc ] initWithString: line ];
-	    
-	} else if ( [ CommentLine isContainedInString: line ] &&
-		    ! [ CrInfoCommentLine isContainedInString: line ] ) {
-	    
-	    obj = [[ CommentLine alloc ] initWithString: line ];
-	    
-	} else if ( [ TaskObject isContainedInString: line ] ) {
-	    
-	    obj = [[ TaskObject alloc ] initWithString: line ];
-	    if ( [ CrInfoCommentLine isContainedInString: previousLine ] ) {
-		[ obj setInfo: previousLine ];
-	    }
-	    
-	}
-	[ obj autorelease ];
-	[ previousLine release ];
-	previousLine = [ line retain ];
-	
-	if ( obj ) [ objects addObject: obj ];
+		id obj = nil;
+		
+		if ( [ line length ] == 0 ) {
+			
+			continue;
+		
+		} else if ( [ EnvVariable isContainedInString: line ] ) {
+			
+			obj = [[ EnvVariable alloc ] initWithString: line ];
+			
+		} else if ( [ CommentLine isContainedInString: line ] &&
+					! [ CrInfoCommentLine isContainedInString: line ] ) {
+			
+			obj = [[ CommentLine alloc ] initWithString: line ];
+			
+		} else if ( [ TaskObject isContainedInString: line ] ) {
+			
+			obj = [[ TaskObject alloc ] initWithString: line ];
+			if ( [ CrInfoCommentLine isContainedInString: previousLine ] ) {
+				[ obj setInfo: previousLine ];
+			}
+			
+		} else {
+			
+			// info lines are parsed into the TaskObject above (setInfo), therefore skip them here
+			if ( ! [ CrInfoCommentLine isContainedInString: line ] )
+				obj = [[ UnparsedLine alloc ] initWithString: line ];
+		}
+		[ obj autorelease ];
+		[ previousLine release ];
+		previousLine = [ line retain ];
+		
+		if ( obj ) [ objects addObject: obj ];
     }
     [ previousLine release ];
 }
@@ -121,7 +131,7 @@
     NSEnumerator *iter = [ objects objectEnumerator ];
     id obj;
     while ( obj = [ iter nextObject ] ) {
-	if ( [ obj isKindOfClass: aClass ] ) [ filteredObjects addObject: obj ];
+		if ( [ obj isKindOfClass: aClass ] ) [ filteredObjects addObject: obj ];
     }
     return [ filteredObjects objectEnumerator ];
 }
@@ -167,7 +177,7 @@
     id iter = [ allEnvs objectEnumerator ];
     id env;
     while ( env = [ iter nextObject ] ) {
-	[ self removeEnvVariable: env ];
+		[ self removeEnvVariable: env ];
     }
 }
 
@@ -179,10 +189,10 @@
     NSEnumerator *envs = [ self envVariables ];
     id env;
     while ( env = [ envs nextObject ] ) {
-	if ( [[ env key ] isEqualToString: key ] ) {
-	    [ objects removeObject: env ];
-	    break;
-	}
+		if ( [[ env key ] isEqualToString: key ] ) {
+			[ objects removeObject: env ];
+			break;
+		}
     }
 }
 
@@ -248,68 +258,17 @@
 }
 
 
-
-- (NSMutableData *)envVariablesData {
-    NSMutableData *envData = [ NSMutableData data ];
-    NSEnumerator *envVars = [ self envVariables ];
-    id env;
-    
-    while ( env = [ envVars nextObject ] ) {
-	NSString *item = [ NSString stringWithFormat: @"%@ = %@\n", [ env key ], [ env value ]];
-	[ envData appendData: [ item dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
-    }
-    
-    return envData;
-}
-
-- (NSMutableData *)data {
-    NSMutableData *data = [ self envVariablesData ];
-    
-    // we need to build a different crontab in the "system" case, because of the additional "User" field
-    NSEnumerator *enumerator = [ self tasks ];
-    TaskObject *task;
-    
-    while ( task = [ enumerator nextObject ] ) {
-	NSString *line;
+- (NSData *)data {
+	id data = [ NSMutableData data ];
+	id iter = [ objects objectEnumerator ];
+	id obj;
 	
-	// add info line
-	if ( [ task info ] ) {
-	    line = [ NSString stringWithFormat: @"%@%@\n", CrInfoComment, [ task info ]];
-	    //NSLog( @"info: %@", line );
-	    [ data appendData: [ line dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
+	while ( obj = [ iter nextObject ] ) {
+		[ data appendData: [ obj data ]];
+		[ data appendData: [ @"\n" dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
 	}
 	
-	// prepare the task line
-	{
-	    // prepare the active/inactive string
-	    NSString *activeString = [ task isActive ] ?  (NSString*)@"" : disableComment;
-	    NSString *asterisk = @"*";
-	    if ( [ self isSystemCrontab ] ) {
-		line = [ NSString stringWithFormat: @"%@ %@\t%@\t%@\t%@\t%@\t%@\t%@\n",
-		    activeString,
-[[ task objectForKey: @"Min" ] length ] != 0 ? [ task objectForKey: @"Min" ] : asterisk,
-[[ task objectForKey: @"Hour" ] length ] != 0 ? [ task objectForKey: @"Hour" ] : asterisk,
-[[ task objectForKey: @"Mday" ] length ] != 0 ? [ task objectForKey: @"Mday" ] : asterisk,
-[[ task objectForKey: @"Month" ] length ] != 0 ? [ task objectForKey: @"Month" ] : asterisk,
-[[ task objectForKey: @"Wday" ] length ] != 0 ? [ task objectForKey: @"Wday" ] : asterisk,
-[[ task objectForKey: @"User" ] length ] != 0 ? [ task objectForKey: @"User" ] : @"root",
-[[ task objectForKey: @"Command" ] length ] != 0 ? [ task objectForKey: @"Command" ] : asterisk ];
-	    } else {
-		line = [ NSString stringWithFormat: @"%@ %@\t%@\t%@\t%@\t%@\t%@\n",
-		    activeString,
-[[ task objectForKey: @"Min" ] length ] != 0 ? [ task objectForKey: @"Min" ] : asterisk,
-[[ task objectForKey: @"Hour" ] length ] != 0 ? [ task objectForKey: @"Hour" ] : asterisk,
-[[ task objectForKey: @"Mday" ] length ] != 0 ? [ task objectForKey: @"Mday" ] : asterisk,
-[[ task objectForKey: @"Month" ] length ] != 0 ? [ task objectForKey: @"Month" ] : asterisk,
-[[ task objectForKey: @"Wday" ] length ] != 0 ? [ task objectForKey: @"Wday" ] : asterisk,
-[[ task objectForKey: @"Command" ] length ] != 0 ? [ task objectForKey: @"Command" ] : asterisk ];
-	    }
-	}
-	//NSLog( @"task: %@", line );
-	[ data appendData: [ line dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
-    }
-    
-    return data;
+	return data;
 }
 
 
@@ -331,10 +290,10 @@
 - (void)writeAtPath2: (NSString *)path {
     NSFileHandle *fh = [ NSFileHandle fileHandleForWritingAtPath: path ];
     NS_DURING
-	[ fh writeData: [ self data ]];
-	[ fh closeFile ];
+		[ fh writeData: [ self data ]];
+		[ fh closeFile ];
     NS_HANDLER
-	NSLog( @"failure writing file %@", path );
+		NSLog( @"failure writing file %@", path );
     NS_ENDHANDLER
 }
 

@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CrontabLineParsing.h"
+#import "CrontabLine.h"
 
+static NSString *DisableTag __attribute__ ((unused)) = @"#CronniX";
 
-@interface TaskObject : NSObject <CrontabLineParsing> {
+@interface TaskObject : NSObject <CrontabLine> {
 	NSMutableDictionary *task;
 	BOOL isSystemCrontabTask;
 }
@@ -68,6 +69,7 @@
 
 - (NSString *)user;
 
+- (NSData *)data;
 
 // accessors
 

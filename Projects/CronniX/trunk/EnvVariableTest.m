@@ -20,10 +20,58 @@ NSString *envType8 = @"ENV8 =value +more";
 
 @implementation EnvVariableTest
 
-- (void)testType1 {
+- (void)testData {
+	id env = [ EnvVariable envVariableWithString: envType1 ];
+	id string = [[ NSString alloc ] initWithData: [ env data ] encoding: [ NSString defaultCStringEncoding]];
+	[ self assert: string equals: @"ENV1 = value" ];
+}
+
+- (void)testInitWithStringType1 {
 	id env = [ EnvVariable envVariableWithString: envType1 ];
 	[ self assert: [ env key ] equals: @"ENV1" ];
 	[ self assert: [ env value ] equals: @"value" ];
+}
+
+- (void)testInitWithStringType2 {
+	id env = [ EnvVariable envVariableWithString: envType2 ];
+	[ self assert: [ env key ] equals: @"ENV2" ];
+	[ self assert: [ env value ] equals: @"value +more" ];
+}
+
+- (void)testInitWithStringType3 {
+	id env = [ EnvVariable envVariableWithString: envType3 ];
+	[ self assert: [ env key ] equals: @"ENV3" ];
+	[ self assert: [ env value ] equals: @"value" ];
+}
+
+- (void)testInitWithStringType4 {
+	id env = [ EnvVariable envVariableWithString: envType4 ];
+	[ self assert: [ env key ] equals: @"ENV4" ];
+	[ self assert: [ env value ] equals: @"value +more" ];
+}
+
+- (void)testInitWithStringType5 {
+	id env = [ EnvVariable envVariableWithString: envType5 ];
+	[ self assert: [ env key ] equals: @"ENV5" ];
+	[ self assert: [ env value ] equals: @"value" ];
+}
+
+- (void)testInitWithStringType6 {
+	id env = [ EnvVariable envVariableWithString: envType6 ];
+	[ self assert: [ env key ] equals: @"ENV6" ];
+	[ self assert: [ env value ] equals: @"value +more" ];
+}
+
+- (void)testInitWithStringType7 {
+	id env = [ EnvVariable envVariableWithString: envType7 ];
+	[ self assert: [ env key ] equals: @"ENV7" ];
+	[ self assert: [ env value ] equals: @"value" ];
+}
+
+- (void)testInitWithStringType8 {
+	id env = [ EnvVariable envVariableWithString: envType8 ];
+	[ self assert: [ env key ] equals: @"ENV8" ];
+	[ self assert: [ env value ] equals: @"value +more" ];
 }
 
 @end

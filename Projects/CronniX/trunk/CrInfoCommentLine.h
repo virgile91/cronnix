@@ -7,16 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CrontabLineParsing.h"
+#import "SimpleLine.h"
 
 static NSString *CrInfoComment __attribute__ ((unused)) = @"#CrInfo ";
 
 
-@interface CrInfoCommentLine : NSObject <CrontabLineParsing> {
-
+@interface CrInfoCommentLine : SimpleLine {
 }
 
-- (id)initWithString: (NSString *)line;
-+ (BOOL)isContainedInString: (NSString *)line;
++ (BOOL)isContainedInString: (NSString *)aString;
 
 @end

@@ -74,7 +74,8 @@
 // ----------
 
 + (BOOL)isContainedInString: (NSString *)line {
-    if ( [ line hasPrefix: @"#" ] ) return NO;
+    if ( [ line startsWithStringIgnoringWhitespace: @"#" ] 
+		 && ! [ line startsWithStringIgnoringWhitespace: DisableTag ] ) return NO;
     
     {
 		NSCharacterSet *ws = [ NSCharacterSet whitespaceCharacterSet ];
@@ -104,8 +105,8 @@
     
     //	NSLog( @"Parsing string: %@", string );
     
-    if ( [ string hasPrefix: disableComment ] ) {
-	string = [ string substringFromIndex: [ disableComment length ]];
+    if ( [ string hasPrefix: DisableTag ] ) {
+	string = [ string substringFromIndex: [ DisableTag length ]];
 	[ self setActive: NO ];
     } else {
 	[ self setActive: YES ];
@@ -224,11 +225,55 @@
 }
 
 - (void)setInfo: (NSString *)aValue {
-    id string = aValue;
+    id string = [ aValue stringByTrimmingCharactersInSet: [ NSCharacterSet whitespaceAndNewlineCharacterSet ]];
     if ( [ string startsWithString: CrInfoComment ] ) {
-	string = [ string substringFromIndex: [ CrInfoComment length ] -1 ];
+		string = [ string substringFromIndex: [ CrInfoComment length ] -1 ];
+		string = [ string stringByTrimmingCharactersInSet: [ NSCharacterSet whitespaceAndNewlineCharacterSet ]];
     }
     [ self setObject: string forKey: @"Info" ];
+}
+
+
+- (NSData *)data {
+	NSMutableData *data = [ NSMutableData data ];
+    
+	NSString *line;
+	
+	// add info line
+	if ( [ self info ] ) {
+		line = [ NSString stringWithFormat: @"%@%@\n", CrInfoComment, [ self info ]];
+		[ data appendData: [ line dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
+	}
+	
+	// prepare the task line
+	{
+		// prepare the active/inactive string
+		id activeString = [ self isActive ] ?  @"" : [ NSString stringWithFormat: @"%@ ", DisableTag ];
+		id asterisk = @"*";
+		if ( [ self isSystemCrontabTask ] ) {
+			line = [ NSString stringWithFormat: @"%@%@\t%@\t%@\t%@\t%@\t%@\t%@",
+				activeString,
+			    [[ self objectForKey: @"Min" ] length ] != 0 ? [ self objectForKey: @"Min" ] : asterisk,
+				[[ self objectForKey: @"Hour" ] length ] != 0 ? [ self objectForKey: @"Hour" ] : asterisk,
+				[[ self objectForKey: @"Mday" ] length ] != 0 ? [ self objectForKey: @"Mday" ] : asterisk,
+				[[ self objectForKey: @"Month" ] length ] != 0 ? [ self objectForKey: @"Month" ] : asterisk,
+				[[ self objectForKey: @"Wday" ] length ] != 0 ? [ self objectForKey: @"Wday" ] : asterisk,
+				[[ self objectForKey: @"User" ] length ] != 0 ? [ self objectForKey: @"User" ] : @"root",
+				[[ self objectForKey: @"Command" ] length ] != 0 ? [ self objectForKey: @"Command" ] : asterisk ];
+		} else {
+			line = [ NSString stringWithFormat: @"%@%@\t%@\t%@\t%@\t%@\t%@",
+				activeString,
+			    [[ self objectForKey: @"Min" ] length ] != 0 ? [ self objectForKey: @"Min" ] : asterisk,
+				[[ self objectForKey: @"Hour" ] length ] != 0 ? [ self objectForKey: @"Hour" ] : asterisk,
+				[[ self objectForKey: @"Mday" ] length ] != 0 ? [ self objectForKey: @"Mday" ] : asterisk,
+				[[ self objectForKey: @"Month" ] length ] != 0 ? [ self objectForKey: @"Month" ] : asterisk,
+				[[ self objectForKey: @"Wday" ] length ] != 0 ? [ self objectForKey: @"Wday" ] : asterisk,
+				[[ self objectForKey: @"Command" ] length ] != 0 ? [ self objectForKey: @"Command" ] : asterisk ];
+		}
+	}
+	[ data appendData: [ line dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
+    
+    return data;	
 }
 
 

@@ -11,16 +11,12 @@
 
 @implementation CrInfoCommentLine
 
-- (id)initWithString: (NSString *)line {
-    [ super init ];
-    return self;
-}
 
-+ (BOOL)isContainedInString: (NSString *)string {
-    if ( [ string startsWithStringIgnoringWhitespace: CrInfoComment ] ) {
-	return YES;
++ (BOOL)isContainedInString: (NSString *)aString {
+    if ( [ aString startsWithStringIgnoringWhitespace: CrInfoComment ] ) {
+		return YES;
     } else {
-	return NO;
+		return NO;
     }
 }
 

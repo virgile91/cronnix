@@ -12,6 +12,8 @@
 NSString *taskString = @"Min Hour Mday Month Wday My \"Command\"";
 NSString *systemTaskString = @"Min Hour Mday Month Wday User My \"Command\"";
 NSString *infoString = @"Task info";
+NSString *inactiveTaskString = @"#CronniX Min Hour Mday Month Wday My \"Command\"";
+NSString *inactiveTaskString2 = @"#CronniX\tMin Hour Mday Month Wday My \"Command\"";
 
 @implementation TaskObjectTest
 
@@ -25,9 +27,93 @@ NSString *infoString = @"Task info";
 	[ systemTask release ];
 }
 
+
+- (void)testSetInfo {
+	[ task setInfo: @"#CrInfo another test...\n" ];
+	[ self assert: [ task info ] equals: @"another test..." ];
+}
+
+
+- (void)testInitWithStringForInactive2 {
+	id aTask = [[ TaskObject alloc ] initWithString: inactiveTaskString2 ];
+	[ self assertFalse: [ aTask isActive ]];
+	[ self assert: [ aTask minute ] equals: @"Min" ];
+	[ self assert: [ aTask hour ] equals: @"Hour" ];
+	[ self assert: [ aTask month ] equals: @"Month" ];
+	[ self assert: [ aTask mday ] equals: @"Mday" ];
+	[ self assert: [ aTask wday ] equals: @"Wday" ];
+	[ self assert: [ aTask command ] equals: @"My \"Command\"" ];	
+}
+
+- (void)testInitWithStringForInactive {
+	id aTask = [[ TaskObject alloc ] initWithString: inactiveTaskString ];
+	[ self assertFalse: [ aTask isActive ]];
+	[ self assert: [ aTask minute ] equals: @"Min" ];
+	[ self assert: [ aTask hour ] equals: @"Hour" ];
+	[ self assert: [ aTask month ] equals: @"Month" ];
+	[ self assert: [ aTask mday ] equals: @"Mday" ];
+	[ self assert: [ aTask wday ] equals: @"Wday" ];
+	[ self assert: [ aTask command ] equals: @"My \"Command\"" ];	
+}
+
+
+- (void)testInitWithStringForSystem {
+	id aTask = [[ TaskObject alloc ] initWithString: systemTaskString forSystem: YES ];
+	[ self assertTrue: [ aTask isActive ]];
+	[ self assert: [ aTask minute ] equals: @"Min" ];
+	[ self assert: [ aTask hour ] equals: @"Hour" ];
+	[ self assert: [ aTask month ] equals: @"Month" ];
+	[ self assert: [ aTask mday ] equals: @"Mday" ];
+	[ self assert: [ aTask wday ] equals: @"Wday" ];
+	[ self assert: [ aTask user ] equals: @"User" ];
+	[ self assert: [ aTask command ] equals: @"My \"Command\"" ];	
+}
+
+- (void)testInitWithString {
+	id aTask = [[ TaskObject alloc ] initWithString: taskString ];
+	[ self assertTrue: [ aTask isActive ]];
+	[ self assert: [ aTask minute ] equals: @"Min" ];
+	[ self assert: [ aTask hour ] equals: @"Hour" ];
+	[ self assert: [ aTask month ] equals: @"Month" ];
+	[ self assert: [ aTask mday ] equals: @"Mday" ];
+	[ self assert: [ aTask wday ] equals: @"Wday" ];
+	[ self assert: [ aTask command ] equals: @"My \"Command\"" ];	
+}
+
+
+- (void)testDataForInactiveTask2 {
+	id aTask = [[ TaskObject alloc ] initWithString: inactiveTaskString2 ];
+	id string = [[ NSString alloc ] initWithData: [ aTask data ] 
+										encoding: [ NSString defaultCStringEncoding]];
+	[ self assert: string equals: @"#CronniX Min\tHour\tMday\tMonth\tWday\tMy \"Command\"" ];
+}
+
+- (void)testDataForInactiveTask {
+	id aTask = [[ TaskObject alloc ] initWithString: inactiveTaskString ];
+	id string = [[ NSString alloc ] initWithData: [ aTask data ] 
+										encoding: [ NSString defaultCStringEncoding]];
+	[ self assert: string equals: @"#CronniX Min\tHour\tMday\tMonth\tWday\tMy \"Command\"" ];
+}
+
+
+- (void)testDataForSystemTask {
+	id string = [[ NSString alloc ] initWithData: [ systemTask data ] 
+										encoding: [ NSString defaultCStringEncoding]];
+	[ self assert: string equals: @"Min\tHour\tMday\tMonth\tWday\tUser\tMy \"Command\"" ];
+}
+
+
+- (void)testData {
+	id string = [[ NSString alloc ] initWithData: [ task data ] encoding: [ NSString defaultCStringEncoding]];
+	[ self assert: string equals: @"Min\tHour\tMday\tMonth\tWday\tMy \"Command\"" ];
+}
+
+
 - (void)testIsContainedInStringPositives {
 	[ self assertTrue: [ TaskObject isContainedInString: taskString ]];
 	[ self assertTrue: [ TaskObject isContainedInString: systemTaskString ]];
+	[ self assertTrue: [ TaskObject isContainedInString: inactiveTaskString ]];
+	[ self assertTrue: [ TaskObject isContainedInString: inactiveTaskString2 ]];
 }
 
 - (void)testIsContainedInStringNegatives {

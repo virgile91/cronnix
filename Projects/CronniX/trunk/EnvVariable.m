@@ -100,4 +100,15 @@
 	[ self setValue: aValue forKey: aKey ];
 }
 
+
+- (NSData *)data {
+    NSMutableData *envData = [ NSMutableData data ];
+	NSString *item = [ NSString stringWithFormat: @"%@ = %@", [ self key ], [ self value ]];
+	[ envData appendData: [ item dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
+    
+    return envData;
+}
+
+
+
 @end

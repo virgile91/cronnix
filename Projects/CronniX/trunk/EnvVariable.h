@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CrontabLineParsing.h"
+#import "CrontabLine.h"
 
-@interface EnvVariable : NSObject <CrontabLineParsing> {
+@interface EnvVariable : NSObject <CrontabLine> {
 	NSString *key;
 	NSString *value;
 }
@@ -26,5 +26,7 @@
 - (void) setValue: (id)aValue forKey: (id)aKey;
 
 - (void)parseString: (NSString *)string;
+
+- (NSData *)data;
 
 @end

@@ -8,21 +8,17 @@
 
 #import "CommentLine.h"
 #import "SasString.h"
+#import "TaskObject.h"
 
 @implementation CommentLine
 
-- (id)initWithString: (NSString *)line {
-    [ super init ];
-    return self;
-}
-
 + (BOOL)isContainedInString: (NSString *)string {
-    if ( [ string startsWithStringIgnoringWhitespace: @"#" ] ) {
-	return YES;
+    if ( [ string startsWithStringIgnoringWhitespace: @"#" ] 
+		 && ! [ string startsWithStringIgnoringWhitespace: DisableTag ] ) {
+		return YES;
     } else {
-	return NO;
+		return NO;
     }
 }
-
 
 @end

@@ -26,15 +26,61 @@ NSString *testString =
 @"\t# comment 3\n"
 @" 1      2       3       4       *       second Task\n"
 @"#CrInfo third Task\n"
-@" 30\t5\t \t6       4       *       third Task\n";
+@" 30\t5\t \t6       4       *       third Task\n"
+@"#CrInfo inactive Task\n"
+@"#CronniX 30\t5\t \t6       4       *       inactive Task\n";
+
+NSString *normalizedTestString =
+@"ENV1 = value\n"
+@"ENV2 = value +more\n"
+@"ENV3 = value\n"
+@"ENV4 = value +more\n"
+@"ENV5 = value\n"
+@"ENV6 = value +more\n"
+@"ENV7 = value\n"
+@"ENV8 = value +more\n"
+@"@reboot atRebootCommand\n"
+@"#CrInfo another test...\n"
+@"1\t2\t3\t4\t*\techo \"Happy New Year!\"\n"
+@"# comment 1\n"
+@"  # comment 2\n"
+@"\t# comment 3\n"
+@"1\t2\t3\t4\t*\tsecond Task\n"
+@"#CrInfo third Task\n"
+@"30\t5\t6\t4\t*\tthird Task\n"
+@"#CrInfo inactive Task\n"
+@"#CronniX 30\t5\t6\t4\t*\tinactive Task\n";
 
 
 @implementation CrontabTest
 
+- (void)testData {
+	id data = [ crontab data ];
+	id string = [[ NSString alloc ] initWithData: data encoding: [ NSString defaultCStringEncoding]];
+	id expectedLines = [ normalizedTestString componentsSeparatedByString: @"\n" ];
+	id outputLines = [ string componentsSeparatedByString: @"\n" ];
+	[ self assertInt: [ outputLines count ] equals: [ expectedLines count ]];
+	
+	{
+		int i = 0;
+		for ( i = 0; i < [ expectedLines count ]; i++ ) {
+			[ self assert: [ outputLines objectAtIndex: i ] equals: [ expectedLines objectAtIndex: i ]];
+		}
+	}
+}
+
+
+- (void)testDataLineCount {
+	id data = [ crontab data ];
+	id string = [[ NSString alloc ] initWithData: data encoding: [ NSString defaultCStringEncoding]];
+	[ self assertInt: [[ string componentsSeparatedByString: @"\n" ] count ] 
+			  equals: [[ normalizedTestString componentsSeparatedByString: @"\n" ] count ]];
+}
+
 
 - (void)testTaskInfo {
     id task = [ crontab taskAtIndex: 0 ];
-    [ self assert: [ task info ] equals: @" another test..." ];
+    [ self assert: [ task info ] equals: @"another test..." ];
 }
 
 
@@ -94,7 +140,7 @@ NSString *testString =
 - (void)testReplaceTaskAtIndex {
     id aTask = [ TaskObject taskWithString: @"1 2 3 4 * new task" ];
     [ crontab replaceTaskAtIndex: 1 withTask: aTask ];
-    [ self assertInt: [ crontab taskCount ] equals: 3 message: @"wrong task count" ];
+    [ self assertInt: [ crontab taskCount ] equals: 4 message: @"wrong task count" ];
     [ self assert: [[ crontab taskAtIndex: 0 ] command ] equals: @"echo \"Happy New Year!\""
 	  message: @"wrong task at index 0" ];
     [ self assert: [[ crontab taskAtIndex: 1 ] command ] equals: @"new task"
@@ -108,7 +154,7 @@ NSString *testString =
 - (void)testInsertTaskAtIndex {
     id aTask = [ TaskObject taskWithString: @"1 2 3 4 * new task" ];
     [ crontab insertTask: aTask atIndex: 1 ];
-    [ self assertInt: [ crontab taskCount ] equals: 4 message: @"wrong task count" ];
+    [ self assertInt: [ crontab taskCount ] equals: 5 message: @"wrong task count" ];
     [ self assert: [[ crontab taskAtIndex: 0 ] command ] equals: @"echo \"Happy New Year!\""
 	  message: @"wrong task at index 0" ];
     [ self assert: [[ crontab taskAtIndex: 1 ] command ] equals: @"new task"
@@ -122,7 +168,7 @@ NSString *testString =
 
 - (void)testRemoveTaskAtIndex {
     [ crontab removeTaskAtIndex: 1 ];
-    [ self assertInt: [ crontab taskCount ] equals: 2 message: @"wrong task count" ];
+    [ self assertInt: [ crontab taskCount ] equals: 3 message: @"wrong task count" ];
     [ self assert: [[ crontab taskAtIndex: 0 ] command ] equals: @"echo \"Happy New Year!\""
 	  message: @"wrong task at index 0" ];
     [ self assert: [[ crontab taskAtIndex: 1 ] command ] equals: @"third Task"
@@ -140,7 +186,7 @@ NSString *testString =
 
 
 - (void)testLineCount {
-    [ self assertInt: [[ crontab lines ] count ] equals: 18 ];
+    [ self assertInt: [[ crontab lines ] count ] equals: 20 ];
 }
 
 
@@ -152,7 +198,7 @@ NSString *testString =
 }
 
 - (void)testTaskCount {
-    [ self assertInt: [ crontab taskCount ] equals: 3 ];
+    [ self assertInt: [ crontab taskCount ] equals: 4 ];
 }
 
 - (void)testTask {
