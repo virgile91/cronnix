@@ -24,7 +24,6 @@
 // workers
 - (void)showWindow;
 - (void)hideWindow;
-- (void)addEnv:(NSString *)env withValue:(NSString *)value;
 - (void)removeAllObjects;
 - (void)reloadData;
 

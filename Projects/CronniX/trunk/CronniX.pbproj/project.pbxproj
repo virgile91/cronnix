@@ -724,8 +724,6 @@
 				29B9732BFDCFA39411CA2CEA,
 				29B9732DFDCFA39411CA2CEA,
 				043355C9FE30361CC02AAC07,
-				F594C0E30243F72E01000110,
-				F594C0E40243F72E01000110,
 			);
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -2026,24 +2024,6 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
-		};
-		F594C0E30243F72E01000110 = {
-			buildActionMask = 2147483647;
-			files = (
-			);
-			isa = PBXShellScriptBuildPhase;
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "headerdoc2html -o docs .";
-		};
-		F594C0E40243F72E01000110 = {
-			buildActionMask = 2147483647;
-			files = (
-			);
-			isa = PBXShellScriptBuildPhase;
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "gatherheaderdoc docs";
 		};
 		F594C0E6024772DB01000110 = {
 			isa = PBXFileReference;

@@ -32,11 +32,10 @@ static envVariablesNibController *sharedInstance = nil;
         NSString *imagePath = nil;
         NSString *itemName;
         NSToolbarItem *item;
-	
+		
         //NSLog( @"init" );
         [super init];
         sharedInstance = self;
-        envArray = [[ NSMutableArray alloc ] init ];
         // The following does not work here, maybe because the nib's not displayed, yet.
         // Instead the data source has been set in IB.
         //[ envTable setDataSource: self ];
@@ -87,8 +86,6 @@ static envVariablesNibController *sharedInstance = nil;
 }
 
 - (void)dealloc {
-    //NSLog( @"I'm leaving" );
-    [ envArray dealloc ];
     [ window close ];
     [ super dealloc ];
 }
@@ -97,16 +94,11 @@ static envVariablesNibController *sharedInstance = nil;
 
 // accessors
 
-- (NSArray *)envArray{
-    return envArray;
-}
-
-
 - (void)setCrontab: (id)aCrontab {
     if ( crontab != aCrontab ) {
         [ crontab release ];
-	crontab = [ aCrontab retain ];
-	[ self reloadData ];
+		crontab = [ aCrontab retain ];
+		[ self reloadData ];
     }
 }
 
@@ -146,17 +138,15 @@ static envVariablesNibController *sharedInstance = nil;
     [ window close ];
 }
 
-- (void)addEnv:(NSString *)env withValue:(NSString *)value {
-    NSMutableDictionary *dict = [ NSMutableDictionary dictionary ];
-    //NSLog( @"add" );
-    [ dict setObject: env forKey: @"Env" ];    
-    [ dict setObject: value forKey: @"Value" ];
-    [ envArray addObject: dict ];
+/*
+- (void)addEnvVariable:(NSString *)aKey withValue:(NSString *)aValue {
+	[ crontab addEnvVariableWithValue: aValue forKey: aKey ];
     //[ envTable reloadData ];
 }
+*/
 
 - (void)removeAllObjects {
-    [ envArray removeAllObjects ];
+    [ crontab removeAllEnvVariables ];
 }
 
 - (void)reloadData {
@@ -174,8 +164,7 @@ static envVariablesNibController *sharedInstance = nil;
         NSBeep();
         return;
     }
-    id deletedObject = [ NSDictionary dictionaryWithDictionary: [ envArray objectAtIndex: row ]];
-    [ envArray removeObjectAtIndex: row ];
+    [ crontab removeEnvVariableAtIndex: row ];
     [ envTable reloadData ];
     
     // make sure that the last row remains selected
@@ -184,7 +173,6 @@ static envVariablesNibController *sharedInstance = nil;
     }
     
     [[ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
-    [[ NSNotificationCenter defaultCenter ] postNotificationName: EnvVariableDeletedNotification object: deletedObject ];
 }
 
 - (void)duplicateLine {
@@ -192,7 +180,9 @@ static envVariablesNibController *sharedInstance = nil;
         NSBeep();
         return;
     }
-    [ envArray insertObject: [ [ envArray objectAtIndex: [ envTable selectedRow ] ] copy ] atIndex: [ envTable selectedRow ] ];
+	int selectedRow = [ envTable selectedRow ];
+	id duplicate = [ EnvVariable envVariableWithEnvVariable: [ crontab envVariableAtIndex: selectedRow ]];
+	[ crontab insertEnvVariable: duplicate atIndex: selectedRow ];
     [ envTable reloadData ];
     
     // make sure that the last row remains selected
@@ -212,10 +202,10 @@ static envVariablesNibController *sharedInstance = nil;
 
 - (void)addLine {
     EnvVariable *env = [ EnvVariable envVariableWithValue: NSLocalizedString( @"value", 
-									      @"env. variable value template" ) 
-						   forKey: NSLocalizedString( @"SOME_ENV", 
-									      @"env. variable name template" ) ];
-    [ envArray addObject: env ];
+																			  @"env. variable value template" ) 
+												   forKey: NSLocalizedString( @"SOME_ENV", 
+																			  @"env. variable name template" ) ];
+    [ crontab addEnvVariable: env ];
     [ envTable reloadData ];
     [[ NSNotificationCenter defaultCenter ] postNotificationName: DocumentModifiedNotification object: self ];
     [[ NSNotificationCenter defaultCenter ] postNotificationName: EnvVariableAddedNotification object: env ];
@@ -223,7 +213,7 @@ static envVariablesNibController *sharedInstance = nil;
 
 
 - (void)clear {
-    [ envArray removeAllObjects ];
+    [ crontab removeAllEnvVariables ];
     [ self reloadData ];
 }
 
@@ -250,18 +240,17 @@ static envVariablesNibController *sharedInstance = nil;
 
 - (int)numberOfRowsInTableView:(NSTableView *)table {
     //NSLog( @"rows: %i", [ envArray count ] );
-    return [ envArray count ];
+    return [ crontab envVariableCount ];
 }
 
 
 - (id)tableView:(NSTableView *)table
         objectValueForTableColumn:(NSTableColumn *)col
-	    row:(int)row {
-    id rec;
-    if ( row >= 0 && row < [ envArray count ] ) {
-        rec = [ envArray objectAtIndex: row ];
-	//		NSLog( @"%@=%@", [ col identifier ], [ rec objectForKey: [ col identifier ]] );
-	return [ rec objectForKey: [ col identifier ] ];
+			row:(int)row {
+    id env;
+    if ( row >= 0 && row < [ crontab envVariableCount ] ) {
+        env = [ crontab envVariableAtIndex: row ];
+		return [ env valueForKey: [ col identifier ] ];
     } else {
         return nil;
     }
@@ -270,12 +259,11 @@ static envVariablesNibController *sharedInstance = nil;
 - (void)tableView: (NSTableView *)table
    setObjectValue: (id)obj
    forTableColumn: (NSTableColumn *)col
-	      row: (int)row {
-    id rec;
-    //NSLog( @"insert %@ for %@ in row %i", obj, [ col identifier ], row );
-    if ( row >= 0 && row < [ envArray count ] ) {
-        rec = [ envArray objectAtIndex: row ];
-        [ rec setObject: obj forKey: [ col identifier ] ];
+			  row: (int)row {
+    id env;
+    if ( row >= 0 && row < [ crontab envVariableCount ] ) {
+        env = [ crontab envVariableAtIndex: row ];
+        [ env setValue: obj forKey: [ col identifier ] ];
     }
 }
 
@@ -292,10 +280,10 @@ static envVariablesNibController *sharedInstance = nil;
     id ed = [ [ aNotification userInfo ] objectForKey: @"NSFieldEditor" ];
     int edrow = [ envTable editedRow ];
     if ( edrow != -1 ) {
-	NSTableColumn *col = [[ envTable tableColumns ] objectAtIndex: [ envTable editedColumn ]];
-	
-	id editedEnv = [ envArray objectAtIndex: edrow ];
-	[ editedEnv setValue: [ ed string ] forKey: [ col identifier ]];
+		NSTableColumn *col = [[ envTable tableColumns ] objectAtIndex: [ envTable editedColumn ]];
+		
+		id editedEnv = [ crontab envVariableAtIndex: edrow ];
+		[ editedEnv setValue: [ ed string ] forKey: [ col identifier ]];
     }
 }
 

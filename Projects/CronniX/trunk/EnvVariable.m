@@ -55,6 +55,28 @@
 - (NSString *)key { return key; }
 - (NSString *)value { return value; }
 
+/*
+ we use key value coding to map the env table contents to objects and need
+ a slightly modified handling of the standard key value coding.
+ The table columns have the identifiers "Env" and "Value", which are used as
+ [ env valueForKey: @"Env" ];
+ This would normally try to fetch an instance variable 'Env' which we don't have here.
+ The method below maps this to the ivars key and value.
+ */
+- (id)valueForKey: (id)aKey {
+	if ( [ aKey isEqualTo: @"key" ] ||
+		 [ aKey isEqualTo: @"Key" ] ||
+		 [ aKey isEqualTo: @"Env" ] ||
+		 [ aKey isEqualTo: @"env" ] ) {
+		 return [ self key ];
+	} else if ( [ aKey isEqualTo: @"Value" ] ||
+				[ aKey isEqualTo: @"value" ] ) {
+		return [ self value ];
+	}
+	return [ super valueForKey: aKey ];
+}
+
+
 - (void) setValue: (id)aValue forKey: (id)aKey {
 	if ( aValue != value ) {
 		[ value release ];

@@ -141,6 +141,15 @@
 }
 
 
+- (void)removeAllEnvVariables {
+	id allEnvs = [[ self envVariables ] allObjects ];
+	id iter = [ allEnvs objectEnumerator ];
+	id env;
+	while ( env = [ iter nextObject ] ) {
+		[ self removeEnvVariable: env ];
+	}
+}
+
 - (void)removeEnvVariable: (EnvVariable *)env {
     [ objects removeObject: env ];
 }
@@ -156,6 +165,16 @@
 	}
 }
 
+- (void)removeEnvVariableAtIndex: (int)index {
+	id env = [ self envVariableAtIndex: index ];
+	[ objects removeObject: env ];
+}
+
+
+- (void)insertEnvVariable: (id)env atIndex: (int)index {
+	int objIndex = [ self objectIndexOfEnvVariableAtIndex: index ];
+	[ objects insertObject: env atIndex: objIndex ];
+}
 
 - (void)addTask: (TaskObject *)task {
     [ objects addObject: task ];
@@ -171,6 +190,11 @@
 - (int)objectIndexOfTaskAtIndex: (int)index {
 	id task = [ self taskAtIndex: index ];
 	return [ objects indexOfObject: task ];
+}
+
+- (int)objectIndexOfEnvVariableAtIndex: (int)index {
+	id env = [ self envVariableAtIndex: index ];
+	return [ objects indexOfObject: env ];
 }
 
 

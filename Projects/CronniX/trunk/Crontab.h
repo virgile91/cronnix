@@ -68,10 +68,16 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 - (int)envVariableCount;
 - (EnvVariable *)envVariableAtIndex: (int)index;
 
+- (int)objectIndexOfTaskAtIndex: (int)index;
+- (int)objectIndexOfEnvVariableAtIndex: (int)index;
+
 - (void)addEnvVariable: (EnvVariable *)env;
 - (void)addEnvVariableWithValue: (NSString *)aValue forKey: (NSString *)aKey;
 - (void)removeEnvVariable: (EnvVariable *)env;
 - (void)removeEnvVariableWithKey: (NSString *)key;
+- (void)removeEnvVariableAtIndex: (int)index;
+- (void)removeAllEnvVariables;
+- (void)insertEnvVariable: (id)env atIndex: (int)index;
 
 - (void)addTask: (TaskObject *)task;
 - (void)addTaskWithString: (NSString *)string;

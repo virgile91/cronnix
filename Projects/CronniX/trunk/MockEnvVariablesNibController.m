@@ -20,4 +20,6 @@ static id sharedInstance = nil;
 
 - (void)clear { }
 
+- (void)setCrontab: (id)aCrontab { }
+
 @end
