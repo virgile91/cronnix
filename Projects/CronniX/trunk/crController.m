@@ -628,24 +628,13 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (void)removeLine {
-    [ self removeLineAtRow: [ crTable selectedRow ] ];
-}
-
-
-- (void)removeLineAtRow: (int)row {
-    if ( row < 0 || row > [ crTable numberOfRows ]-1 ) {
-        NSBeep();
-        return;
-    }
-    [ currentCrontab removeTaskAtIndex: row ];
-    [ crTable reloadData ];
-    [ self setDirty: YES ];
+    [ self removeLinesInList: [ crTable selectedRowEnumerator ]];
 }
 
 
 - (void)removeLinesInList: (NSEnumerator *)list {
     id item;
-    list = [ [ list allObjects ] reverseObjectEnumerator ];
+    list = [[ list allObjects ] reverseObjectEnumerator ];
     while ( item = [ list nextObject ] ) {
         [ currentCrontab removeTaskAtIndex: [ item intValue ] ];
     }
@@ -1041,8 +1030,6 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 
 - (void)awakeFromNib {
-    NSMutableArray *types = [NSMutableArray arrayWithObjects: NSStringPboardType, NSFilenamesPboardType, nil ];
-    
     [ winMain setFrameUsingName: @"MainWindow" ];
     [ winMain setFrameAutosaveName: @"MainWindow" ];
     
@@ -1054,7 +1041,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     [ userColumn retain ]; // need to retain this, because it might be removed by the autosave feature below
 						   //[ self setupUserColumn ];
     
-    [ crTable registerForDraggedTypes: types ];
+    [ crTable registerForDraggedTypes: [ NSArray arrayWithObjects: NSStringPboardType, NSFilenamesPboardType, nil ]];
     //    [ winMain makeFirstResponder: crTable ];
     
     /*{
@@ -1068,10 +1055,8 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         [ menu release ];        
     }*/
     
-    {
-        unichar backspaceKey = NSBackspaceCharacter;
-        [deleteMenuItem setKeyEquivalent:[NSString stringWithCharacters:&backspaceKey length:1]];
-    }
+	unichar backspaceKey = NSBackspaceCharacter;
+	[deleteMenuItem setKeyEquivalent:[NSString stringWithCharacters:&backspaceKey length:1]];
     
     toolbar = [ [ Toolbar alloc ] initWithController: self ];
 }
@@ -1231,6 +1216,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 			}
 			[ crTable reloadData ];
 			[ self setDirty: YES ];
+			[ crontab release ];
 		} else {
 			// treat it as a drop on the command field (old behavior)
 			if ( row == -1 ) { // new line

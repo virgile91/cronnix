@@ -75,8 +75,6 @@ static NSString *UserSelectedNotification __attribute__ ((unused)) = @"UserSelec
 
 - (void)replaceLineAtRow: (int)row withObject: (id)obj;
 
-- (void)removeLineAtRow: (int)row;
-
 - (void)removeLinesInList: (NSEnumerator *)list;
 
 - (void)duplicateLinesInList: (NSEnumerator *)list;
