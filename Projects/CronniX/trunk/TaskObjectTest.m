@@ -25,6 +25,16 @@ NSString *infoString = @"Task info";
 	[ systemTask release ];
 }
 
+- (void)testIsContainedInStringPositives {
+	[ self assertTrue: [ TaskObject isContainedInString: taskString ]];
+	[ self assertTrue: [ TaskObject isContainedInString: systemTaskString ]];
+}
+
+- (void)testIsContainedInStringNegatives {
+	[ self assertFalse: [ TaskObject isContainedInString: @"test test" ]];
+	[ self assertFalse: [ TaskObject isContainedInString: @"# test" ]];
+	[ self assertFalse: [ TaskObject isContainedInString: @"1 2 3 4 5" ]];
+}
 
 - (void)testMinute {
 	[ self assert: [ task minute ] equals: @"Min" ];

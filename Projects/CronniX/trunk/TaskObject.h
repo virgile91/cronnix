@@ -21,6 +21,7 @@
 - (id)initWithTask:(id)aTask;
 //- (id)initWithTask:(id)aTask forSystem: (BOOL)isSystemCrontab;
 
++ (id)taskWithString:(NSString *)string;
 + (id)taskWithTask:(id)task;
 + (id)defaultTask;
 

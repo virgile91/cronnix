@@ -41,6 +41,11 @@
     return [ aTask copy ];
 }
 
++ (id)taskWithString:(NSString *)string {
+    return [[[ TaskObject alloc ] initWithString: string forSystem: NO ] autorelease ];
+}
+
+
 + (id)taskWithTask:(id)value {
     return [[ value copy ] autorelease ];
 }
@@ -72,12 +77,12 @@
     if ( [ line hasPrefix: @"#" ] ) return NO;
     
     {
-	//NSCharacterSet *ws = [ NSCharacterSet whitespaceCharacterSet ];
-	int fieldCount = 6;//[ obj fieldCountSeperatedBy: ws ];
-	if ( fieldCount < 6 ) return NO;
+		NSCharacterSet *ws = [ NSCharacterSet whitespaceCharacterSet ];
+		int fieldCount = [ line fieldCountSeperatedBy: ws ];
+		if ( fieldCount < 6 ) return NO;
     }
     
-    return NO;
+    return YES;
 }
 
 

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TaskObject.h"
+#import "EnvVariable.h"
 
 // __attribute__ ((unused)) suppresses compiler warnings
 static NSString *NewCrontabParsedNotification __attribute__ ((unused)) = @"NewCrontabParsed";
@@ -28,8 +29,6 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 @interface Crontab : NSObject {
 	NSMutableArray *lines;
 	NSMutableArray *objects;
-	NSMutableArray *tasks;
-	NSMutableDictionary *envVariables;
 	NSString *user;
 }
 
@@ -45,27 +44,7 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 
 - (void)parseData;
 
-- (void)removeShortLines;
-
-- (void)removeCommentLines;
-
-- (void)replaceWhitespaceWithSingleTabs;
-
-- (void)findEnvironmentVariables;
-
-- (void)findTasks;
-
-- (BOOL)hasEnvType1InWords: (NSArray *)words;
-
-- (BOOL)hasEnvType2InWords: (NSArray *)words;
-
-- (BOOL)hasEnvType3InWords: (NSArray *)words;
-
-- (BOOL)hasEnvType4InWords: (NSArray *)words;
-
 - (BOOL)isSystemCrontab;
-
-- (BOOL)isShortLine: (NSString *)line;
 
 - (BOOL)writeAtPath: (NSString *)path;
 
@@ -75,36 +54,38 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 
 - (void)setLines: (NSArray *)aVal;
 
-- (NSMutableArray *)tasks;
+- (NSEnumerator *)tasks;
 
-- (void)setTasks: (NSMutableArray *)aVal;
+- (int)taskCount;
+
+//- (void)setTasks: (NSMutableArray *)aVal;
 
 - (NSString *)user;
 
 - (void)setUser: (NSString *)aVal;
 
-- (NSMutableDictionary *)envVariables;
+- (NSEnumerator *)envVariables;
+- (int)envVariableCount;
+- (EnvVariable *)envVariableAtIndex: (int)index;
 
-- (void)setEnvVariables: (NSMutableDictionary *)aVal;
-
-- (void)addEnv: (NSDictionary *)env;
-- (void)addEnv: (NSString *)env withValue: (NSString *)value;
+- (void)addEnvVariable: (EnvVariable *)env;
+- (void)addEnvVariableWithValue: (NSString *)aValue forKey: (NSString *)aKey;
 - (void)replaceEnv: (NSDictionary *)oldEnv with: (NSDictionary *)newEnv;
-
-- (void)removeEnv: (NSDictionary *)env;
-- (void)removeEnvForKey: (NSString *)key;
+- (void)removeEnvVariable: (EnvVariable *)env;
+- (void)removeEnvVariableWithKey: (NSString *)key;
 
 - (void)addTask: (TaskObject *)task;
-
 - (void)addTaskWithString: (NSString *)string;
-
-- (NSArray *)envVariablesArray;
+- (void)removeTaskAtIndex: (int)index;
+- (void)insertTask: (TaskObject *)aTask atIndex: (int)index;
+- (void)replaceTaskAtIndex: (int)index withTask: (TaskObject *)aTask;
 
 - (NSMutableData *)envVariablesData;
 
 - (NSMutableData *)data;
 
 - (TaskObject *)taskAtIndex: (int)index;
+- (int)indexOfTask: (id)aTask;
 
 // notification handlers
 

@@ -38,7 +38,6 @@ static NSString *UserSelectedNotification __attribute__ ((unused)) = @"UserSelec
 	NSTextField *infoTextField;
 	NSMenu      *contextMenu;
 
-    NSMutableArray *tasks;
     NSString *crontabForUser;
     BOOL isDirty;
     Toolbar *toolbar;

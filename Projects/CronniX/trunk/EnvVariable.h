@@ -10,10 +10,19 @@
 #import "CrontabLineParsing.h"
 
 @interface EnvVariable : NSObject <CrontabLineParsing> {
-
+	NSString *key;
+	NSString *value;
 }
 
-- (id)initWithString: (NSString *)line;
-+ (BOOL)isContainedInString: (NSString *)line;
+- (id)initWithString: (NSString *)string;
++ (id)envVariableWithString: (NSString *)string;
++ (id)envVariableWithValue: (NSString *)aValue forKey: (NSString *)aKey;
+
++ (BOOL)isContainedInString: (NSString *)string;
+
+- (NSString *)key;
+- (NSString *)value;
+
+- (void)parseString: (NSString *)string;
 
 @end

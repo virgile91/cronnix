@@ -540,9 +540,6 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 	[ currentCrontab release ]; // culprit, but why???
 	currentCrontab = [[ Crontab alloc ] initWithData: data forUser: [ self crontabForUser ] ];
 
-	// keep a shortcut to the tasks around
-	tasks = [ currentCrontab tasks ];
-	
     [ crTable reloadData ];
 
 	[[ envVariablesNibController sharedInstance ] setEnvArray: [ currentCrontab envVariablesArray ]];
@@ -555,9 +552,6 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 	[ currentCrontab release ];
 	currentCrontab = [[ Crontab alloc ] initWithContentsOfFile: path forUser: NSUserName() ];
 	[ self setCrontabForUser: nil ];
-
-	// keep a shortcut to the tasks around
-	tasks = [ currentCrontab tasks ];
 
     [ crTable reloadData ];
 
@@ -594,9 +588,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 - (void)newLineWithTask: (TaskObject *)aTask {
 	if ( [ self isSystemCrontab ] )
 		[ aTask setUser: @"root" ];
-	[ tasks addObject: aTask ];
+	[ currentCrontab addTask: aTask ];
     [ crTable reloadData ];
-	[ crTable selectRow: [ tasks indexOfObject: aTask ] byExtendingSelection: NO ];
+	[ crTable selectRow: [ currentCrontab indexOfTask: aTask ] byExtendingSelection: NO ];
     [ self setDirty: YES ];	
 }
 
@@ -626,7 +620,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     if ( row == -1 ) { // new line
         [ self newLineWithCommand: cmd ];
     } else { // modify existing line
-        [ [ tasks objectAtIndex: row ] setObject: cmd forKey: @"Command" ];
+        [ [ currentCrontab taskAtIndex: row ] setObject: cmd forKey: @"Command" ];
     }
 	[ self setDirty: YES ];
 }
@@ -642,7 +636,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         NSBeep();
         return;
     }
-    [ tasks removeObjectAtIndex: row ];
+    [ currentCrontab removeTaskAtIndex: row ];
     [ crTable reloadData ];
     [ self setDirty: YES ];
 }
@@ -653,7 +647,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         NSBeep();
         return;
     }
-    [ tasks replaceObjectAtIndex: row withObject: obj ];
+    [ currentCrontab replaceTaskAtIndex: row withTask: obj ];
     [ crTable reloadData ];
     [ self setDirty: YES ];
 }
@@ -662,7 +656,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     id item;
     list = [ [ list allObjects ] reverseObjectEnumerator ];
     while ( item = [ list nextObject ] ) {
-        [ tasks removeObjectAtIndex: [ item intValue ] ];
+        [ currentCrontab removeTaskAtIndex: [ item intValue ] ];
     }
     [ crTable reloadData ];
     [ self setDirty: YES ];
@@ -684,8 +678,8 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         return;
     }
     {
-        NSMutableDictionary *dict = [ NSMutableDictionary dictionaryWithDictionary: [tasks objectAtIndex: row] ];
-        [ tasks addObject: dict ];
+		TaskObject *duplicate = [ TaskObject taskWithTask: [ currentCrontab taskAtIndex: row]];
+        [ currentCrontab addTask: duplicate ];
         [ crTable reloadData ];
         [ self setDirty: YES ];
         // make sure that the last row remains selected
@@ -708,8 +702,8 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 			insertionPoint = [ index intValue ] +1;
             firstInList = NO;
         }
-		id taskCopy = [[ tasks objectAtIndex: [ index intValue ]] copy ];
-        [ tasks insertObject: taskCopy atIndex: insertionPoint ];
+		id duplicate = [ TaskObject taskWithTask: [ currentCrontab taskAtIndex: [ index intValue ]]];
+        [ currentCrontab insertTask: duplicate atIndex: insertionPoint ];
 		listCount++;
     }
 
@@ -1032,7 +1026,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 
 - (id)selectedTask {
 	if ( [ crTable selectedRow ] == -1 ) return nil;
-	return [ tasks objectAtIndex: [ crTable selectedRow ] ];
+	return [ currentCrontab taskAtIndex: [ crTable selectedRow ] ];
 }
 
 
@@ -1100,17 +1094,17 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 // table view
 
 - (int)numberOfRowsInTableView:(NSTableView *)table {
-    //NSLog( @"rows: %i", [ tasks count ] );
-    return [ tasks count ];
+    //NSLog( @"rows: %i", [ currentCrontab taskCount ] );
+    return [ currentCrontab taskCount ];
 }
 
 
 - (id)tableView:(NSTableView *)table
         objectValueForTableColumn:(NSTableColumn *)col
         row:(int)row {
-    if ( row >= 0 && row < [ tasks count ] ) {
+    if ( row >= 0 && row < [ currentCrontab taskCount ] ) {
 		//NSLog( [ [ tasks objectAtIndex: row ] objectForKey: [ col identifier ] ] );
-        return [ [ tasks objectAtIndex: row ] objectForKey: [ col identifier ] ];
+        return [[ currentCrontab taskAtIndex: row ] objectForKey: [ col identifier ] ];
     } else {
         return nil;
     }
@@ -1120,13 +1114,13 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         setObjectValue: (id)obj
         forTableColumn: (NSTableColumn *)col
         row: (int)row {
-    if ( row >= 0 && row < [ tasks count ] ) {
-        if ( [ [ col identifier ] isEqual: @"Active" ] ) {
+    if ( row >= 0 && row < [ currentCrontab taskCount ] ) {
+        if ( [[ col identifier ] isEqual: @"Active" ] ) {
             // we need special treatment of the Active column because unless we explicitely put in strings, writing won't work
             // correctly.
-            [ [ tasks objectAtIndex: row ] setObject: [ obj description ] forKey: [ col identifier ] ];
+            [[ currentCrontab taskAtIndex: row ] setObject: [ obj description ] forKey: [ col identifier ]];
         } else {
-            [ [ tasks objectAtIndex: row ] setObject: obj forKey: [ col identifier ] ];
+            [[ currentCrontab taskAtIndex: row ] setObject: obj forKey: [ col identifier ]];
         }
     }
 }
@@ -1168,9 +1162,9 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 		[ self setDirty: YES ];
 		[ info release ];
 	} else if ( edrow != -1 ) {
-		NSTableColumn *col = [ [ crTable tableColumns ] objectAtIndex: [ crTable editedColumn ] ];
+		NSTableColumn *col = [[ crTable tableColumns ] objectAtIndex: [ crTable editedColumn ]];
 		id obj = [[ ed string ] copy ];
-		[ [ tasks objectAtIndex: edrow ] setObject: obj forKey: [ col identifier ] ];
+		[[ currentCrontab taskAtIndex: edrow ] setObject: obj forKey: [ col identifier ]];
 		[ self setDirty: YES ];
 		[ obj release ];
 	}
@@ -1247,7 +1241,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         if ( row == -1 ) { // new line
             [ self newLineWithCommand: cmd ];
         } else { // modify existing line
-            [ [ tasks objectAtIndex: row ] setObject: cmd forKey: @"Command" ];
+            [[ currentCrontab taskAtIndex: row ] setObject: cmd forKey: @"Command" ];
             [ self setDirty: YES ];
         }
 

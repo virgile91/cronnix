@@ -28,8 +28,9 @@ NSString *testString =
 @implementation CrontabTest
 
 - (void)setUp {
-    crontab = [[ Crontab alloc ] initWithData: [ testString dataUsingEncoding: [ NSString defaultCStringEncoding ]]
-				      forUser: nil ];
+    crontab = [[ Crontab alloc ] 
+				initWithData: [ testString dataUsingEncoding: [ NSString defaultCStringEncoding ]]
+					 forUser: nil ];
 }
 
 - (void)tearDown {
@@ -37,8 +38,61 @@ NSString *testString =
 }
 
 
+- (void)testRemoveEnvVariable {
+
+	write test!
+
+}
+
+
+- (void)testRemoveEnvVariableWithKey {
+
+	write test! (plus adapt crController)
+
+}
+
+
+- (void)testReplaceTaskAtIndex {
+	id aTask = [ TaskObject taskWithString: @"1 2 3 4 * new task" ];
+	[ crontab replaceTaskAtIndex: 1 withTask: aTask ];
+	[ self assertInt: [ crontab taskCount ] equals: 3 message: @"wrong task count" ];
+	[ self assert: [[ crontab taskAtIndex: 0 ] command ] equals: @"echo \"Happy New Year!\""
+		  message: @"wrong task at index 0" ];
+	[ self assert: [[ crontab taskAtIndex: 1 ] command ] equals: @"new task"
+		  message: @"wrong task at index 1" ];
+	[ self assert: [[ crontab taskAtIndex: 2 ] command ] equals: @"third Task"
+		  message: @"wrong task at index 2" ];
+}
+
+
+
+- (void)testInsertTaskAtIndex {
+	id aTask = [ TaskObject taskWithString: @"1 2 3 4 * new task" ];
+	[ crontab insertTask: aTask atIndex: 1 ];
+	[ self assertInt: [ crontab taskCount ] equals: 4 message: @"wrong task count" ];
+	[ self assert: [[ crontab taskAtIndex: 0 ] command ] equals: @"echo \"Happy New Year!\""
+		  message: @"wrong task at index 0" ];
+	[ self assert: [[ crontab taskAtIndex: 1 ] command ] equals: @"new task"
+		  message: @"wrong task at index 1" ];
+	[ self assert: [[ crontab taskAtIndex: 2 ] command ] equals: @"second Task"
+		  message: @"wrong task at index 2" ];
+	[ self assert: [[ crontab taskAtIndex: 3 ] command ] equals: @"third Task"
+		  message: @"wrong task at index 3" ];
+}
+
+
+- (void)testRemoveTaskAtIndex {
+	[ crontab removeTaskAtIndex: 1 ];
+	[ self assertInt: [ crontab taskCount ] equals: 2 message: @"wrong task count" ];
+	[ self assert: [[ crontab taskAtIndex: 0 ] command ] equals: @"echo \"Happy New Year!\""
+		  message: @"wrong task at index 0" ];
+	[ self assert: [[ crontab taskAtIndex: 1 ] command ] equals: @"third Task"
+		  message: @"wrong task at index 1" ];
+}
+
+
 - (void)testWhiteSpaceTask {
-	id task = [[ crontab tasks ] objectAtIndex: 2 ];
+	id task = [ crontab taskAtIndex: 2 ];
 	[ self assert: [ task minute ] equals: @"30" ];
 	[ self assert: [ task hour ] equals: @"5" ];
 	[ self assert: [ task mday ] equals: @"6" ];
@@ -46,8 +100,8 @@ NSString *testString =
 }
 
 
-- (void)off_testLineCount {
-	[ self assertInt: [[ crontab lines ] count ] equals: 2 ];
+- (void)testLineCount {
+	[ self assertInt: [[ crontab lines ] count ] equals: 15 ];
 }
 
 
@@ -59,62 +113,55 @@ NSString *testString =
 }
 
 - (void)testTaskCount {
-	[ self assertInt: [[ crontab tasks ] count ] equals: 3 ];
+	[ self assertInt: [ crontab taskCount ] equals: 3 ];
 }
 
 - (void)testTask {
-	[ self assertNotNil: [[ crontab tasks ] objectAtIndex: 0 ] ];
+	[ self assertNotNil: [ crontab taskAtIndex: 0 ] ];
 }
 
 - (void)testTaskMinute {
-	id task = [[ crontab tasks ] objectAtIndex: 0 ];
+	id task = [ crontab taskAtIndex: 0 ];
 	[ self assert: [ task minute ] equals: @"1" ];
 }
 
 - (void)testTaskHour {
-	id task = [[ crontab tasks ] objectAtIndex: 0 ];
+	id task = [ crontab taskAtIndex: 0 ];
 	[ self assert: [ task hour ] equals: @"2" ];
 }
 
 - (void)testTaskMonth {
-	id task = [[ crontab tasks ] objectAtIndex: 0 ];
+	id task = [ crontab taskAtIndex: 0 ];
 	[ self assert: [ task month ] equals: @"4" ];
 }
 
 - (void)testTaskMday {
-	id task = [[ crontab tasks ] objectAtIndex: 0 ];
+	id task = [ crontab taskAtIndex: 0 ];
 	[ self assert: [ task mday ] equals: @"3" ];
 }
 
 - (void)testTaskWday {
-	id task = [[ crontab tasks ] objectAtIndex: 0 ];
+	id task = [ crontab taskAtIndex: 0 ];
 	[ self assert: [ task wday ] equals: @"*" ];
 }
 
 - (void)testTaskCommand {
-	id task = [[ crontab tasks ] objectAtIndex: 0 ];
+	id task = [ crontab taskAtIndex: 0 ];
 	[ self assert: [ task command ] equals: @"echo \"Happy New Year!\"" ];
 }
 
-- (void)testHasEnvType1InWords {
-	NSArray *w1 = [ NSArray arrayWithObjects: @"ENV=", @"value", nil ];
-	NSArray *w2 = [ NSArray arrayWithObjects: @"ENV=", @"value", @"+more", nil ];
-	NSArray *w3 = [ NSArray arrayWithObjects: @"ENV", @"value", @"+more", nil ];
-	[ self assertTrue: [ crontab hasEnvType1InWords: w1 ] message: @"w1" ];
-	[ self assertTrue: [ crontab hasEnvType1InWords: w2 ] message: @"w2" ];
-	[ self assertFalse: [ crontab hasEnvType1InWords: w3 ] message: @"w3" ];
+- (void)testEnvironmentVariablesCount {
+	[ self assertInt: [ crontab envVariableCount ] equals: 8 ];
 }
 
-
-- (void)testFindEnvironmentVariables {
-	[ crontab findEnvironmentVariables ];
-	[ self assertInt: [[ crontab envVariablesArray ] count ] equals: 8 message: @"Env count:" ];
+- (void)testEnvironmentVariableContent {
+	id env = [ crontab envVariableAtIndex: 0 ];
+	[ self assert: [ env key ] equals: @"ENV1" ];
+	[ self assert: [ env value ] equals: @"value" ];
 }
-
 
 - (void)testTaskAtIndex {
 	[ self assertNotNil: [ crontab taskAtIndex: 0 ]];
-	[ self assert: [ crontab taskAtIndex: 0 ] equals: [[ crontab tasks ] objectAtIndex: 0 ]];
 }
 
 @end
