@@ -639,7 +639,7 @@
 		};
 		29B97317FDCFA39411CA2CEA = {
 			children = (
-				5ACBB0CE03DA0D2F00000104,
+				5A2D71130717F3E900810FE7,
 				5A24D09D03D2C8BA00000104,
 				089C165CFE840E0CC02AAC07,
 				0131485300AF26EA7F000001,
@@ -649,15 +649,7 @@
 				0648154600B6F26B7F000001,
 				F584C890015E94BD01000001,
 				5AEA529A03C8862500000104,
-				F591D44300E50BA901000001,
-				152B666C00D185EB7F000001,
-				152B666E00D253437F000001,
-				1339977C00D512A97F000001,
-				1339977A00D50DD47F000001,
-				F594C0E6024772DB01000110,
-				01108E3DFFF7F751C0A8FC05,
-				5AEA4EC803C8588200000104,
-				5ACBB0B803DA09AE00000104,
+				5A2D6FE00717F14500810FE7,
 				5ACBB10603DB324700000104,
 				5A57A6EE03E177C400000104,
 				5A565B7F03F5D38300000104,
@@ -672,12 +664,12 @@
 		29B97318FDCFA39411CA2CEA = {
 			children = (
 				29B97319FDCFA39411CA2CEA,
+				5A5544E407149E5A00C3864D,
 				F584C88B015E2F1601000001,
 				F56A0A380126B68B01000001,
 				5A1B75AB03C5D54C00000104,
 				F53AE20D019C524D01000102,
 				5A28881004763B5C00000104,
-				5A5544E407149E5A00C3864D,
 				5A5545680714A03A00C3864D,
 				5A5545690714A04500C3864D,
 				5A55456A0714A04A00C3864D,
@@ -759,7 +751,7 @@
 	<key>CFBundleExecutable</key>
 	<string>CronniX</string>
 	<key>CFBundleGetInfoString</key>
-	<string>3.0b1, Copyright 2004 abstracture IT-Beratung GmbH</string>
+	<string>3.0b2, Copyright 2004 abstracture IT-Beratung GmbH</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>CronniX Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -775,11 +767,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0b1</string>
+	<string>3.0b2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3.0b1</string>
+	<string>3.0b2</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -820,6 +812,7 @@
 		29B97328FDCFA39411CA2CEA = {
 			buildActionMask = 2147483647;
 			files = (
+				5A2D71830717F3E900810FE7,
 				080E96DCFE201CFB7F000001,
 				015991F2FFF0D793865D81D7,
 				0648154800B6F26B7F000001,
@@ -836,7 +829,6 @@
 				F55E28A9011B0E3101000001,
 				F594C0E7024772DB01000110,
 				5AEA4EC903C8588200000104,
-				5ACBB0CD03DA09AE00000104,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -897,6 +889,38 @@
 //5A2
 //5A3
 //5A4
+		5A0619C207183E270032DBB1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = Dutch;
+			path = Dutch.lproj/Localizable.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5A0619C307183E4A0032DBB1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = Portuguese;
+			path = Portuguese.lproj/Localizable.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5A0619C407183E520032DBB1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = Spanish;
+			path = Spanish.lproj/Localizable.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5A0619C507183E570032DBB1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = Welsh;
+			path = Welsh.lproj/Localizable.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
 		5A180767061317760053BB44 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1037,19 +1061,60 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
+		5A2D6FE00717F14500810FE7 = {
+			children = (
+				F591D44300E50BA901000001,
+				152B666C00D185EB7F000001,
+				152B666E00D253437F000001,
+				1339977C00D512A97F000001,
+				1339977A00D50DD47F000001,
+				F594C0E6024772DB01000110,
+				01108E3DFFF7F751C0A8FC05,
+				5AEA4EC803C8588200000104,
+			);
+			isa = PBXGroup;
+			name = Images;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5A2D71130717F3E900810FE7 = {
+			children = (
+				5A2D71140717F3E900810FE7,
+				5A2D71840717F3FC00810FE7,
+			);
+			isa = PBXVariantGroup;
+			name = "CronniX Help";
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5A2D71140717F3E900810FE7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = folder;
+			name = English;
+			path = "English.lproj/CronniX Help";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		5A2D71830717F3E900810FE7 = {
+			fileRef = 5A2D71130717F3E900810FE7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		5A2D71840717F3FC00810FE7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = folder;
+			name = Dutch;
+			path = "Dutch.lproj/CronniX Help";
+			refType = 4;
+			sourceTree = "<group>";
+		};
 		5A3563AF0705638600B591CB = {
 			fileEncoding = 5;
 			isa = PBXFileReference;
 			lastKnownFileType = text.xml;
 			path = "CronniX todo.ooutline";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5A4698E703EB136900000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = donate.html;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1645,181 +1710,6 @@
 			settings = {
 			};
 		};
-		5ACBB0B803DA09AE00000104 = {
-			children = (
-				5ACBB0B903DA09AE00000104,
-			);
-			isa = PBXVariantGroup;
-			name = "CronniX Help";
-			path = "";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0B903DA09AE00000104 = {
-			includeInIndex = 1;
-			isa = PBXFileReference;
-			lastKnownFileType = folder;
-			name = English;
-			path = "English.lproj/CronniX Help";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0CD03DA09AE00000104 = {
-			fileRef = 5ACBB0B803DA09AE00000104;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		5ACBB0CE03DA0D2F00000104 = {
-			children = (
-				5ACBB0CF03DA0D2F00000104,
-				5ACBB0D003DA0D2F00000104,
-				5ACBB0D203DA0D2F00000104,
-				5ACBB0D303DA0D2F00000104,
-				5A4698E703EB136900000104,
-				5ACBB0D403DA0D2F00000104,
-				5ACBB0D503DA0D2F00000104,
-				5ACBB0D603DA0D2F00000104,
-				5ACBB0D703DA0D2F00000104,
-				5ACBB0D903DA0D2F00000104,
-				5ACBB0DA03DA0D2F00000104,
-				5ACBB0D803DA0D2F00000104,
-				5ACBB0DB03DA0D2F00000104,
-				5ACBB0DC03DA0D2F00000104,
-				5ACBB0DD03DA0D2F00000104,
-				5ACBB0DE03DA0D2F00000104,
-				5ACBB0DF03DA0D2F00000104,
-			);
-			isa = PBXGroup;
-			name = "CronniX Help";
-			path = "English.lproj/CronniX Help";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0CF03DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = about.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0D003DA0D2F00000104 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.gif;
-			path = background.gif;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0D203DA0D2F00000104 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.gif;
-			path = "cronnix-16.gif";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0D303DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = crontab_syntax.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0D403DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = edit_task_dialog.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0D503DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = faq.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0D603DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = general_usage.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0D703DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = index.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0D803DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = release_notes.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0D903DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = localization.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0DA03DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = menu_items.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0DB03DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = screenshot.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0DC03DA0D2F00000104 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.jpeg;
-			path = screenshot.jpg;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0DD03DA0D2F00000104 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.jpeg;
-			path = screenshot2.jpg;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0DE03DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = toc.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB0DF03DA0D2F00000104 = {
-			fileEncoding = 30;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = welcome.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		5ACBB10503DB2BA900000104 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
@@ -2186,11 +2076,15 @@
 		F55E28A7011B0E3101000001 = {
 			children = (
 				F55E28A8011B0E3101000001,
-				F5D9AF00011B36A201000001,
+				5A0619C207183E270032DBB1,
 				F584C88F015E2F2D01000001,
-				F53AE211019C524D01000102,
+				F5D9AF00011B36A201000001,
 				5A1B75B803C5D8AF00000104,
+				F53AE211019C524D01000102,
 				5A28881304763B7700000104,
+				5A0619C307183E4A0032DBB1,
+				5A0619C407183E520032DBB1,
+				5A0619C507183E570032DBB1,
 			);
 			isa = PBXVariantGroup;
 			name = Localizable.strings;
@@ -2400,7 +2294,7 @@
 			};
 		};
 		F5D9AF00011B36A201000001 = {
-			fileEncoding = 30;
+			fileEncoding = 5;
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.strings;
 			name = German;

@@ -1,22 +1,24 @@
 #! /bin/sh
 
 VERSION=$(./getVersion.py)
-size=5  # Mbytes
+size=10  # Mbytes
 fileSystem=HFS+
 volumeName=CronniX_${VERSION}
 imageName=${volumeName}.dmg
-fileSet[0]="build/CronniX.app"
-fileSet[1]="Release_Notes.rtfd"
 resourceDirectoy="build/CronniX.app/Contents/Resources"
-englishOnly=0
-language="English"
+fileSet[0]="build/CronniX.app"
+#fileSet[1]="Release_Notes.rtfd"
+fileSet[1]="$resourceDirectoy/English.lproj/CronniX Help/release_notes.html"
 
-for lproj in $resourceDirectoy/*.lproj; do
-	if [[ englishOnly && $lproj != $resourceDirectoy/${language}.lproj ]]; 
-	then
-		rm -r $lproj
-	fi
-done
+
+#englishOnly=0
+#language="English"
+#for lproj in $resourceDirectoy/*.lproj; do
+#	if [[ englishOnly && $lproj != $resourceDirectoy/${language}.lproj ]]; 
+#	then
+#		rm -r $lproj
+#	fi
+#done
 
 echo
 echo Creating $volumeName disk image
@@ -41,7 +43,7 @@ echo
 # create release notes link
 #currentDir=$(pwd)
 #cd /Volumes/$volumeName
-#ln -s "CronniX.app/Contents/Resources/English.lproj/CronniX Help/release_notes.html" "Release Notes"
+#ln -s "CronniX.app/Contents/Resources/English.lproj/CronniX Help/#release_notes.html" "Release Notes"
 #cd $currentDir
 
 echo Image file list:
