@@ -650,7 +650,6 @@
 				F584C890015E94BD01000001,
 				5AEA529A03C8862500000104,
 				5A2D6FE00717F14500810FE7,
-				5ACBB10603DB324700000104,
 				5A57A6EE03E177C400000104,
 				5A565B7F03F5D38300000104,
 				5A3563AF0705638600B591CB,
@@ -1715,13 +1714,6 @@
 			isa = PBXFileReference;
 			lastKnownFileType = text.script.sh;
 			path = createImage.sh;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		5ACBB10603DB324700000104 = {
-			isa = PBXFileReference;
-			lastKnownFileType = wrapper.rtfd;
-			path = Release_Notes.rtfd;
 			refType = 4;
 			sourceTree = "<group>";
 		};
