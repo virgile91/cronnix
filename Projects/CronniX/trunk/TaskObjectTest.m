@@ -151,6 +151,7 @@ NSString *inactiveTaskString2 = @"#CronniX\tMin Hour Mday Month Wday My \"Comman
 	[ self assertFalse: [ TaskObject isContainedInString: @"test test" ]];
 	[ self assertFalse: [ TaskObject isContainedInString: @"# test" ]];
 	[ self assertFalse: [ TaskObject isContainedInString: @"1 2 3 4 5" ]];
+	[ self assertFalse: [ TaskObject isContainedInString: @"@reboot 1 2 3 4 5" ]];
 }
 
 - (void)testMinute {

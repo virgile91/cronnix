@@ -73,6 +73,13 @@ NSString *identicalTasks =
 @implementation CrontabTest
 
 
+- (void)testBugReport_reidEllis_20050112 {
+  NSString * s = @"0 1 2 3 4 test\n"
+  @"@reboot 1 2 3 4 5\n";
+  id ct = [[ Crontab alloc ] initWithString: s ];
+  [ self assertInt: [ ct taskCount ] equals: 1 ];
+}
+
 - (void)test_dataForSystemCrontab {
   NSString * s = @"15 3 * * * root periodic daily\n";
   id ct = [[Crontab alloc] initWithString: s forUser: @"system"];

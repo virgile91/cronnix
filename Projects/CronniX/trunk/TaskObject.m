@@ -69,8 +69,11 @@
 // ----------
 
 + (BOOL)isContainedInString: (NSString *)line {
-    if ( [ line startsWithStringIgnoringWhitespace: @"#" ] 
-		 && ! [ line startsWithStringIgnoringWhitespace: DisableTag ] ) return NO;
+  if ( [ line startsWithStringIgnoringWhitespace: @"#" ] &&
+       ! [ line startsWithStringIgnoringWhitespace: DisableTag ] ) return NO;
+  
+  // ignore '@' commands (for now)
+  if ( [ line startsWithStringIgnoringWhitespace: @"@" ] ) return NO;
     
     {
 		NSCharacterSet *ws = [ NSCharacterSet whitespaceCharacterSet ];
