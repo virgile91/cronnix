@@ -1,64 +1,40 @@
 <HTML>
 <head>
-<title> CronniX 2.0 Release Notes</title>
+<title> CronniX 3 Release Notes</title>
 </head>
 <body>
 
-<h2>CronniX 2.1 Release Notes</h2>
+<h2>CronniX 3.0 Release Notes</h2>
 
 		<P ALIGN=RIGHT><FONT
-		COLOR=#ff0000><FONT SIZE=2>February 23, 2003</FONT></FONT></P>
+		COLOR=#ff0000><FONT SIZE=2>Oktober 6, 2004</FONT></FONT></P>
 
-<p>Version 2.1 is a minor update with the following changes</p>
+<p>Version 3.0 is a major update with the following changes</p>
 
-<ul>
-<li>Added crontab import/export
-<li>Larger, multi line command text field in the Task dialog
-<li>Added grey frame to the "Any" checkbox section of the Task dialog to better seperate it
-<li>Bugfix: month and mday would not keep '*' when typed in the edit fields of the Task dialog
-<li>Default user for system crontab tasks is now "root" instead of "system"
-</ul>
-
-
-<h2>CronniX 2.0 Release Notes</h2>
-
-		<P ALIGN=RIGHT><FONT
-		COLOR=#ff0000><FONT SIZE=2>January 31, 2003</FONT></FONT></P>
-
-<p>Development of version 2.0 has taken a lot longer than expected, but here it is with quite a few improvements and new features. I hope you will find this release useful.
-
-<p>Version 2.0 is a rewrite of some of the internal data model, has an improved task creation and editing scheme, and fixes a couple of bugs. Here's a more or less complete list of changes:
-
-<ul>
-<li>Improved, dialog based task creation
-<li>Task comments
-<li>Column reordering (with saved state)
-<li>Online update check (manual)
-<li>Bug fix: startup crash on broken crontab
-<li>Improved help
-<li>Internally restructured data model to prepare for MDI
-</ul>
+		<ul>
+			<li>New crontab parsing: preserving unknown/unparsable content</li>
+			<li>Drag and drop of tasks and environment variables (within CronniX and cross applications)</li>
+		</ul>
 
 <h2>CronniX Help</h2>
 
-<p>There have been issues with CronniX Help shortly after Jaguar came out. At the time I released a fix that worked on Jaguar but broke CronniX Help on 10.1. Help now works on both 10.1 and 10.2 again. I have made the documentation available on the CronniX website as well:</p>
+<p>The CronniX documentation is available from the Help menu in the application as well as on the CronniX website:</p>
 
-<p><a href="http://www.koch-schmidt.de/cronnix/docs/index.html" target="_page">CronniX Help on the web</a>
+<p><a href="http://www.abstracture.de/cronnix/docs/index.html" target="_page">CronniX Help on the web</a>
 
 <h2>Known Problems</h2>
 
 <ul>
 <li>Large crontabs: There's been a case where CronniX failed to save a very large (141 lines, 13 kB) crontab. I believe to know the cause of this, but fixing it will take some time. In the meantime, try to group entries by making intervals like '*/5' instead of having 12 entries for a minute of 0,5,10,... (as was the case in the problematic crontab) if possible. Reducing the crontab to a size below 8192 bytes (typically some 80-90 lines) will allow CronniX to read and write your crontab again. Sorry for the inconvenience. (See the FAQ for hints on how to save, view or remove your crontab from the command line.)</li>
 <li>If you open another user's crontab, be aware that the "Run Now" command will not execute the command as that user. They will always run as the current user. Therefore running the maintenance tasks in the system crontab as a regular user (even an administrator) will not do anything (not even harm :-) right now.</li>
-<li>CronniX removes the comments lines in the system crontab created by Norton Scheduler. I will fix this in the next version.</li>
 </ul>
 
 <h2>Support Development</h2>
 
 <p>CronniX is free and remains free. You can support its future development by making a credit card / PayPal donation. Please see</p>
 
-<a href="http://www.koch-schmidt.de/cronnix/donate.html" target="_page">
-http://www.koch-schmidt.de/cronnix/donate.html</a>
+<a href="http://www.abstracture.de/cronnix/donate.html" target="_page">
+http://www.abstracture.de/cronnix/donate.html</a>
 
 <p>for details. I'd appreciate it a lot if you'd have a look.</p>
 
@@ -72,7 +48,6 @@ Please head to the <a href="localization.html" target="_right">localization sect
 
 <UL>
     <li>Preferences
-	<li>Row reordering
 	<li>"Run Now" improvement (sudo for other users, better error reporting)
     <li>Perform sanity checks before installing a crontab
     <li>React to future user suggestions

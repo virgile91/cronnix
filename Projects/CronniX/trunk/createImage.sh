@@ -8,10 +8,12 @@ imageName=${volumeName}.dmg
 fileSet[0]="build/CronniX.app"
 fileSet[1]="Release_Notes.rtfd"
 resourceDirectoy="build/CronniX.app/Contents/Resources"
+englishOnly=0
 language="English"
 
 for lproj in $resourceDirectoy/*.lproj; do
-	if [[ $lproj != $resourceDirectoy/${language}.lproj ]]; then
+	if [[ englishOnly && $lproj != $resourceDirectoy/${language}.lproj ]]; 
+	then
 		rm -r $lproj
 	fi
 done

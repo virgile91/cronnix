@@ -5,9 +5,9 @@
 //  Created by sas on Sat Sep 15 2001.
 //  Copyright (c) 2001 Sven A. Schmidt. All rights reserved.
 //
-//  Koch und Schmidt Systemtechnik GbR
-//  www.koch-schmidt.de
-//  sven.schmidt@koch-schmidt.de
+//  abstracture IT-Beratung GmbH
+//  www.abstracture.de
+//  sas@abstracture.de
 //
 
 #import "crController.h"
@@ -21,7 +21,7 @@
 
 NSString *cronCommand = @"/usr/bin/crontab";
 NSString *suCrontabResource = @"sucrontab";
-static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
+static NSString *cronnixHomepage = @"http://www.abstracture.de/cronnix";
 
 
 @implementation crController
