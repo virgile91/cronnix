@@ -41,6 +41,16 @@ NSString *crontabString =
 }
 
 
+- (void)testRemoveTwoLines {
+	[ controller removeLineAtRow: 1 ];
+	id ct = [ controller currentCrontab ];
+	[ self assertInt: [ ct taskCount ] equals: 2 ];
+	[ self assert: [[ ct taskAtIndex: 0 ] command ] equals: @"task 0" ];
+	[ self assert: [[ ct taskAtIndex: 1 ] command ] equals: @"task 1" ];
+	[ self assert: [[ ct taskAtIndex: 2 ] command ] equals: @"task 2" ];
+}
+
+
 - (void)testDuplicateTwoLines {
 	id list = [ NSMutableArray array ];
 	[ list addObject: [ NSNumber numberWithInt: 0 ]];

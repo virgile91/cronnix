@@ -642,16 +642,6 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 }
 
 
-- (void)replaceLineAtRow: (int)row withObject: (id)obj {
-    if ( row < 0 || row > [ crTable numberOfRows ]-1 ) {
-        NSBeep();
-        return;
-    }
-    [ currentCrontab replaceTaskAtIndex: row withTask: obj ];
-    [ crTable reloadData ];
-    [ self setDirty: YES ];
-}
-
 - (void)removeLinesInList: (NSEnumerator *)list {
     id item;
     list = [ [ list allObjects ] reverseObjectEnumerator ];
@@ -664,6 +654,16 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     if ( [ crTable selectedRow ] == -1 ) {
         [ crTable selectRow: [ crTable numberOfRows ] -1 byExtendingSelection: NO ];
     }
+}
+
+- (void)replaceLineAtRow: (int)row withObject: (id)obj {
+    if ( row < 0 || row > [ crTable numberOfRows ]-1 ) {
+        NSBeep();
+        return;
+    }
+    [ currentCrontab replaceTaskAtIndex: row withTask: obj ];
+    [ crTable reloadData ];
+    [ self setDirty: YES ];
 }
 
 
