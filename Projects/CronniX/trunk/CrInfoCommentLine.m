@@ -1,15 +1,15 @@
 //
-//  Comment.m
+//  CrInfoCommentLine.m
 //  CronniX
 //
-//  Created by Sven A. Schmidt on Tue Mar 16 2004.
+//  Created by Sven A. Schmidt on Wed Apr 07 2004.
 //  Copyright (c) 2004 __MyCompanyName__. All rights reserved.
 //
 
-#import "CommentLine.h"
+#import "CrInfoCommentLine.h"
 #import "SasString.h"
 
-@implementation CommentLine
+@implementation CrInfoCommentLine
 
 - (id)initWithString: (NSString *)line {
     [ super init ];
@@ -17,7 +17,7 @@
 }
 
 + (BOOL)isContainedInString: (NSString *)string {
-    if ( [ string startsWithStringIgnoringWhitespace: @"#" ] ) {
+    if ( [ string startsWithStringIgnoringWhitespace: CrInfoComment ] ) {
 	return YES;
     } else {
 	return NO;

@@ -9,7 +9,7 @@
 #import "TaskObject.h"
 #import "Crontab.h"
 #import "SasString.h"
-
+#import "CrInfoCommentLine.h"
 
 @implementation TaskObject
 
@@ -224,7 +224,11 @@
 }
 
 - (void)setInfo: (NSString *)aValue {
-    [ self setObject: aValue forKey: @"Info" ];
+    id string = aValue;
+    if ( [ string startsWithString: CrInfoComment ] ) {
+	string = [ string substringFromIndex: [ CrInfoComment length ] -1 ];
+    }
+    [ self setObject: string forKey: @"Info" ];
 }
 
 

@@ -8,7 +8,7 @@
 
 #import "Crontab.h"
 #import "CommentLine.h"
-
+#import "CrInfoCommentLine.h"
 
 @implementation Crontab
 
@@ -65,20 +65,34 @@
 - (void)parseData {
     NSEnumerator *en = [[ self lines ] objectEnumerator ];
     id line;
+    id previousLine = nil;
     while ( line = [ en nextObject ] ) {
-		id obj = nil;
-
-		if ( [ EnvVariable isContainedInString: line ] ) {
-			obj = [[ EnvVariable alloc ] initWithString: line ];
-		} else if( [ CommentLine isContainedInString: line ] ) {
-			obj = [[ CommentLine alloc ] initWithString: line ];
-		} else if ( [ TaskObject isContainedInString: line ] ) {
-			obj = [[ TaskObject alloc ] initWithString: line ];
-		}
-		[ obj autorelease ];
-		
-		if ( obj ) [ objects addObject: obj ];
+	id obj = nil;
+	
+	if ( [ EnvVariable isContainedInString: line ] ) {
+	    
+	    obj = [[ EnvVariable alloc ] initWithString: line ];
+	    
+	} else if ( [ CommentLine isContainedInString: line ] &&
+		    ! [ CrInfoCommentLine isContainedInString: line ] ) {
+	    
+	    obj = [[ CommentLine alloc ] initWithString: line ];
+	    
+	} else if ( [ TaskObject isContainedInString: line ] ) {
+	    
+	    obj = [[ TaskObject alloc ] initWithString: line ];
+	    if ( [ CrInfoCommentLine isContainedInString: previousLine ] ) {
+		[ obj setInfo: previousLine ];
+	    }
+	    
+	}
+	[ obj autorelease ];
+	[ previousLine release ];
+	previousLine = [ line retain ];
+	
+	if ( obj ) [ objects addObject: obj ];
     }
+    [ previousLine release ];
 }
 
 
@@ -101,22 +115,29 @@
     }
 }
 
+
 - (NSEnumerator *)objectEnumeratorForClass: (Class)aClass {
-	NSMutableArray *filteredObjects = [ NSMutableArray array ];
-	NSEnumerator *iter = [ objects objectEnumerator ];
-	id obj;
-	while ( obj = [ iter nextObject ] ) {
-		if ( [ obj isKindOfClass: aClass ] ) [ filteredObjects addObject: obj ];
-	}
-	return [ filteredObjects objectEnumerator ];
+    NSMutableArray *filteredObjects = [ NSMutableArray array ];
+    NSEnumerator *iter = [ objects objectEnumerator ];
+    id obj;
+    while ( obj = [ iter nextObject ] ) {
+	if ( [ obj isKindOfClass: aClass ] ) [ filteredObjects addObject: obj ];
+    }
+    return [ filteredObjects objectEnumerator ];
 }
 
+- (int)objectCountForClass: (Class)aClass {
+    id iter = [ self objectEnumeratorForClass: aClass ];
+    return [[ iter allObjects ] count ];
+}
+
+
 - (NSEnumerator *)tasks {
-	return [ self objectEnumeratorForClass: [ TaskObject class ]];
+    return [ self objectEnumeratorForClass: [ TaskObject class ]];
 }
 
 - (int)taskCount {
-	return [[[ self tasks ] allObjects ] count ];
+    return [[[ self tasks ] allObjects ] count ];
 }
 
 
@@ -137,17 +158,17 @@
 }
 
 - (void)addEnvVariableWithValue: (NSString *)aValue forKey: (NSString *)aKey {
-	[ objects addObject: [ EnvVariable envVariableWithValue: aValue forKey: aKey ]];
+    [ objects addObject: [ EnvVariable envVariableWithValue: aValue forKey: aKey ]];
 }
 
 
 - (void)removeAllEnvVariables {
-	id allEnvs = [[ self envVariables ] allObjects ];
-	id iter = [ allEnvs objectEnumerator ];
-	id env;
-	while ( env = [ iter nextObject ] ) {
-		[ self removeEnvVariable: env ];
-	}
+    id allEnvs = [[ self envVariables ] allObjects ];
+    id iter = [ allEnvs objectEnumerator ];
+    id env;
+    while ( env = [ iter nextObject ] ) {
+	[ self removeEnvVariable: env ];
+    }
 }
 
 - (void)removeEnvVariable: (EnvVariable *)env {
@@ -155,25 +176,25 @@
 }
 
 - (void)removeEnvVariableWithKey: (NSString *)key {
-	NSEnumerator *envs = [ self envVariables ];
-	id env;
-	while ( env = [ envs nextObject ] ) {
-		if ( [[ env key ] isEqualToString: key ] ) {
-			[ objects removeObject: env ];
-			break;
-		}
+    NSEnumerator *envs = [ self envVariables ];
+    id env;
+    while ( env = [ envs nextObject ] ) {
+	if ( [[ env key ] isEqualToString: key ] ) {
+	    [ objects removeObject: env ];
+	    break;
 	}
+    }
 }
 
 - (void)removeEnvVariableAtIndex: (int)index {
-	id env = [ self envVariableAtIndex: index ];
-	[ objects removeObject: env ];
+    id env = [ self envVariableAtIndex: index ];
+    [ objects removeObject: env ];
 }
 
 
 - (void)insertEnvVariable: (id)env atIndex: (int)index {
-	int objIndex = [ self objectIndexOfEnvVariableAtIndex: index ];
-	[ objects insertObject: env atIndex: objIndex ];
+    int objIndex = [ self objectIndexOfEnvVariableAtIndex: index ];
+    [ objects insertObject: env atIndex: objIndex ];
 }
 
 - (void)addTask: (TaskObject *)task {
@@ -182,31 +203,31 @@
 
 
 - (void)removeTaskAtIndex: (int)index {
-	id task = [ self taskAtIndex: index ];
-	[ objects removeObject: task ];
+    id task = [ self taskAtIndex: index ];
+    [ objects removeObject: task ];
 }
 
 
 - (int)objectIndexOfTaskAtIndex: (int)index {
-	id task = [ self taskAtIndex: index ];
-	return [ objects indexOfObject: task ];
+    id task = [ self taskAtIndex: index ];
+    return [ objects indexOfObject: task ];
 }
 
 - (int)objectIndexOfEnvVariableAtIndex: (int)index {
-	id env = [ self envVariableAtIndex: index ];
-	return [ objects indexOfObject: env ];
+    id env = [ self envVariableAtIndex: index ];
+    return [ objects indexOfObject: env ];
 }
 
 
 - (void)insertTask: (TaskObject *)aTask atIndex: (int)index {
-	int objIndex = [ self objectIndexOfTaskAtIndex: index ];
-	[ objects insertObject: aTask atIndex: objIndex ];
+    int objIndex = [ self objectIndexOfTaskAtIndex: index ];
+    [ objects insertObject: aTask atIndex: objIndex ];
 }
 
 - (void)replaceTaskAtIndex: (int)index withTask: (TaskObject *)aTask {
-	int objIndex = [ self objectIndexOfTaskAtIndex: index ];
-	[ objects removeObjectAtIndex: objIndex ];
-	[ objects insertObject: aTask atIndex: objIndex ];
+    int objIndex = [ self objectIndexOfTaskAtIndex: index ];
+    [ objects removeObjectAtIndex: objIndex ];
+    [ objects insertObject: aTask atIndex: objIndex ];
 }
 
 
@@ -215,11 +236,11 @@
 }
 
 - (NSEnumerator *)envVariables {
-	return [ self objectEnumeratorForClass: [ EnvVariable class ]];
+    return [ self objectEnumeratorForClass: [ EnvVariable class ]];
 }
 
 - (int)envVariableCount {
-	return [[[ self envVariables ] allObjects ] count ];
+    return [[[ self envVariables ] allObjects ] count ];
 }
 
 - (EnvVariable *)envVariableAtIndex: (int)index {
@@ -234,8 +255,8 @@
     id env;
     
     while ( env = [ envVars nextObject ] ) {
-		NSString *item = [ NSString stringWithFormat: @"%@ = %@\n", [ env key ], [ env value ]];
-		[ envData appendData: [ item dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
+	NSString *item = [ NSString stringWithFormat: @"%@ = %@\n", [ env key ], [ env value ]];
+	[ envData appendData: [ item dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
     }
     
     return envData;
@@ -253,7 +274,7 @@
 	
 	// add info line
 	if ( [ task info ] ) {
-	    line = [ NSString stringWithFormat: @"%@%@\n", cronnixComment, [ task info ]];
+	    line = [ NSString stringWithFormat: @"%@%@\n", CrInfoComment, [ task info ]];
 	    //NSLog( @"info: %@", line );
 	    [ data appendData: [ line dataUsingEncoding: [ NSString defaultCStringEncoding ]]];
 	}
@@ -265,7 +286,7 @@
 	    NSString *asterisk = @"*";
 	    if ( [ self isSystemCrontab ] ) {
 		line = [ NSString stringWithFormat: @"%@ %@\t%@\t%@\t%@\t%@\t%@\t%@\n",
-			activeString,
+		    activeString,
 [[ task objectForKey: @"Min" ] length ] != 0 ? [ task objectForKey: @"Min" ] : asterisk,
 [[ task objectForKey: @"Hour" ] length ] != 0 ? [ task objectForKey: @"Hour" ] : asterisk,
 [[ task objectForKey: @"Mday" ] length ] != 0 ? [ task objectForKey: @"Mday" ] : asterisk,
@@ -298,7 +319,7 @@
 
 
 - (int)indexOfTask: (id)aTask {
-	return [[[ self tasks ] allObjects ] indexOfObject: aTask ];
+    return [[[ self tasks ] allObjects ] indexOfObject: aTask ];
 }
 
 

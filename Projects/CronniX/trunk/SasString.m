@@ -32,5 +32,17 @@
     return fieldCount;
 }
 
+- (BOOL)startsWithStringIgnoringWhitespace: (NSString *)string {
+    id trimmedString = [ self stringByTrimmingCharactersInSet: [ NSCharacterSet whitespaceCharacterSet ]];
+    id pattern = [ NSString stringWithFormat: @"%@*", string ];
+    return [ trimmedString isLike: pattern ];
+}
+
+
+- (BOOL)startsWithString: (NSString *)string {
+    id pattern = [ NSString stringWithFormat: @"%@*", string ];
+    return [ self isLike: pattern ];
+}
+
 
 @end

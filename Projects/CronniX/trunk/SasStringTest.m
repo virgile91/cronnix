@@ -11,6 +11,17 @@
 
 @implementation SasStringTest
 
+- (void)testStartsWithString {
+    [ self assertTrue: [ @"blabla" startsWithString: @"bla" ] message: @"positive test failed" ];
+    [ self assertFalse: [ @"ba" startsWithString: @"bla" ] message: @"negative test failed" ];
+}
+
+- (void)testStartsWithStringIgnoringWhitespace {
+    [ self assertTrue: [ @"  bla" startsWithStringIgnoringWhitespace: @"bla" ]];
+    [ self assertTrue: [ @"\tbla" startsWithStringIgnoringWhitespace: @"bla" ]];
+    [ self assertFalse: [ @"ba" startsWithStringIgnoringWhitespace: @"bla" ]];
+}
+
 - (void)testFieldCount {
     NSCharacterSet *ws = [ NSCharacterSet whitespaceCharacterSet ];
     id line = @" 30\t5\t \t6       4       *       third Task\n";

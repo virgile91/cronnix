@@ -13,7 +13,6 @@
 // __attribute__ ((unused)) suppresses compiler warnings
 static NSString *NewCrontabParsedNotification __attribute__ ((unused)) = @"NewCrontabParsed";
 static NSString *disableComment __attribute__ ((unused)) = @"#CronniX";
-static NSString *cronnixComment __attribute__ ((unused)) = @"#CrInfo ";
 static NSString *systemCrontabUser __attribute__ ((unused)) = @"system";
 
 static NSString *EnvVariableAddedNotification __attribute__ ((unused)) = @"EnvVariableAdded";
@@ -68,6 +67,7 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 - (int)envVariableCount;
 - (EnvVariable *)envVariableAtIndex: (int)index;
 
+- (int)objectCountForClass: (Class)aClass;
 - (int)objectIndexOfTaskAtIndex: (int)index;
 - (int)objectIndexOfEnvVariableAtIndex: (int)index;
 
