@@ -6,8 +6,6 @@
 	objectVersion = 39;
 	objects = {
 		00FC83E2006171A07F000001 = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -21,8 +19,6 @@
 			name = Development;
 		};
 		00FC83E3006171A07F000001 = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -77,8 +73,7 @@
 			};
 		};
 		0131485300AF26EA7F000001 = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXExecutableFileReference;
+			isa = PBXFileReference;
 			lastKnownFileType = "compiled.mach-o.executable";
 			path = sucrontab;
 			refType = 4;
@@ -427,8 +422,7 @@
 			sourceTree = "<group>";
 		};
 		1058C7A1FEA54F0111CA2CBB = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Cocoa.framework;
 			path = /System/Library/Frameworks/Cocoa.framework;
@@ -535,8 +529,7 @@
 //174
 		17587328FF379C6511CA2CBB = {
 			explicitFileType = wrapper.application;
-			fallbackIsa = PBXFileReference;
-			isa = PBXApplicationReference;
+			isa = PBXFileReference;
 			path = CronniX.app;
 			refType = 3;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -700,8 +693,7 @@
 			sourceTree = "<group>";
 		};
 		29B97324FDCFA39411CA2CEA = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = AppKit.framework;
 			path = /System/Library/Frameworks/AppKit.framework;
@@ -709,8 +701,7 @@
 			sourceTree = "<absolute>";
 		};
 		29B97325FDCFA39411CA2CEA = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Foundation.framework;
 			path = /System/Library/Frameworks/Foundation.framework;
@@ -978,7 +969,7 @@
 		5A24D09D03D2C8BA00000104 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = version.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -1056,9 +1047,8 @@
 			sourceTree = "<group>";
 		};
 		5A57A6EC03E177A800000104 = {
-			fallbackIsa = PBXFileReference;
 			fileEncoding = 30;
-			isa = PBXExecutableFileReference;
+			isa = PBXFileReference;
 			lastKnownFileType = text.script.sh;
 			name = nibUpdate.sh;
 			path = CronniX_Localization/nibUpdate.sh;
@@ -1066,9 +1056,8 @@
 			sourceTree = "<group>";
 		};
 		5A57A6ED03E177B300000104 = {
-			fallbackIsa = PBXFileReference;
 			fileEncoding = 30;
-			isa = PBXExecutableFileReference;
+			isa = PBXFileReference;
 			lastKnownFileType = text.script.python;
 			name = compareStrings.py;
 			path = CronniX_Localization/compareStrings.py;
@@ -1476,9 +1465,8 @@
 			sourceTree = "<group>";
 		};
 		5ACBB0B903DA09AE00000104 = {
-			fallbackIsa = PBXFileReference;
 			includeInIndex = 1;
-			isa = PBXFolderReference;
+			isa = PBXFileReference;
 			lastKnownFileType = folder;
 			name = English;
 			path = "English.lproj/CronniX Help";
@@ -1642,9 +1630,8 @@
 			sourceTree = "<group>";
 		};
 		5ACBB10503DB2BA900000104 = {
-			fallbackIsa = PBXFileReference;
 			fileEncoding = 30;
-			isa = PBXExecutableFileReference;
+			isa = PBXFileReference;
 			lastKnownFileType = text.script.sh;
 			path = createImage.sh;
 			refType = 4;
@@ -2171,8 +2158,7 @@
 			};
 		};
 		F59CC2BD016B090B0176C965 = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Security.framework;
 			path = /System/Library/Frameworks/Security.framework;
@@ -2224,8 +2210,7 @@
 		};
 		F5ECDC89024CC0250100011A = {
 			explicitFileType = "compiled.mach-o.executable";
-			fallbackIsa = PBXFileReference;
-			isa = PBXExecutableFileReference;
+			isa = PBXFileReference;
 			path = "All Tests";
 			refType = 3;
 			sourceTree = BUILT_PRODUCTS_DIR;

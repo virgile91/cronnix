@@ -200,7 +200,7 @@
 	} else {
 		index = [ objects indexOfObjectIdenticalTo: lastEnv ];
 	}
-	if ( index < [ objects count ] -1 ) {
+	if ( index +1 < [objects count] ) {
 		[ objects insertObject: env atIndex: index +1 ];
 	} else {
 		[ objects addObject: env ];
