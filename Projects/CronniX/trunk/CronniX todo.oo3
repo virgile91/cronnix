@@ -34,9 +34,11 @@
       </style>
     </base-style>
   </settings>
-  <editor content-size="{567, 660}" scroll-position="{0, 605}">
+  <editor content-size="{567, 660}">
     <note-split-view is-note-expanded="no"/>
-    <selected-rows ids="oF1z-1JkEuV"/>
+    <selected-rows ids="iKUIFs1ON_u"/>
+    <selected-columns ids="f00822ae3c666f44095581d7"/>
+    <selected-characters range="{23, 0}"/>
   </editor>
   <columns>
     <column id="c11a4aaa3d6f41824a2b0104" type="text" width="18" minimum-width="18" maximum-width="18" text-export-width="1" is-note-column="yes">
@@ -55,7 +57,7 @@
     </column>
   </columns>
   <root>
-    <item id="eIIXh84TNk-" expanded="yes" state="checked">
+    <item id="eIIXh84TNk-" expanded="yes" state="indeterminate">
       <values>
         <text>
           <p>
@@ -66,6 +68,28 @@
         </text>
       </values>
       <children>
+        <item id="d6E_Kbs3mJT">
+          <values>
+            <text>
+              <p>
+                <run>
+                  <lit>Hide intervals tab</lit>
+                </run>
+              </p>
+            </text>
+          </values>
+        </item>
+        <item id="iKUIFs1ON_u">
+          <values>
+            <text>
+              <p>
+                <run>
+                  <lit>add Catalan translation</lit>
+                </run>
+              </p>
+            </text>
+          </values>
+        </item>
         <item id="bVTee-0nnOB" state="checked">
           <values>
             <text>
