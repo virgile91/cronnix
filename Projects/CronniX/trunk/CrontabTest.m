@@ -54,6 +54,12 @@ NSString *normalizedTestString =
 
 @implementation CrontabTest
 
+- (void)testIsContainedInString {
+	[ self assertTrue: [ Crontab isContainedInString: testString ]];
+	[ self assertTrue: [ Crontab isContainedInString: normalizedTestString ]];
+	[ self assertTrue: [ Crontab isContainedInString: @"1 2 3 4 * new task" ]];
+}
+
 - (void)testAddTask {
 	id aTask = [ TaskObject taskWithString: @"1 2 3 4 * new task" ];
 	[ crontab addTask: aTask ];

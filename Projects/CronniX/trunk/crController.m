@@ -17,6 +17,7 @@
 #import "RunNowNibController.h"
 #import "NewTaskDialogController.h"
 #import "EditTaskDialogController.h"
+#import "SasString.h"
 
 NSString *cronCommand = @"/usr/bin/crontab";
 NSString *suCrontabResource = @"sucrontab";
@@ -1221,9 +1222,13 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
         NSData *data = [ pboard dataForType: NSStringPboardType ];
         id string = [ [ NSString alloc ] initWithData: data encoding: [ NSString defaultCStringEncoding ]];
 		
-		if ( [ TaskObject isContainedInString: string ] ) {
-			id task = [ TaskObject taskWithString: string ];
-			[ currentCrontab insertTask: task atIndex: row ];
+		if ( [ Crontab isContainedInString: string ] ) {
+			id crontab = [[ Crontab alloc ] initWithString: string ];
+			id iter = [ crontab reverseTasks ];
+			id task;
+			while ( task = [ iter nextObject ] ) {
+				[ currentCrontab insertTask: task atIndex: row ];
+			}
 			[ crTable reloadData ];
 			[ self setDirty: YES ];
 		} else {
@@ -1266,7 +1271,7 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
     
 	NSPasteboard *pboard = [info draggingPasteboard];
 	NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObjects: NSStringPboardType,                                                                            NSFilenamesPboardType, NSTabularTextPboardType, nil ] ];
-	NSLog( @"type: %@", type );
+	//NSLog( @"type: %@", type );
     if ( type ) {
         if ( [ type isEqualToString: NSStringPboardType ] || 
              [ type isEqualToString: NSFilenamesPboardType ] ||
@@ -1283,21 +1288,41 @@ static NSString *cronnixHomepage = @"http://www.koch-schmidt.de/cronnix";
 		writeRows:(NSArray *)rows
 	 toPasteboard:(NSPasteboard *)pboard {
 	
-	id cr = [[[ Crontab alloc] init ] autorelease ];
-	id iter = [rows objectEnumerator];
-	id index;
-	while ( index = [ iter nextObject ] ) {
-		id task = [ currentCrontab taskAtIndex: [index intValue]];
-		NSLog( @"adding task: %@", task );
-		[ cr addTask: task ];
-	}
-	NSLog( @"tasks: %i\n", [ cr taskCount ] );
-	NSLog( @"writing data to pboard: %@\n", cr );
-	[ pboard declareTypes: [ NSArray arrayWithObject: NSStringPboardType ] owner: nil ];
-	[ pboard setString: [ cr description ] forType: NSStringPboardType ];
+	[ self setDraggedObjects: rows ];
+	
+	[ pboard declareTypes: [ NSArray arrayWithObject: NSStringPboardType ] owner: self ];
+	
 	return YES;
 }
 
+- (void)pasteboard:(NSPasteboard *)sender provideDataForType:(NSString *)type {
+	id cr = [[[ Crontab alloc] init ] autorelease ];
+	id iter = [ draggedObjects objectEnumerator ];
+	id index;
+	while ( index = [ iter nextObject ] ) {
+		id task = [ currentCrontab taskAtIndex: [index intValue]];
+		[ cr addTask: task ];
+	}
+	
+	NSLog( @"writing data to pboard: %@\n", cr );
+	[ sender setString: [ cr description ] forType: NSStringPboardType ];
+	//[ sender setString: [[ cr description ] stringByTrimmingWhitespaceAndNewline ] 
+	//		   forType: NSStringPboardType ];
+}
+
+- (void)setDraggedObjects: (NSArray *)indexList {
+	if ( draggedObjects != indexList ) {
+		[ draggedObjects release ];
+		draggedObjects = [ indexList retain ];
+	}
+}
+
+- (void)draggedImage:(NSImage *)anImage endedAt:(NSPoint)aPoint operation:(NSDragOperation)operation {
+	if ( operation & NSDragOperationMove ||
+		 operation & NSDragOperationGeneric ) {
+		[ self removeLinesInList: [ draggedObjects objectEnumerator ]];
+	}
+}
 
 // toolbar menu actions
 - (void)customizeToolbar:(id)sender {

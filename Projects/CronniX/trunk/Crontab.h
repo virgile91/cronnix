@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TaskObject.h"
 #import "EnvVariable.h"
+#import "CrontabLine.h"
 
 // __attribute__ ((unused)) suppresses compiler warnings
 static NSString *NewCrontabParsedNotification __attribute__ ((unused)) = @"NewCrontabParsed";
@@ -24,14 +25,16 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 	@abstract 
 	@discussion 
 */
-@interface Crontab : NSObject {
+@interface Crontab : NSObject <CrontabLine> {
 	NSMutableArray *lines;
 	NSMutableArray *objects;
 	NSString *user;
 }
 
-- (id)initWithData: (NSData *)data forUser: (NSString *)aUser;
++ (BOOL)isContainedInString: (NSString *)string;
 
+- (id)initWithString: (NSString *)string;
+- (id)initWithData: (NSData *)data forUser: (NSString *)aUser;
 - (id)initWithContentsOfFile: (NSString *)path forUser: (NSString *)aUser;
 
 // workers
@@ -53,6 +56,7 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 - (void)setLines: (NSArray *)aVal;
 
 - (NSEnumerator *)tasks;
+- (NSEnumerator *)reverseTasks;
 
 - (int)taskCount;
 

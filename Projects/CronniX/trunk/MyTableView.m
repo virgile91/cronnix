@@ -10,5 +10,12 @@
     [ super rightMouseDown: event ];
 }
 
+- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal {
+	return NSDragOperationGeneric | NSDragOperationCopy | NSDragOperationMove;
+}
+
+- (void)draggedImage:(NSImage *)anImage endedAt:(NSPoint)aPoint operation:(NSDragOperation)operation {
+	[[ self delegate ] draggedImage: anImage endedAt: aPoint operation: operation ];
+}
 
 @end

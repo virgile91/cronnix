@@ -14,5 +14,6 @@
 - (int)fieldCountSeperatedBy: (NSCharacterSet *)charSet;
 - (BOOL)startsWithStringIgnoringWhitespace: (NSString *)string;
 - (BOOL)startsWithString: (NSString *)string;
+- (NSString *)stringByTrimmingWhitespaceAndNewline;
 
 @end

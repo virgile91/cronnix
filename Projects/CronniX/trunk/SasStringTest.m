@@ -11,6 +11,13 @@
 
 @implementation SasStringTest
 
+- (void)testStringByTrimmingWhitespaceAndNewline {
+	[ self assert: [ @"\nbla test " stringByTrimmingWhitespaceAndNewline]
+		   equals: @"bla test" ];
+	[ self assert: [ @" bla test\n" stringByTrimmingWhitespaceAndNewline]
+		   equals: @"bla test" ];
+}
+
 - (void)testStartsWithString {
     [ self assertTrue: [ @"blabla" startsWithString: @"bla" ] message: @"positive test failed" ];
     [ self assertFalse: [ @"ba" startsWithString: @"bla" ] message: @"negative test failed" ];

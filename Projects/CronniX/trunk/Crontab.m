@@ -17,6 +17,11 @@
 	return [ self initWithData: nil forUser: nil ];
 }
 
+- (id)initWithString: (NSString *)string {
+	id data = [ string dataUsingEncoding: [ NSString defaultCStringEncoding ]];
+	return [ self initWithData: data forUser: nil ];
+}
+
 - (id)initWithContentsOfFile: (NSString *)path forUser: (NSString *)aUser {
     NSData *data = [ NSData dataWithContentsOfFile: path ];
     return [ self initWithData: data forUser: aUser ];
@@ -48,6 +53,17 @@
     [ objects release ];
     [ user release ];
     [ super dealloc ];
+}
+
+
++ (BOOL)isContainedInString: (NSString *)string {
+	id theLines = [[ string componentsSeparatedByString: @"\n" ] objectEnumerator ];
+	id aLine;
+	while ( aLine = [ theLines nextObject ] ) {
+		if ( [ TaskObject isContainedInString: aLine ] ||
+			 [ EnvVariable isContainedInString: aLine ] ) return true;
+	}
+	return NO;
 }
 
 
@@ -131,14 +147,22 @@
 }
 
 
-- (NSEnumerator *)objectEnumeratorForClass: (Class)aClass {
+- (NSArray *)objectsForClass: (Class)aClass {
     NSMutableArray *filteredObjects = [ NSMutableArray array ];
     NSEnumerator *iter = [ objects objectEnumerator ];
     id obj;
     while ( obj = [ iter nextObject ] ) {
 		if ( [ obj isKindOfClass: aClass ] ) [ filteredObjects addObject: obj ];
     }
-    return [ filteredObjects objectEnumerator ];
+    return filteredObjects;
+}
+
+- (NSEnumerator *)objectEnumeratorForClass: (Class)aClass {
+    return [[ self objectsForClass: aClass ] objectEnumerator ];
+}
+
+- (NSEnumerator *)reverseObjectEnumeratorForClass: (Class)aClass {
+    return [[ self objectsForClass: aClass ] reverseObjectEnumerator ];
 }
 
 - (int)objectCountForClass: (Class)aClass {
@@ -146,6 +170,14 @@
     return [[ iter allObjects ] count ];
 }
 
+
+- (NSEnumerator *)reverseTasks {
+    return [ self reverseObjectEnumeratorForClass: [ TaskObject class ]];
+}
+
+- (NSEnumerator *)reverseEnvVariables {
+    return [ self reverseObjectEnumeratorForClass: [ EnvVariable class ]];
+}
 
 - (NSEnumerator *)tasks {
     return [ self objectEnumeratorForClass: [ TaskObject class ]];
@@ -169,11 +201,23 @@
 
 
 - (void)addEnvVariable: (EnvVariable *)env {
-    [ objects addObject: env ];
+	id iter = [ self reverseEnvVariables ];
+	id lastEnv = [ iter nextObject ];
+	int index;
+	if ( lastEnv == nil ) {
+		index = 0;
+	} else {
+		index = [ objects indexOfObject: lastEnv ];
+	}
+	if ( index < [ objects count ] -1 ) {
+		[ objects insertObject: env atIndex: index +1 ];
+	} else {
+		[ objects addObject: env ];
+	}
 }
 
 - (void)addEnvVariableWithValue: (NSString *)aValue forKey: (NSString *)aKey {
-    [ objects addObject: [ EnvVariable envVariableWithValue: aValue forKey: aKey ]];
+    [ self addEnvVariable: [ EnvVariable envVariableWithValue: aValue forKey: aKey ]];
 }
 
 

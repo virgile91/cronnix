@@ -37,6 +37,7 @@ static NSString *UserSelectedNotification __attribute__ ((unused)) = @"UserSelec
     NSMenuItem  *runNowMenuItem;
 	NSTextField *infoTextField;
 	NSMenu      *contextMenu;
+	id          draggedObjects;
 
     NSString *crontabForUser;
     BOOL isDirty;
@@ -119,41 +120,18 @@ static NSString *UserSelectedNotification __attribute__ ((unused)) = @"UserSelec
 // accessors
 
 - (id)mainWindow;
-/*!
-	@method window
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (id)window;
-/*!
-	@method isDirty
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (BOOL)isDirty;
-/*!
-	@method setDirty
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)setDirty: (BOOL)value;
-/*!
-	@method documentModified
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)documentModified: (NSNotification *)notification;
-/*!
-	@method userSelected
-	@abstract 
-	@discussion 
-	@result 
-*/
+
 - (void)userSelected: (NSNotification *)notification;
+
+- (void)setDraggedObjects: (NSArray *)indexList;
 
 - (NSString *)crontabForUser;
 
