@@ -26,7 +26,6 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 	@discussion 
 */
 @interface Crontab : NSObject <CrontabLine> {
-	NSMutableArray *lines;
 	NSMutableArray *objects;
 	NSString *user;
 }
@@ -34,6 +33,7 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 + (BOOL)isContainedInString: (NSString *)string;
 
 - (id)initWithString: (NSString *)string;
+- (id)initWithString: (NSString *)data forUser: (NSString *)aUser;
 - (id)initWithData: (NSData *)data forUser: (NSString *)aUser;
 - (id)initWithContentsOfFile: (NSString *)path forUser: (NSString *)aUser;
 
@@ -41,19 +41,13 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 
 - (void)clear;
 
-- (NSMutableArray *)linesFromData: (NSData *)data;
-
-- (void)parseData;
+- (void)parseString: (NSString *)string;
 
 - (BOOL)isSystemCrontab;
 
 - (BOOL)writeAtPath: (NSString *)path;
 
 // accessors
-
-- (NSMutableArray *)lines;
-
-- (void)setLines: (NSArray *)aVal;
 
 - (NSEnumerator *)tasks;
 - (NSEnumerator *)reverseTasks;
@@ -67,6 +61,7 @@ static NSString *EnvVariableDeletedNotification __attribute__ ((unused)) = @"Env
 - (void)setUser: (NSString *)aVal;
 
 - (NSEnumerator *)envVariables;
+- (NSEnumerator *)reverseEnvVariables;
 - (int)envVariableCount;
 - (EnvVariable *)envVariableAtIndex: (int)index;
 

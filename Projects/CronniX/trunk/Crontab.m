@@ -14,31 +14,36 @@
 @implementation Crontab
 
 - (id)init {
-	return [ self initWithData: nil forUser: nil ];
+	return [ self initWithString: nil forUser: nil ];
 }
 
 - (id)initWithString: (NSString *)string {
-	id data = [ string dataUsingEncoding: [ NSString defaultCStringEncoding ]];
-	return [ self initWithData: data forUser: nil ];
+	return [ self initWithString: string forUser: nil ];
 }
 
 - (id)initWithContentsOfFile: (NSString *)path forUser: (NSString *)aUser {
-    NSData *data = [ NSData dataWithContentsOfFile: path ];
-    return [ self initWithData: data forUser: aUser ];
+    id data = [ NSData dataWithContentsOfFile: path ];
+	id string = [[ NSString alloc ] initWithData: data 
+										encoding: [ NSString defaultCStringEncoding ]];
+    return [ self initWithString: string forUser: aUser ];
+}
+
+- (id)initWithData: (NSData *)data forUser: (NSString *)aUser {
+	id string = [[ NSString alloc ] initWithData: data 
+										encoding: [ NSString defaultCStringEncoding ]];
+	return [ self initWithString: string forUser: aUser ];
 }
 
 // designated constructor
-- (id)initWithData: (NSData *)data forUser: (NSString *)aUser {
+- (id)initWithString: (NSString *)string forUser: (NSString *)aUser {
     [super init];
     
     objects = [[ NSMutableArray alloc ] init ];
     
     [ self setUser: aUser ];
     
-    if ( data ) {
-		[ self setLines: [ self linesFromData: data ]];
-		
-		[ self parseData ];
+    if ( string ) {
+		[ self parseString: string ];
 		
 		// tell the world that there's a new crontab
 		[[ NSNotificationCenter defaultCenter ] postNotificationName: NewCrontabParsedNotification
@@ -49,7 +54,6 @@
 }
 
 - (void)dealloc {
-    [ lines release ];
     [ objects release ];
     [ user release ];
     [ super dealloc ];
@@ -70,24 +74,16 @@
 // workers
 
 - (void)clear {
-    [ lines removeAllObjects ];
     [ objects removeAllObjects ];
     [ self setUser: nil ];
 }
 
-- (NSMutableArray *)linesFromData: (NSData *)data {
-    NSString *string = [ [ NSString alloc ] initWithData: data 
-												encoding: [ NSString defaultCStringEncoding ] ];
-    NSMutableArray *array = [ NSMutableArray arrayWithArray: [ string componentsSeparatedByString: @"\n" ] ];
-    [ string release ];
-    return array;
-}
 
-
-- (void)parseData {
-    NSEnumerator *en = [[ self lines ] objectEnumerator ];
+- (void)parseString: (NSString *)string {
+	id lines = [ string componentsSeparatedByString: @"\n" ];
+	id iter = [ lines objectEnumerator ];
     id line;
-    while ( line = [ en nextObject ] ) {
+    while ( line = [ iter nextObject ] ) {
 		id obj = nil;
 		
 		if ( [ line length ] == 0 ) {
@@ -109,11 +105,11 @@
 		} else if ( [ TaskObject isContainedInString: line ] ) {
 			
 			obj = [[ TaskObject alloc ] initWithString: line ];
-			int index = [[ self lines ] indexOfObject: line ];
+			int index = [ lines indexOfObject: line ];
 			int i;
 			id infoStrings = [ NSMutableArray array ];
 			for ( i = index -1; i >= 0; i-- ) {
-				id prevLine = [[ self lines ] objectAtIndex: i ];
+				id prevLine = [ lines objectAtIndex: i ];
 				if ( [ CrInfoCommentLine isContainedInString: prevLine ] ) {
 					[ infoStrings insertObject: prevLine atIndex: 0 ];
 				} else {
@@ -141,18 +137,6 @@
 
 
 // accessors
-
-- (NSMutableArray *)lines {
-    return lines;
-}
-
-- (void)setLines: (NSArray *)aValue {
-    if ( (NSArray *)lines != aValue ) {
-        [ lines release ];
-        lines = [ aValue retain ];
-    }
-}
-
 
 - (NSArray *)objectsForClass: (Class)aClass {
     NSMutableArray *filteredObjects = [ NSMutableArray array ];
