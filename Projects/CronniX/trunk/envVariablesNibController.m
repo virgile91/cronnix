@@ -290,7 +290,7 @@ static envVariablesNibController *sharedInstance = nil;
 
 	NSLog( @"acceptDrop ");
 	NSPasteboard *pboard = [ info draggingPasteboard ];
-    NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObject...: NSStringPboardType ]];
+    NSString *type = [ pboard availableTypeFromArray: [ NSArray arrayWithObject: NSStringPboardType ]];
     NSLog( @"type: %@\n", type );
     if ( ! type ) return NO;
 	

@@ -76,6 +76,10 @@ NSString *identicalTasks =
 	id ct = [[ Crontab alloc ] initWithString: identicalTasks ];
 	[ self assertInt: [ ct taskCount ] equals: 4 ];
 	[ self assertInt: [ ct envVariableCount ] equals: 4 ];
+	id task2 = [ ct taskAtIndex: 2 ];
+	[ self assert: [ task2 info ] equals: @"2.1" ];
+	id task3 = [ ct taskAtIndex: 3 ];
+	[ self assert: [ task3 info ] equals: @"3.1\n3.2\n3.3" ];
 }
 
 

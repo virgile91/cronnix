@@ -105,7 +105,7 @@
 		} else if ( [ TaskObject isContainedInString: line ] ) {
 			
 			obj = [[ TaskObject alloc ] initWithString: line ];
-			int index = [ lines indexOfObject: line ];
+			int index = [ lines indexOfObjectIdenticalTo: line ];
 			int i;
 			id infoStrings = [ NSMutableArray array ];
 			for ( i = index -1; i >= 0; i-- ) {
@@ -198,7 +198,7 @@
 	if ( lastEnv == nil ) {
 		index = 0;
 	} else {
-		index = [ objects indexOfObject: lastEnv ];
+		index = [ objects indexOfObjectIdenticalTo: lastEnv ];
 	}
 	if ( index < [ objects count ] -1 ) {
 		[ objects insertObject: env atIndex: index +1 ];
@@ -260,12 +260,12 @@
 
 - (int)objectIndexOfTaskAtIndex: (int)index {
     id task = [ self taskAtIndex: index ];
-    return [ objects indexOfObject: task ];
+    return [ objects indexOfObjectIdenticalTo: task ];
 }
 
 - (int)objectIndexOfEnvVariableAtIndex: (int)index {
     id env = [ self envVariableAtIndex: index ];
-    return [ objects indexOfObject: env ];
+    return [ objects indexOfObjectIdenticalTo: env ];
 }
 
 
@@ -328,7 +328,7 @@
 
 
 - (int)indexOfTask: (id)aTask {
-    return [[[ self tasks ] allObjects ] indexOfObject: aTask ];
+    return [[[ self tasks ] allObjects ] indexOfObjectIdenticalTo: aTask ];
 }
 
 
