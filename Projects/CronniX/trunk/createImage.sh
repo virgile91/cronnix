@@ -5,8 +5,8 @@ size=10  # Mbytes
 fileSystem=HFS+
 volumeName=CronniX_${VERSION}
 imageName=${volumeName}.dmg
-resourceDirectoy="build/CronniX.app/Contents/Resources"
-fileSet[0]="build/CronniX.app"
+resourceDirectoy="build/Deployment/CronniX.app/Contents/Resources"
+fileSet[0]="build/Deployment/CronniX.app"
 #fileSet[1]="Release_Notes.rtfd"
 fileSet[1]="$resourceDirectoy/English.lproj/CronniX Help/release_notes.html"
 
