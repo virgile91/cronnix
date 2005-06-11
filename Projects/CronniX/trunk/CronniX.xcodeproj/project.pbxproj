@@ -48,7 +48,7 @@
 	<key>CFBundleExecutable</key>
 	<string>CronniX</string>
 	<key>CFBundleGetInfoString</key>
-	<string>3.0b3, Copyright 2004 abstracture IT-Beratung GmbH</string>
+	<string>3.0, Copyright 2004 abstracture IT-Beratung GmbH</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>CronniX Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -64,11 +64,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0b3</string>
+	<string>3.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3.0b3</string>
+	<string>3.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -107,7 +107,6 @@
 		29B9732CFDCFA39411CA2CEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		5A180769061317760053BB44 /* EnvVariableTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A180767061317760053BB44 /* EnvVariableTest.h */; };
 		5A18076A061317760053BB44 /* EnvVariableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A180768061317760053BB44 /* EnvVariableTest.m */; };
-		5A2D71830717F3E900810FE7 /* CronniX Help in Resources */ = {isa = PBXBuildFile; fileRef = 5A2D71130717F3E900810FE7 /* CronniX Help */; };
 		5A5CA76B03DC238000000104 /* MockEnvVariablesNibController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A5CA76903DC238000000104 /* MockEnvVariablesNibController.h */; };
 		5A5CA76C03DC238000000104 /* MockEnvVariablesNibController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CA76A03DC238000000104 /* MockEnvVariablesNibController.m */; };
 		5A662926062AAA0300D9243C /* CrontabLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A662925062AAA0300D9243C /* CrontabLine.h */; };
@@ -131,6 +130,7 @@
 		5A728AB806075FF800305534 /* SasStringTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A728AB606075FF800305534 /* SasStringTest.h */; };
 		5A728AB906075FF800305534 /* SasStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A728AB706075FF800305534 /* SasStringTest.m */; };
 		5A7507C405E108D700C9DB00 /* ObjcUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A7507C305E108D700C9DB00 /* ObjcUnit.framework */; };
+		5A8AD8CB085ADFC000B62B1F /* CronniX Help in Resources */ = {isa = PBXBuildFile; fileRef = 5A8AD8B7085ADFC000B62B1F /* CronniX Help */; };
 		5A9817D703C741FF00000104 /* SasString.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A9817D503C741FF00000104 /* SasString.h */; };
 		5A9817D803C741FF00000104 /* SasString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9817D603C741FF00000104 /* SasString.m */; };
 		5AA0AC6906076E6200E677F6 /* SasString.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A9817D503C741FF00000104 /* SasString.h */; };
@@ -276,9 +276,6 @@
 		5A28881104763B6400000104 /* Swedish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Swedish; path = Swedish.lproj/runNowPanel.nib; sourceTree = "<group>"; };
 		5A28881204763B6E00000104 /* Swedish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Swedish; path = Swedish.lproj/TaskDialog.nib; sourceTree = "<group>"; };
 		5A28881304763B7700000104 /* Swedish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Swedish; path = Swedish.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5A2D71140717F3E900810FE7 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/CronniX Help"; sourceTree = "<group>"; };
-		5A2D71840717F3FC00810FE7 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Dutch; path = "Dutch.lproj/CronniX Help"; sourceTree = "<group>"; };
-		5A3563AF0705638600B591CB /* CronniX todo.ooutline */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.xml; path = "CronniX todo.ooutline"; sourceTree = "<group>"; };
 		5A47A99B03DCB3E000000104 /* getVersion.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = getVersion.py; sourceTree = "<group>"; };
 		5A5544E407149E5A00C3864D /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Dutch; path = Dutch.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		5A5544F807149E7400C3864D /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Dutch; path = Dutch.lproj/LoadCrontabWindow.nib; sourceTree = "<group>"; };
@@ -318,6 +315,21 @@
 		5A728AB606075FF800305534 /* SasStringTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SasStringTest.h; sourceTree = "<group>"; };
 		5A728AB706075FF800305534 /* SasStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SasStringTest.m; sourceTree = "<group>"; };
 		5A7507C305E108D700C9DB00 /* ObjcUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjcUnit.framework; path = /Library/Frameworks/ObjcUnit.framework; sourceTree = "<absolute>"; };
+		5A8AD560085AD3D200B62B1F /* Danish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Danish; path = Danish.lproj/envVariables.nib; sourceTree = "<group>"; };
+		5A8AD563085AD3F600B62B1F /* Danish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Danish; path = Danish.lproj/LoadCrontabWindow.nib; sourceTree = "<group>"; };
+		5A8AD566085AD40300B62B1F /* Danish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Danish; path = Danish.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A8AD569085AD41100B62B1F /* Danish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Danish; path = Danish.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		5A8AD56C085AD42000B62B1F /* Danish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Danish; path = Danish.lproj/runNowPanel.nib; sourceTree = "<group>"; };
+		5A8AD56F085AD42F00B62B1F /* Danish */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Danish; path = Danish.lproj/TaskDialog.nib; sourceTree = "<group>"; };
+		5A8AD580085AD59400B62B1F /* Catalan */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Catalan; path = Catalan.lproj/envVariables.nib; sourceTree = "<group>"; };
+		5A8AD583085AD5A000B62B1F /* Catalan */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Catalan; path = Catalan.lproj/LoadCrontabWindow.nib; sourceTree = "<group>"; };
+		5A8AD586085AD5D000B62B1F /* Catalan */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Catalan; path = Catalan.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A8AD589085AD5DA00B62B1F /* Catalan */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Catalan; path = Catalan.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		5A8AD58C085AD5E700B62B1F /* Catalan */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Catalan; path = Catalan.lproj/runNowPanel.nib; sourceTree = "<group>"; };
+		5A8AD58F085AD5F100B62B1F /* Catalan */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Catalan; path = Catalan.lproj/TaskDialog.nib; sourceTree = "<group>"; };
+		5A8AD8B8085ADFC000B62B1F /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/CronniX Help"; sourceTree = "<group>"; };
+		5A8AD8CE085ADFC900B62B1F /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Dutch; path = "Dutch.lproj/CronniX Help"; sourceTree = "<group>"; };
+		5A8AD8F3085ADFCE00B62B1F /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Japanese; path = "Japanese.lproj/CronniX Help"; sourceTree = "<group>"; };
 		5A8B53AC041E060B00000104 /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = German.lproj/TaskDialog.nib; sourceTree = "<group>"; };
 		5A8B53AD041E06E000000104 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TaskDialog.nib; sourceTree = "<group>"; };
 		5A8B53AE041E06EC00000104 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Italian; path = Italian.lproj/TaskDialog.nib; sourceTree = "<group>"; };
@@ -453,7 +465,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5A2D71130717F3E900810FE7 /* CronniX Help */,
+				5A8AD8B7085ADFC000B62B1F /* CronniX Help */,
 				5A24D09D03D2C8BA00000104 /* version.xml */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				0131485300AF26EA7F000001 /* sucrontab */,
@@ -466,7 +478,6 @@
 				5A2D6FE00717F14500810FE7 /* Images */,
 				5A57A6EE03E177C400000104 /* Tools */,
 				5A565B7F03F5D38300000104 /* changes.txt */,
-				5A3563AF0705638600B591CB /* CronniX todo.ooutline */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -680,6 +691,8 @@
 				Welsh,
 				Dutch,
 				Portuguese,
+				Danish,
+				Catalan,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CronniX objc */;
 			projectDirPath = "";
@@ -695,7 +708,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A2D71830717F3E900810FE7 /* CronniX Help in Resources */,
 				080E96DCFE201CFB7F000001 /* MainMenu.nib in Resources */,
 				015991F2FFF0D793865D81D7 /* LoadCrontabWindow.nib in Resources */,
 				0648154800B6F26B7F000001 /* envVariables.nib in Resources */,
@@ -712,6 +724,7 @@
 				F55E28A9011B0E3101000001 /* Localizable.strings in Resources */,
 				F594C0E7024772DB01000110 /* runnow.tiff in Resources */,
 				5AEA4EC903C8588200000104 /* edit.tiff in Resources */,
+				5A8AD8CB085ADFC000B62B1F /* CronniX Help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +858,8 @@
 				5A5545650714A01F00C3864D /* Portuguese */,
 				5A5545660714A02400C3864D /* Spanish */,
 				5A5545670714A02800C3864D /* Welsh */,
+				5A8AD563085AD3F600B62B1F /* Danish */,
+				5A8AD583085AD5A000B62B1F /* Catalan */,
 			);
 			name = LoadCrontabWindow.nib;
 			sourceTree = "<group>";
@@ -862,6 +877,8 @@
 				5A55456207149FFB00C3864D /* Portuguese */,
 				5A5545630714A00200C3864D /* Spanish */,
 				5A5545640714A00B00C3864D /* Welsh */,
+				5A8AD560085AD3D200B62B1F /* Danish */,
+				5A8AD580085AD59400B62B1F /* Catalan */,
 			);
 			name = envVariables.nib;
 			sourceTree = "<group>";
@@ -887,15 +904,18 @@
 				5A5545680714A03A00C3864D /* Portuguese */,
 				5A5545690714A04500C3864D /* Spanish */,
 				5A55456A0714A04A00C3864D /* Welsh */,
+				5A8AD569085AD41100B62B1F /* Danish */,
+				5A8AD589085AD5DA00B62B1F /* Catalan */,
 			);
 			name = MainMenu.nib;
 			sourceTree = "<group>";
 		};
-		5A2D71130717F3E900810FE7 /* CronniX Help */ = {
+		5A8AD8B7085ADFC000B62B1F /* CronniX Help */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5A2D71140717F3E900810FE7 /* English */,
-				5A2D71840717F3FC00810FE7 /* Dutch */,
+				5A8AD8B8085ADFC000B62B1F /* English */,
+				5A8AD8CE085ADFC900B62B1F /* Dutch */,
+				5A8AD8F3085ADFCE00B62B1F /* Japanese */,
 			);
 			name = "CronniX Help";
 			sourceTree = "<group>";
@@ -913,6 +933,8 @@
 				5A55452307149EF600C3864D /* Portuguese */,
 				5A55453707149F1600C3864D /* Welsh */,
 				5A55454B07149F3600C3864D /* Spanish */,
+				5A8AD56F085AD42F00B62B1F /* Danish */,
+				5A8AD58F085AD5F100B62B1F /* Catalan */,
 			);
 			name = TaskDialog.nib;
 			sourceTree = "<group>";
@@ -930,6 +952,8 @@
 				5A0619C307183E4A0032DBB1 /* Portuguese */,
 				5A0619C407183E520032DBB1 /* Spanish */,
 				5A0619C507183E570032DBB1 /* Welsh */,
+				5A8AD566085AD40300B62B1F /* Danish */,
+				5A8AD586085AD5D000B62B1F /* Catalan */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -947,6 +971,8 @@
 				5A55455F07149FC800C3864D /* Welsh */,
 				5A55456007149FD300C3864D /* Spanish */,
 				5A55456107149FE800C3864D /* Portuguese */,
+				5A8AD56C085AD42000B62B1F /* Danish */,
+				5A8AD58C085AD5E700B62B1F /* Catalan */,
 			);
 			name = runNowPanel.nib;
 			sourceTree = "<group>";
