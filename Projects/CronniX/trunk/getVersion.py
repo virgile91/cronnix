@@ -3,7 +3,7 @@
 import sys
 import objc
 
-plistFile = 'build/CronniX.app/Contents/Info.plist'
+plistFile = 'build/Deployment/CronniX.app/Contents/Info.plist'
 key = 'CFBundleShortVersionString'
 
 NSMutableDictionary = objc.lookUpClass('NSMutableDictionary')
