@@ -6,12 +6,10 @@ ropertyList-1.0.dtd">
         <key>Product</key>
         <string>CronniX</string>
 		<key>Version</key>
-		<string>3.0</string>
+		<string>3.0.1</string>
 		<key>Changes</key>
 		<array>
-      <string>Japanese localization including Help by Yuzuru Shiraiwa</string>
-      <string>Catalan localization by Xavier Blanquer</string>
-      <string>Danish localization by Sebastian Adorján Dyhr</string>
+      <string>Universal binary</string>
 		</array>
 </dict>
 </plist>

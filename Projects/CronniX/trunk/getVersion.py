@@ -1,13 +1,12 @@
 #! /usr/bin/env python
 
-import sys
-import objc
+from Foundation import *
 
 plistFile = 'build/Deployment/CronniX.app/Contents/Info.plist'
 key = 'CFBundleShortVersionString'
 
-NSMutableDictionary = objc.lookUpClass('NSMutableDictionary')
+dictionary = NSMutableDictionary.dictionary()
 
-obj = NSMutableDictionary.dictionaryWithContentsOfFile_( plistFile )
+obj = dictionary.dictionaryWithContentsOfFile_( plistFile )
 
 print obj[key]

@@ -1,6 +1,6 @@
 #! /bin/sh
 
-make_cmd="xcodebuild -target CronniX -buildstyle Deployment"
+make_cmd="xcodebuild -target CronniX -configuration Deployment"
 
 $make_cmd clean
 $make_cmd
