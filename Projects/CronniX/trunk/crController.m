@@ -21,7 +21,7 @@
 
 NSString *cronCommand = @"/usr/bin/crontab";
 NSString *suCrontabResource = @"sucrontab";
-static NSString *cronnixHomepage = @"http://www.abstracture.de/cronnix";
+static NSString *cronnixHomepage = @"http://www.abstracture.de/projects-en/cronnix";
 
 
 @implementation crController
