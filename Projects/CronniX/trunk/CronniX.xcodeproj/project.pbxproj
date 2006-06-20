@@ -6,117 +6,141 @@
 	objectVersion = 42;
 	objects = {
 
-/* Begin PBXApplicationTarget section */
-		29B97326FDCFA39411CA2CEA /* CronniX */ = {
-			isa = PBXApplicationTarget;
-			buildConfigurationList = 5A1348FF0857416600909BFC /* Build configuration list for PBXApplicationTarget "CronniX" */;
-			buildPhases = (
-				29B97327FDCFA39411CA2CEA /* Headers */,
-				29B97328FDCFA39411CA2CEA /* Resources */,
-				29B9732BFDCFA39411CA2CEA /* Sources */,
-				29B9732DFDCFA39411CA2CEA /* Frameworks */,
-				043355C9FE30361CC02AAC07 /* Rez */,
-			);
-			dependencies = (
-			);
-			name = CronniX;
-			productInstallPath = "$(HOME)/Applications";
-			productName = CronniX;
-			productReference = 17587328FF379C6511CA2CBB /* CronniX.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>CronniX</string>
-	<key>CFBundleGetInfoString</key>
-	<string>3.0.1, Copyright 2004-2006 abstracture IT-Beratung GmbH</string>
-	<key>CFBundleHelpBookFolder</key>
-	<string>CronniX Help</string>
-	<key>CFBundleHelpBookName</key>
-	<string>CronniX Help</string>
-	<key>CFBundleIconFile</key>
-	<string>cronnix_app.icns</string>
-	<key>CFBundleIdentifier</key>
-	<string>de.sas.CronniX</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>CronniX</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>3.0.1</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>3.0.1</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-</dict>
-</plist>
-";
-		};
-/* End PBXApplicationTarget section */
-
 /* Begin PBXBuildFile section */
-		010440D5FFD845870A00011E /* crController.h in Headers */ = {isa = PBXBuildFile; fileRef = 010440D3FFD845870A00011E /* crController.h */; };
-		01108E3EFFF7F751C0A8FC05 /* cronnix_app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01108E3DFFF7F751C0A8FC05 /* cronnix_app.icns */; };
-		0131485400AF26EA7F000001 /* sucrontab in Resources */ = {isa = PBXBuildFile; fileRef = 0131485300AF26EA7F000001 /* sucrontab */; };
-		013612D800D39F457F000001 /* UserImageRep.h in Headers */ = {isa = PBXBuildFile; fileRef = 013612D600D39F457F000001 /* UserImageRep.h */; };
-		013612D900D39F457F000001 /* UserImageRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 013612D700D39F457F000001 /* UserImageRep.m */; };
-		013612DC00D3AC8D7F000001 /* Toolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 013612DA00D3AC8D7F000001 /* Toolbar.h */; };
-		013612DD00D3AC8D7F000001 /* Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 013612DB00D3AC8D7F000001 /* Toolbar.m */; };
-		015991F2FFF0D793865D81D7 /* LoadCrontabWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 015991F0FFF0D793865D81D7 /* LoadCrontabWindow.nib */; };
-		015991F5FFF0D958865D81D7 /* loadCrontabController.h in Headers */ = {isa = PBXBuildFile; fileRef = 015991F3FFF0D958865D81D7 /* loadCrontabController.h */; };
-		015991F6FFF0D958865D81D7 /* loadCrontabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 015991F4FFF0D958865D81D7 /* loadCrontabController.m */; settings = {ATTRIBUTES = (); }; };
-		0648154800B6F26B7F000001 /* envVariables.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0648154600B6F26B7F000001 /* envVariables.nib */; };
-		0648154B00B6F30D7F000001 /* envVariablesNibController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0648154900B6F30D7F000001 /* envVariablesNibController.h */; };
-		0648154C00B6F30D7F000001 /* envVariablesNibController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0648154A00B6F30D7F000001 /* envVariablesNibController.m */; };
-		07DAD5A7009712FC7F000001 /* BLAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DAD5A5009712FC7F000001 /* BLAuthentication.h */; };
-		07DAD5A8009712FC7F000001 /* BLAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DAD5A6009712FC7F000001 /* BLAuthentication.m */; };
-		080E96DCFE201CFB7F000001 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
-		089C165EFE840E0CC02AAC07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		0EE2ED5100D422B17F000001 /* UserImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EE2ED4F00D422B17F000001 /* UserImageView.h */; };
-		0EE2ED5200D422B17F000001 /* UserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2ED5000D422B17F000001 /* UserImageView.m */; };
-		1058C7A3FEA54F0111CA2CBB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		1339977B00D50DD47F000001 /* user.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1339977A00D50DD47F000001 /* user.tiff */; };
-		1339977D00D512A97F000001 /* save.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1339977C00D512A97F000001 /* save.tiff */; };
-		152B666D00D185EB7F000001 /* delete.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 152B666C00D185EB7F000001 /* delete.tiff */; };
-		152B666F00D253437F000001 /* new.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 152B666E00D253437F000001 /* new.tiff */; };
-		29B9732CFDCFA39411CA2CEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		5A180769061317760053BB44 /* EnvVariableTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A180767061317760053BB44 /* EnvVariableTest.h */; };
 		5A18076A061317760053BB44 /* EnvVariableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A180768061317760053BB44 /* EnvVariableTest.m */; };
 		5A5CA76B03DC238000000104 /* MockEnvVariablesNibController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A5CA76903DC238000000104 /* MockEnvVariablesNibController.h */; };
 		5A5CA76C03DC238000000104 /* MockEnvVariablesNibController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CA76A03DC238000000104 /* MockEnvVariablesNibController.m */; };
 		5A662926062AAA0300D9243C /* CrontabLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A662925062AAA0300D9243C /* CrontabLine.h */; };
-		5A662927062AAA0300D9243C /* CrontabLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A662925062AAA0300D9243C /* CrontabLine.h */; };
 		5A66292A062AAA3500D9243C /* SimpleLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A662928062AAA3500D9243C /* SimpleLine.h */; };
 		5A66292B062AAA3500D9243C /* SimpleLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A662929062AAA3500D9243C /* SimpleLine.m */; };
-		5A66292C062AAA3500D9243C /* SimpleLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A662928062AAA3500D9243C /* SimpleLine.h */; };
-		5A66292D062AAA3500D9243C /* SimpleLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A662929062AAA3500D9243C /* SimpleLine.m */; };
 		5A662930062AAA5300D9243C /* UnparsedLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A66292E062AAA5300D9243C /* UnparsedLine.h */; };
 		5A662931062AAA5300D9243C /* UnparsedLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A66292F062AAA5300D9243C /* UnparsedLine.m */; };
-		5A662932062AAA5300D9243C /* UnparsedLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A66292E062AAA5300D9243C /* UnparsedLine.h */; };
-		5A662933062AAA5300D9243C /* UnparsedLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A66292F062AAA5300D9243C /* UnparsedLine.m */; };
-		5A72890106074BD700305534 /* EnvVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A7288FF06074BD700305534 /* EnvVariable.h */; };
-		5A72890206074BD700305534 /* EnvVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A72890006074BD700305534 /* EnvVariable.m */; };
 		5A72890306074BD700305534 /* EnvVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A7288FF06074BD700305534 /* EnvVariable.h */; };
 		5A72890406074BD700305534 /* EnvVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A72890006074BD700305534 /* EnvVariable.m */; };
-		5A72894F0607582A00305534 /* CommentLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A72894D0607582A00305534 /* CommentLine.h */; };
-		5A7289500607582A00305534 /* CommentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A72894E0607582A00305534 /* CommentLine.m */; };
 		5A7289510607582A00305534 /* CommentLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A72894D0607582A00305534 /* CommentLine.h */; };
 		5A7289520607582A00305534 /* CommentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A72894E0607582A00305534 /* CommentLine.m */; };
 		5A728AB806075FF800305534 /* SasStringTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A728AB606075FF800305534 /* SasStringTest.h */; };
 		5A728AB906075FF800305534 /* SasStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A728AB706075FF800305534 /* SasStringTest.m */; };
 		5A7507C405E108D700C9DB00 /* ObjcUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A7507C305E108D700C9DB00 /* ObjcUnit.framework */; };
-		5A8AD8CB085ADFC000B62B1F /* CronniX Help in Resources */ = {isa = PBXBuildFile; fileRef = 5A8AD8B7085ADFC000B62B1F /* CronniX Help */; };
-		5A9817D703C741FF00000104 /* SasString.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A9817D503C741FF00000104 /* SasString.h */; };
-		5A9817D803C741FF00000104 /* SasString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9817D603C741FF00000104 /* SasString.m */; };
+		5A9E54080A47C1850068486F /* crController.h in Headers */ = {isa = PBXBuildFile; fileRef = 010440D3FFD845870A00011E /* crController.h */; };
+		5A9E54090A47C1850068486F /* loadCrontabController.h in Headers */ = {isa = PBXBuildFile; fileRef = 015991F3FFF0D958865D81D7 /* loadCrontabController.h */; };
+		5A9E540A0A47C1850068486F /* BLAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DAD5A5009712FC7F000001 /* BLAuthentication.h */; };
+		5A9E540B0A47C1850068486F /* envVariablesNibController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0648154900B6F30D7F000001 /* envVariablesNibController.h */; };
+		5A9E540C0A47C1850068486F /* UserImageRep.h in Headers */ = {isa = PBXBuildFile; fileRef = 013612D600D39F457F000001 /* UserImageRep.h */; };
+		5A9E540D0A47C1850068486F /* Toolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 013612DA00D3AC8D7F000001 /* Toolbar.h */; };
+		5A9E540E0A47C1850068486F /* UserImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EE2ED4F00D422B17F000001 /* UserImageView.h */; };
+		5A9E540F0A47C1850068486F /* SwitchFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = F5420F030153960D01A8FC02 /* SwitchFormatter.h */; };
+		5A9E54100A47C1850068486F /* RunNowNibController.h in Headers */ = {isa = PBXBuildFile; fileRef = F584C894015E96A601000001 /* RunNowNibController.h */; };
+		5A9E54110A47C1850068486F /* MyTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = F53AE206019C04BF01000102 /* MyTableView.h */; };
+		5A9E54120A47C1850068486F /* NewTaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = F53D5B6E01DFA9C101000103 /* NewTaskDialogController.h */; };
+		5A9E54130A47C1850068486F /* TaskObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F53D5B7A01E0800001000103 /* TaskObject.h */; };
+		5A9E54140A47C1850068486F /* Crontab.h in Headers */ = {isa = PBXBuildFile; fileRef = F5AC0A5501F5BBE801000133 /* Crontab.h */; };
+		5A9E54150A47C1850068486F /* SasString.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A9817D503C741FF00000104 /* SasString.h */; };
+		5A9E54160A47C1850068486F /* TaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA529603C87DD600000104 /* TaskDialogController.h */; };
+		5A9E54170A47C1850068486F /* EditTaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA529D03C886CB00000104 /* EditTaskDialogController.h */; };
+		5A9E54180A47C1850068486F /* EnvVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A7288FF06074BD700305534 /* EnvVariable.h */; };
+		5A9E54190A47C1850068486F /* CommentLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A72894D0607582A00305534 /* CommentLine.h */; };
+		5A9E541A0A47C1850068486F /* CrInfoCommentLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AC77FEF0624869D004BBB50 /* CrInfoCommentLine.h */; };
+		5A9E541B0A47C1850068486F /* CrontabLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A662925062AAA0300D9243C /* CrontabLine.h */; };
+		5A9E541C0A47C1850068486F /* SimpleLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A662928062AAA3500D9243C /* SimpleLine.h */; };
+		5A9E541D0A47C1850068486F /* UnparsedLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A66292E062AAA5300D9243C /* UnparsedLine.h */; };
+		5A9E541F0A47C1850068486F /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		5A9E54200A47C1850068486F /* LoadCrontabWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 015991F0FFF0D793865D81D7 /* LoadCrontabWindow.nib */; };
+		5A9E54210A47C1850068486F /* envVariables.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0648154600B6F26B7F000001 /* envVariables.nib */; };
+		5A9E54220A47C1850068486F /* runNowPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = F584C890015E94BD01000001 /* runNowPanel.nib */; };
+		5A9E54230A47C1850068486F /* TaskDialog.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEA529A03C8862500000104 /* TaskDialog.nib */; };
+		5A9E54240A47C1850068486F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		5A9E54250A47C1850068486F /* cronnix_app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01108E3DFFF7F751C0A8FC05 /* cronnix_app.icns */; };
+		5A9E54260A47C1850068486F /* sucrontab in Resources */ = {isa = PBXBuildFile; fileRef = 0131485300AF26EA7F000001 /* sucrontab */; };
+		5A9E54270A47C1850068486F /* delete.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 152B666C00D185EB7F000001 /* delete.tiff */; };
+		5A9E54280A47C1850068486F /* new.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 152B666E00D253437F000001 /* new.tiff */; };
+		5A9E54290A47C1850068486F /* user.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1339977A00D50DD47F000001 /* user.tiff */; };
+		5A9E542A0A47C1850068486F /* save.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1339977C00D512A97F000001 /* save.tiff */; };
+		5A9E542B0A47C1850068486F /* new_env.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F591D44300E50BA901000001 /* new_env.tiff */; };
+		5A9E542C0A47C1850068486F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F55E28A7011B0E3101000001 /* Localizable.strings */; };
+		5A9E542D0A47C1850068486F /* runnow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F594C0E6024772DB01000110 /* runnow.tiff */; };
+		5A9E542E0A47C1850068486F /* edit.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5AEA4EC803C8588200000104 /* edit.tiff */; };
+		5A9E542F0A47C1850068486F /* CronniX Help in Resources */ = {isa = PBXBuildFile; fileRef = 5A8AD8B7085ADFC000B62B1F /* CronniX Help */; };
+		5A9E54310A47C1850068486F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		5A9E54320A47C1850068486F /* loadCrontabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 015991F4FFF0D958865D81D7 /* loadCrontabController.m */; settings = {ATTRIBUTES = (); }; };
+		5A9E54330A47C1850068486F /* BLAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DAD5A6009712FC7F000001 /* BLAuthentication.m */; };
+		5A9E54340A47C1850068486F /* envVariablesNibController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0648154A00B6F30D7F000001 /* envVariablesNibController.m */; };
+		5A9E54350A47C1850068486F /* UserImageRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 013612D700D39F457F000001 /* UserImageRep.m */; };
+		5A9E54360A47C1850068486F /* Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 013612DB00D3AC8D7F000001 /* Toolbar.m */; };
+		5A9E54370A47C1850068486F /* UserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2ED5000D422B17F000001 /* UserImageView.m */; };
+		5A9E54380A47C1850068486F /* SwitchFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F5420F040153960D01A8FC02 /* SwitchFormatter.m */; };
+		5A9E54390A47C1850068486F /* RunNowNibController.m in Sources */ = {isa = PBXBuildFile; fileRef = F584C893015E96A601000001 /* RunNowNibController.m */; };
+		5A9E543A0A47C1850068486F /* crController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010440D4FFD845870A00011E /* crController.m */; };
+		5A9E543B0A47C1850068486F /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F53AE207019C04BF01000102 /* MyTableView.m */; };
+		5A9E543C0A47C1850068486F /* NewTaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F53D5B6F01DFA9C101000103 /* NewTaskDialogController.m */; };
+		5A9E543D0A47C1850068486F /* TaskObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F53D5B7B01E0800001000103 /* TaskObject.m */; };
+		5A9E543E0A47C1850068486F /* Crontab.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AC0A5601F5BBE801000133 /* Crontab.m */; };
+		5A9E543F0A47C1850068486F /* SasString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9817D603C741FF00000104 /* SasString.m */; };
+		5A9E54400A47C1850068486F /* TaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA529703C87DD600000104 /* TaskDialogController.m */; };
+		5A9E54410A47C1850068486F /* EditTaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA529E03C886CB00000104 /* EditTaskDialogController.m */; };
+		5A9E54420A47C1850068486F /* EnvVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A72890006074BD700305534 /* EnvVariable.m */; };
+		5A9E54430A47C1850068486F /* CommentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A72894E0607582A00305534 /* CommentLine.m */; };
+		5A9E54440A47C1850068486F /* CrInfoCommentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC77FF00624869D004BBB50 /* CrInfoCommentLine.m */; };
+		5A9E54450A47C1850068486F /* SimpleLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A662929062AAA3500D9243C /* SimpleLine.m */; };
+		5A9E54460A47C1850068486F /* UnparsedLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A66292F062AAA5300D9243C /* UnparsedLine.m */; };
+		5A9E54480A47C1850068486F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		5A9E54490A47C1850068486F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59CC2BD016B090B0176C965 /* Security.framework */; };
+		5A9E54540A47C1850068486F /* AllTests.h in Headers */ = {isa = PBXBuildFile; fileRef = F5ECDC96024CC1940100011A /* AllTests.h */; };
+		5A9E54550A47C1850068486F /* CrontabTest.h in Headers */ = {isa = PBXBuildFile; fileRef = F5ECDCA8024CD5680100011A /* CrontabTest.h */; };
+		5A9E54560A47C1850068486F /* Crontab.h in Headers */ = {isa = PBXBuildFile; fileRef = F5AC0A5501F5BBE801000133 /* Crontab.h */; };
+		5A9E54570A47C1850068486F /* TaskObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F53D5B7A01E0800001000103 /* TaskObject.h */; };
+		5A9E54580A47C1850068486F /* TaskObjectTest.h in Headers */ = {isa = PBXBuildFile; fileRef = F5ECDCB1024D3D920100011A /* TaskObjectTest.h */; };
+		5A9E54590A47C1850068486F /* crController.h in Headers */ = {isa = PBXBuildFile; fileRef = 010440D3FFD845870A00011E /* crController.h */; };
+		5A9E545A0A47C1850068486F /* BLAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DAD5A5009712FC7F000001 /* BLAuthentication.h */; };
+		5A9E545B0A47C1850068486F /* SwitchFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = F5420F030153960D01A8FC02 /* SwitchFormatter.h */; };
+		5A9E545C0A47C1850068486F /* Toolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 013612DA00D3AC8D7F000001 /* Toolbar.h */; };
+		5A9E545D0A47C1850068486F /* NewTaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = F53D5B6E01DFA9C101000103 /* NewTaskDialogController.h */; };
+		5A9E545E0A47C1850068486F /* loadCrontabController.h in Headers */ = {isa = PBXBuildFile; fileRef = 015991F3FFF0D958865D81D7 /* loadCrontabController.h */; };
+		5A9E545F0A47C1850068486F /* UserImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EE2ED4F00D422B17F000001 /* UserImageView.h */; };
+		5A9E54600A47C1850068486F /* RunNowNibController.h in Headers */ = {isa = PBXBuildFile; fileRef = F584C894015E96A601000001 /* RunNowNibController.h */; };
+		5A9E54610A47C1850068486F /* TaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA529603C87DD600000104 /* TaskDialogController.h */; };
+		5A9E54620A47C1850068486F /* EditTaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA529D03C886CB00000104 /* EditTaskDialogController.h */; };
+		5A9E54630A47C1850068486F /* crControllerTest.h in Headers */ = {isa = PBXBuildFile; fileRef = F5ECDCB8024D4ADA0100011A /* crControllerTest.h */; };
+		5A9E54640A47C1850068486F /* MockEnvVariablesNibController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A5CA76903DC238000000104 /* MockEnvVariablesNibController.h */; };
+		5A9E54650A47C1850068486F /* EnvVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A7288FF06074BD700305534 /* EnvVariable.h */; };
+		5A9E54660A47C1850068486F /* CommentLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A72894D0607582A00305534 /* CommentLine.h */; };
+		5A9E54670A47C1850068486F /* SasStringTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A728AB606075FF800305534 /* SasStringTest.h */; };
+		5A9E54680A47C1850068486F /* SasString.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A9817D503C741FF00000104 /* SasString.h */; };
+		5A9E54690A47C1850068486F /* EnvVariableTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A180767061317760053BB44 /* EnvVariableTest.h */; };
+		5A9E546A0A47C1850068486F /* CrInfoCommentLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AC77FEF0624869D004BBB50 /* CrInfoCommentLine.h */; };
+		5A9E546B0A47C1850068486F /* CrontabLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A662925062AAA0300D9243C /* CrontabLine.h */; };
+		5A9E546C0A47C1850068486F /* SimpleLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A662928062AAA3500D9243C /* SimpleLine.h */; };
+		5A9E546D0A47C1850068486F /* UnparsedLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A66292E062AAA5300D9243C /* UnparsedLine.h */; };
+		5A9E546F0A47C1850068486F /* test_main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECDC94024CC1100100011A /* test_main.m */; };
+		5A9E54700A47C1850068486F /* AllTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECDC97024CC1940100011A /* AllTests.m */; };
+		5A9E54710A47C1850068486F /* CrontabTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECDCA9024CD5680100011A /* CrontabTest.m */; };
+		5A9E54720A47C1850068486F /* Crontab.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AC0A5601F5BBE801000133 /* Crontab.m */; };
+		5A9E54730A47C1850068486F /* TaskObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F53D5B7B01E0800001000103 /* TaskObject.m */; };
+		5A9E54740A47C1850068486F /* TaskObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECDCB2024D3D920100011A /* TaskObjectTest.m */; };
+		5A9E54750A47C1850068486F /* crController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010440D4FFD845870A00011E /* crController.m */; };
+		5A9E54760A47C1850068486F /* BLAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DAD5A6009712FC7F000001 /* BLAuthentication.m */; };
+		5A9E54770A47C1850068486F /* SwitchFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F5420F040153960D01A8FC02 /* SwitchFormatter.m */; };
+		5A9E54780A47C1850068486F /* Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 013612DB00D3AC8D7F000001 /* Toolbar.m */; };
+		5A9E54790A47C1850068486F /* NewTaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F53D5B6F01DFA9C101000103 /* NewTaskDialogController.m */; };
+		5A9E547A0A47C1850068486F /* loadCrontabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 015991F4FFF0D958865D81D7 /* loadCrontabController.m */; };
+		5A9E547B0A47C1850068486F /* UserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2ED5000D422B17F000001 /* UserImageView.m */; };
+		5A9E547C0A47C1850068486F /* RunNowNibController.m in Sources */ = {isa = PBXBuildFile; fileRef = F584C893015E96A601000001 /* RunNowNibController.m */; };
+		5A9E547D0A47C1850068486F /* TaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA529703C87DD600000104 /* TaskDialogController.m */; };
+		5A9E547E0A47C1850068486F /* EditTaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA529E03C886CB00000104 /* EditTaskDialogController.m */; };
+		5A9E547F0A47C1850068486F /* crControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECDCB9024D4ADA0100011A /* crControllerTest.m */; };
+		5A9E54800A47C1850068486F /* MockEnvVariablesNibController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CA76A03DC238000000104 /* MockEnvVariablesNibController.m */; };
+		5A9E54810A47C1850068486F /* EnvVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A72890006074BD700305534 /* EnvVariable.m */; };
+		5A9E54820A47C1850068486F /* CommentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A72894E0607582A00305534 /* CommentLine.m */; };
+		5A9E54830A47C1850068486F /* SasStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A728AB706075FF800305534 /* SasStringTest.m */; };
+		5A9E54840A47C1850068486F /* SasString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9817D603C741FF00000104 /* SasString.m */; };
+		5A9E54850A47C1850068486F /* EnvVariableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A180768061317760053BB44 /* EnvVariableTest.m */; };
+		5A9E54860A47C1850068486F /* CrInfoCommentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC77FF00624869D004BBB50 /* CrInfoCommentLine.m */; };
+		5A9E54870A47C1850068486F /* SimpleLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A662929062AAA3500D9243C /* SimpleLine.m */; };
+		5A9E54880A47C1850068486F /* UnparsedLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A66292F062AAA5300D9243C /* UnparsedLine.m */; };
+		5A9E548A0A47C1850068486F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		5A9E548B0A47C1850068486F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59CC2BD016B090B0176C965 /* Security.framework */; };
+		5A9E548C0A47C1850068486F /* ObjcUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A7507C305E108D700C9DB00 /* ObjcUnit.framework */; };
 		5AA0AC6906076E6200E677F6 /* SasString.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A9817D503C741FF00000104 /* SasString.h */; };
 		5AA0AC7006076E6500E677F6 /* SasString.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9817D603C741FF00000104 /* SasString.m */; };
 		5ABC66DC03D46CCA00000104 /* TaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA529603C87DD600000104 /* TaskDialogController.h */; };
@@ -125,34 +149,8 @@
 		5ABC66DF03D46CCB00000104 /* EditTaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA529E03C886CB00000104 /* EditTaskDialogController.m */; };
 		5AC77FF10624869D004BBB50 /* CrInfoCommentLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AC77FEF0624869D004BBB50 /* CrInfoCommentLine.h */; };
 		5AC77FF20624869D004BBB50 /* CrInfoCommentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC77FF00624869D004BBB50 /* CrInfoCommentLine.m */; };
-		5AC77FF30624869D004BBB50 /* CrInfoCommentLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AC77FEF0624869D004BBB50 /* CrInfoCommentLine.h */; };
-		5AC77FF40624869D004BBB50 /* CrInfoCommentLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC77FF00624869D004BBB50 /* CrInfoCommentLine.m */; };
 		5AD2E94503DB840F00000104 /* crControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECDCB9024D4ADA0100011A /* crControllerTest.m */; };
 		5AD2E94603DB841000000104 /* crControllerTest.h in Headers */ = {isa = PBXBuildFile; fileRef = F5ECDCB8024D4ADA0100011A /* crControllerTest.h */; };
-		5AEA4EC903C8588200000104 /* edit.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5AEA4EC803C8588200000104 /* edit.tiff */; };
-		5AEA529803C87DD600000104 /* TaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA529603C87DD600000104 /* TaskDialogController.h */; };
-		5AEA529903C87DD600000104 /* TaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA529703C87DD600000104 /* TaskDialogController.m */; };
-		5AEA529C03C8862500000104 /* TaskDialog.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEA529A03C8862500000104 /* TaskDialog.nib */; };
-		5AEA529F03C886CB00000104 /* EditTaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA529D03C886CB00000104 /* EditTaskDialogController.h */; };
-		5AEA52A003C886CB00000104 /* EditTaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA529E03C886CB00000104 /* EditTaskDialogController.m */; };
-		F50206F10178B63F01BF658F /* crController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010440D4FFD845870A00011E /* crController.m */; };
-		F53AE208019C04BF01000102 /* MyTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = F53AE206019C04BF01000102 /* MyTableView.h */; };
-		F53AE209019C04BF01000102 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F53AE207019C04BF01000102 /* MyTableView.m */; };
-		F53D5B7101DFA9C201000103 /* NewTaskDialogController.h in Headers */ = {isa = PBXBuildFile; fileRef = F53D5B6E01DFA9C101000103 /* NewTaskDialogController.h */; };
-		F53D5B7301DFA9C201000103 /* NewTaskDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F53D5B6F01DFA9C101000103 /* NewTaskDialogController.m */; };
-		F53D5B7C01E0800001000103 /* TaskObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F53D5B7A01E0800001000103 /* TaskObject.h */; };
-		F53D5B7D01E0800001000103 /* TaskObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F53D5B7B01E0800001000103 /* TaskObject.m */; };
-		F5420F050153960D01A8FC02 /* SwitchFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = F5420F030153960D01A8FC02 /* SwitchFormatter.h */; };
-		F5420F060153960D01A8FC02 /* SwitchFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F5420F040153960D01A8FC02 /* SwitchFormatter.m */; };
-		F55E28A9011B0E3101000001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F55E28A7011B0E3101000001 /* Localizable.strings */; };
-		F584C892015E94BD01000001 /* runNowPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = F584C890015E94BD01000001 /* runNowPanel.nib */; };
-		F584C895015E96A601000001 /* RunNowNibController.h in Headers */ = {isa = PBXBuildFile; fileRef = F584C894015E96A601000001 /* RunNowNibController.h */; };
-		F584C896015E96A601000001 /* RunNowNibController.m in Sources */ = {isa = PBXBuildFile; fileRef = F584C893015E96A601000001 /* RunNowNibController.m */; };
-		F591D44400E50BA901000001 /* new_env.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F591D44300E50BA901000001 /* new_env.tiff */; };
-		F594C0E7024772DB01000110 /* runnow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F594C0E6024772DB01000110 /* runnow.tiff */; };
-		F59CC2BE016B090B0176C965 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59CC2BD016B090B0176C965 /* Security.framework */; };
-		F5AC0A5701F5BBE801000133 /* Crontab.h in Headers */ = {isa = PBXBuildFile; fileRef = F5AC0A5501F5BBE801000133 /* Crontab.h */; };
-		F5AC0A5801F5BBE801000133 /* Crontab.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AC0A5601F5BBE801000133 /* Crontab.m */; };
 		F5ECDC92024CC0900100011A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F5ECDC95024CC1100100011A /* test_main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECDC94024CC1100100011A /* test_main.m */; };
 		F5ECDC98024CC1950100011A /* AllTests.h in Headers */ = {isa = PBXBuildFile; fileRef = F5ECDC96024CC1940100011A /* AllTests.h */; };
@@ -209,7 +207,6 @@
 		1339977C00D512A97F000001 /* save.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = save.tiff; sourceTree = "<group>"; };
 		152B666C00D185EB7F000001 /* delete.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = delete.tiff; sourceTree = "<group>"; };
 		152B666E00D253437F000001 /* new.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = new.tiff; sourceTree = "<group>"; };
-		17587328FF379C6511CA2CBB /* CronniX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = CronniX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -294,6 +291,9 @@
 		5A8B53AE041E06EC00000104 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Italian; path = Italian.lproj/TaskDialog.nib; sourceTree = "<group>"; };
 		5A9817D503C741FF00000104 /* SasString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SasString.h; sourceTree = "<group>"; };
 		5A9817D603C741FF00000104 /* SasString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SasString.m; sourceTree = "<group>"; };
+		5A9E544F0A47C1850068486F /* Info-CronniX__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Info-CronniX__Upgraded_.plist"; sourceTree = "<group>"; };
+		5A9E54500A47C1850068486F /* CronniX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CronniX.app; path = build/Deployment/CronniX.app; sourceTree = "<group>"; };
+		5A9E54920A47C1850068486F /* All Tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "All Tests"; path = "build/Deployment/All Tests"; sourceTree = "<group>"; };
 		5AC77FEF0624869D004BBB50 /* CrInfoCommentLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrInfoCommentLine.h; sourceTree = "<group>"; };
 		5AC77FF00624869D004BBB50 /* CrInfoCommentLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrInfoCommentLine.m; sourceTree = "<group>"; };
 		5ACBB10503DB2BA900000104 /* createImage.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; path = createImage.sh; sourceTree = "<group>"; };
@@ -346,12 +346,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		29B9732DFDCFA39411CA2CEA /* Frameworks */ = {
+		5A9E54470A47C1850068486F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1058C7A3FEA54F0111CA2CBB /* Cocoa.framework in Frameworks */,
-				F59CC2BE016B090B0176C965 /* Security.framework in Frameworks */,
+				5A9E54480A47C1850068486F /* Cocoa.framework in Frameworks */,
+				5A9E54490A47C1850068486F /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A9E54890A47C1850068486F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A9E548A0A47C1850068486F /* Cocoa.framework in Frameworks */,
+				5A9E548B0A47C1850068486F /* Security.framework in Frameworks */,
+				5A9E548C0A47C1850068486F /* ObjcUnit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,8 +400,9 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				17587328FF379C6511CA2CBB /* CronniX.app */,
 				F5ECDC89024CC0250100011A /* All Tests */,
+				5A9E54500A47C1850068486F /* CronniX.app */,
+				5A9E54920A47C1850068486F /* All Tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -409,6 +420,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				5A9E544F0A47C1850068486F /* Info-CronniX__Upgraded_.plist */,
 			);
 			name = "CronniX objc";
 			sourceTree = "<group>";
@@ -564,32 +576,65 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		29B97327FDCFA39411CA2CEA /* Headers */ = {
+		5A9E54070A47C1850068486F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				010440D5FFD845870A00011E /* crController.h in Headers */,
-				015991F5FFF0D958865D81D7 /* loadCrontabController.h in Headers */,
-				07DAD5A7009712FC7F000001 /* BLAuthentication.h in Headers */,
-				0648154B00B6F30D7F000001 /* envVariablesNibController.h in Headers */,
-				013612D800D39F457F000001 /* UserImageRep.h in Headers */,
-				013612DC00D3AC8D7F000001 /* Toolbar.h in Headers */,
-				0EE2ED5100D422B17F000001 /* UserImageView.h in Headers */,
-				F5420F050153960D01A8FC02 /* SwitchFormatter.h in Headers */,
-				F584C895015E96A601000001 /* RunNowNibController.h in Headers */,
-				F53AE208019C04BF01000102 /* MyTableView.h in Headers */,
-				F53D5B7101DFA9C201000103 /* NewTaskDialogController.h in Headers */,
-				F53D5B7C01E0800001000103 /* TaskObject.h in Headers */,
-				F5AC0A5701F5BBE801000133 /* Crontab.h in Headers */,
-				5A9817D703C741FF00000104 /* SasString.h in Headers */,
-				5AEA529803C87DD600000104 /* TaskDialogController.h in Headers */,
-				5AEA529F03C886CB00000104 /* EditTaskDialogController.h in Headers */,
-				5A72890106074BD700305534 /* EnvVariable.h in Headers */,
-				5A72894F0607582A00305534 /* CommentLine.h in Headers */,
-				5AC77FF30624869D004BBB50 /* CrInfoCommentLine.h in Headers */,
-				5A662927062AAA0300D9243C /* CrontabLine.h in Headers */,
-				5A66292C062AAA3500D9243C /* SimpleLine.h in Headers */,
-				5A662932062AAA5300D9243C /* UnparsedLine.h in Headers */,
+				5A9E54080A47C1850068486F /* crController.h in Headers */,
+				5A9E54090A47C1850068486F /* loadCrontabController.h in Headers */,
+				5A9E540A0A47C1850068486F /* BLAuthentication.h in Headers */,
+				5A9E540B0A47C1850068486F /* envVariablesNibController.h in Headers */,
+				5A9E540C0A47C1850068486F /* UserImageRep.h in Headers */,
+				5A9E540D0A47C1850068486F /* Toolbar.h in Headers */,
+				5A9E540E0A47C1850068486F /* UserImageView.h in Headers */,
+				5A9E540F0A47C1850068486F /* SwitchFormatter.h in Headers */,
+				5A9E54100A47C1850068486F /* RunNowNibController.h in Headers */,
+				5A9E54110A47C1850068486F /* MyTableView.h in Headers */,
+				5A9E54120A47C1850068486F /* NewTaskDialogController.h in Headers */,
+				5A9E54130A47C1850068486F /* TaskObject.h in Headers */,
+				5A9E54140A47C1850068486F /* Crontab.h in Headers */,
+				5A9E54150A47C1850068486F /* SasString.h in Headers */,
+				5A9E54160A47C1850068486F /* TaskDialogController.h in Headers */,
+				5A9E54170A47C1850068486F /* EditTaskDialogController.h in Headers */,
+				5A9E54180A47C1850068486F /* EnvVariable.h in Headers */,
+				5A9E54190A47C1850068486F /* CommentLine.h in Headers */,
+				5A9E541A0A47C1850068486F /* CrInfoCommentLine.h in Headers */,
+				5A9E541B0A47C1850068486F /* CrontabLine.h in Headers */,
+				5A9E541C0A47C1850068486F /* SimpleLine.h in Headers */,
+				5A9E541D0A47C1850068486F /* UnparsedLine.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A9E54530A47C1850068486F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A9E54540A47C1850068486F /* AllTests.h in Headers */,
+				5A9E54550A47C1850068486F /* CrontabTest.h in Headers */,
+				5A9E54560A47C1850068486F /* Crontab.h in Headers */,
+				5A9E54570A47C1850068486F /* TaskObject.h in Headers */,
+				5A9E54580A47C1850068486F /* TaskObjectTest.h in Headers */,
+				5A9E54590A47C1850068486F /* crController.h in Headers */,
+				5A9E545A0A47C1850068486F /* BLAuthentication.h in Headers */,
+				5A9E545B0A47C1850068486F /* SwitchFormatter.h in Headers */,
+				5A9E545C0A47C1850068486F /* Toolbar.h in Headers */,
+				5A9E545D0A47C1850068486F /* NewTaskDialogController.h in Headers */,
+				5A9E545E0A47C1850068486F /* loadCrontabController.h in Headers */,
+				5A9E545F0A47C1850068486F /* UserImageView.h in Headers */,
+				5A9E54600A47C1850068486F /* RunNowNibController.h in Headers */,
+				5A9E54610A47C1850068486F /* TaskDialogController.h in Headers */,
+				5A9E54620A47C1850068486F /* EditTaskDialogController.h in Headers */,
+				5A9E54630A47C1850068486F /* crControllerTest.h in Headers */,
+				5A9E54640A47C1850068486F /* MockEnvVariablesNibController.h in Headers */,
+				5A9E54650A47C1850068486F /* EnvVariable.h in Headers */,
+				5A9E54660A47C1850068486F /* CommentLine.h in Headers */,
+				5A9E54670A47C1850068486F /* SasStringTest.h in Headers */,
+				5A9E54680A47C1850068486F /* SasString.h in Headers */,
+				5A9E54690A47C1850068486F /* EnvVariableTest.h in Headers */,
+				5A9E546A0A47C1850068486F /* CrInfoCommentLine.h in Headers */,
+				5A9E546B0A47C1850068486F /* CrontabLine.h in Headers */,
+				5A9E546C0A47C1850068486F /* SimpleLine.h in Headers */,
+				5A9E546D0A47C1850068486F /* UnparsedLine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +673,48 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXNativeTarget section */
+		5A9E54060A47C1850068486F /* CronniX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A9E544B0A47C1850068486F /* Build configuration list for PBXNativeTarget "CronniX" */;
+			buildPhases = (
+				5A9E54070A47C1850068486F /* Headers */,
+				5A9E541E0A47C1850068486F /* Resources */,
+				5A9E54300A47C1850068486F /* Sources */,
+				5A9E54470A47C1850068486F /* Frameworks */,
+				5A9E544A0A47C1850068486F /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CronniX;
+			productInstallPath = "$(HOME)/Applications";
+			productName = CronniX;
+			productReference = 5A9E54500A47C1850068486F /* CronniX.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5A9E54520A47C1850068486F /* CronniXTest (Upgraded) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A9E548E0A47C1850068486F /* Build configuration list for PBXNativeTarget "CronniXTest (Upgraded)" */;
+			buildPhases = (
+				5A9E54530A47C1850068486F /* Headers */,
+				5A9E546E0A47C1850068486F /* Sources */,
+				5A9E54890A47C1850068486F /* Frameworks */,
+				5A9E548D0A47C1850068486F /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CronniXTest (Upgraded)";
+			productInstallPath = /usr/local/bin;
+			productName = "All Tests";
+			productReference = 5A9E54920A47C1850068486F /* All Tests */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
@@ -650,41 +737,49 @@
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CronniX objc */;
 			projectDirPath = "";
 			targets = (
-				29B97326FDCFA39411CA2CEA /* CronniX */,
+				5A9E54060A47C1850068486F /* CronniX */,
+				5A9E54520A47C1850068486F /* CronniXTest (Upgraded) */,
 				F5ECDC8A024CC0250100011A /* CronniXTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		29B97328FDCFA39411CA2CEA /* Resources */ = {
+		5A9E541E0A47C1850068486F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				080E96DCFE201CFB7F000001 /* MainMenu.nib in Resources */,
-				015991F2FFF0D793865D81D7 /* LoadCrontabWindow.nib in Resources */,
-				0648154800B6F26B7F000001 /* envVariables.nib in Resources */,
-				F584C892015E94BD01000001 /* runNowPanel.nib in Resources */,
-				5AEA529C03C8862500000104 /* TaskDialog.nib in Resources */,
-				089C165EFE840E0CC02AAC07 /* InfoPlist.strings in Resources */,
-				01108E3EFFF7F751C0A8FC05 /* cronnix_app.icns in Resources */,
-				0131485400AF26EA7F000001 /* sucrontab in Resources */,
-				152B666D00D185EB7F000001 /* delete.tiff in Resources */,
-				152B666F00D253437F000001 /* new.tiff in Resources */,
-				1339977B00D50DD47F000001 /* user.tiff in Resources */,
-				1339977D00D512A97F000001 /* save.tiff in Resources */,
-				F591D44400E50BA901000001 /* new_env.tiff in Resources */,
-				F55E28A9011B0E3101000001 /* Localizable.strings in Resources */,
-				F594C0E7024772DB01000110 /* runnow.tiff in Resources */,
-				5AEA4EC903C8588200000104 /* edit.tiff in Resources */,
-				5A8AD8CB085ADFC000B62B1F /* CronniX Help in Resources */,
+				5A9E541F0A47C1850068486F /* MainMenu.nib in Resources */,
+				5A9E54200A47C1850068486F /* LoadCrontabWindow.nib in Resources */,
+				5A9E54210A47C1850068486F /* envVariables.nib in Resources */,
+				5A9E54220A47C1850068486F /* runNowPanel.nib in Resources */,
+				5A9E54230A47C1850068486F /* TaskDialog.nib in Resources */,
+				5A9E54240A47C1850068486F /* InfoPlist.strings in Resources */,
+				5A9E54250A47C1850068486F /* cronnix_app.icns in Resources */,
+				5A9E54260A47C1850068486F /* sucrontab in Resources */,
+				5A9E54270A47C1850068486F /* delete.tiff in Resources */,
+				5A9E54280A47C1850068486F /* new.tiff in Resources */,
+				5A9E54290A47C1850068486F /* user.tiff in Resources */,
+				5A9E542A0A47C1850068486F /* save.tiff in Resources */,
+				5A9E542B0A47C1850068486F /* new_env.tiff in Resources */,
+				5A9E542C0A47C1850068486F /* Localizable.strings in Resources */,
+				5A9E542D0A47C1850068486F /* runnow.tiff in Resources */,
+				5A9E542E0A47C1850068486F /* edit.tiff in Resources */,
+				5A9E542F0A47C1850068486F /* CronniX Help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
-		043355C9FE30361CC02AAC07 /* Rez */ = {
+		5A9E544A0A47C1850068486F /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A9E548D0A47C1850068486F /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -701,32 +796,65 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		29B9732BFDCFA39411CA2CEA /* Sources */ = {
+		5A9E54300A47C1850068486F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29B9732CFDCFA39411CA2CEA /* main.m in Sources */,
-				015991F6FFF0D958865D81D7 /* loadCrontabController.m in Sources */,
-				07DAD5A8009712FC7F000001 /* BLAuthentication.m in Sources */,
-				0648154C00B6F30D7F000001 /* envVariablesNibController.m in Sources */,
-				013612D900D39F457F000001 /* UserImageRep.m in Sources */,
-				013612DD00D3AC8D7F000001 /* Toolbar.m in Sources */,
-				0EE2ED5200D422B17F000001 /* UserImageView.m in Sources */,
-				F5420F060153960D01A8FC02 /* SwitchFormatter.m in Sources */,
-				F584C896015E96A601000001 /* RunNowNibController.m in Sources */,
-				F50206F10178B63F01BF658F /* crController.m in Sources */,
-				F53AE209019C04BF01000102 /* MyTableView.m in Sources */,
-				F53D5B7301DFA9C201000103 /* NewTaskDialogController.m in Sources */,
-				F53D5B7D01E0800001000103 /* TaskObject.m in Sources */,
-				F5AC0A5801F5BBE801000133 /* Crontab.m in Sources */,
-				5A9817D803C741FF00000104 /* SasString.m in Sources */,
-				5AEA529903C87DD600000104 /* TaskDialogController.m in Sources */,
-				5AEA52A003C886CB00000104 /* EditTaskDialogController.m in Sources */,
-				5A72890206074BD700305534 /* EnvVariable.m in Sources */,
-				5A7289500607582A00305534 /* CommentLine.m in Sources */,
-				5AC77FF40624869D004BBB50 /* CrInfoCommentLine.m in Sources */,
-				5A66292D062AAA3500D9243C /* SimpleLine.m in Sources */,
-				5A662933062AAA5300D9243C /* UnparsedLine.m in Sources */,
+				5A9E54310A47C1850068486F /* main.m in Sources */,
+				5A9E54320A47C1850068486F /* loadCrontabController.m in Sources */,
+				5A9E54330A47C1850068486F /* BLAuthentication.m in Sources */,
+				5A9E54340A47C1850068486F /* envVariablesNibController.m in Sources */,
+				5A9E54350A47C1850068486F /* UserImageRep.m in Sources */,
+				5A9E54360A47C1850068486F /* Toolbar.m in Sources */,
+				5A9E54370A47C1850068486F /* UserImageView.m in Sources */,
+				5A9E54380A47C1850068486F /* SwitchFormatter.m in Sources */,
+				5A9E54390A47C1850068486F /* RunNowNibController.m in Sources */,
+				5A9E543A0A47C1850068486F /* crController.m in Sources */,
+				5A9E543B0A47C1850068486F /* MyTableView.m in Sources */,
+				5A9E543C0A47C1850068486F /* NewTaskDialogController.m in Sources */,
+				5A9E543D0A47C1850068486F /* TaskObject.m in Sources */,
+				5A9E543E0A47C1850068486F /* Crontab.m in Sources */,
+				5A9E543F0A47C1850068486F /* SasString.m in Sources */,
+				5A9E54400A47C1850068486F /* TaskDialogController.m in Sources */,
+				5A9E54410A47C1850068486F /* EditTaskDialogController.m in Sources */,
+				5A9E54420A47C1850068486F /* EnvVariable.m in Sources */,
+				5A9E54430A47C1850068486F /* CommentLine.m in Sources */,
+				5A9E54440A47C1850068486F /* CrInfoCommentLine.m in Sources */,
+				5A9E54450A47C1850068486F /* SimpleLine.m in Sources */,
+				5A9E54460A47C1850068486F /* UnparsedLine.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A9E546E0A47C1850068486F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A9E546F0A47C1850068486F /* test_main.m in Sources */,
+				5A9E54700A47C1850068486F /* AllTests.m in Sources */,
+				5A9E54710A47C1850068486F /* CrontabTest.m in Sources */,
+				5A9E54720A47C1850068486F /* Crontab.m in Sources */,
+				5A9E54730A47C1850068486F /* TaskObject.m in Sources */,
+				5A9E54740A47C1850068486F /* TaskObjectTest.m in Sources */,
+				5A9E54750A47C1850068486F /* crController.m in Sources */,
+				5A9E54760A47C1850068486F /* BLAuthentication.m in Sources */,
+				5A9E54770A47C1850068486F /* SwitchFormatter.m in Sources */,
+				5A9E54780A47C1850068486F /* Toolbar.m in Sources */,
+				5A9E54790A47C1850068486F /* NewTaskDialogController.m in Sources */,
+				5A9E547A0A47C1850068486F /* loadCrontabController.m in Sources */,
+				5A9E547B0A47C1850068486F /* UserImageView.m in Sources */,
+				5A9E547C0A47C1850068486F /* RunNowNibController.m in Sources */,
+				5A9E547D0A47C1850068486F /* TaskDialogController.m in Sources */,
+				5A9E547E0A47C1850068486F /* EditTaskDialogController.m in Sources */,
+				5A9E547F0A47C1850068486F /* crControllerTest.m in Sources */,
+				5A9E54800A47C1850068486F /* MockEnvVariablesNibController.m in Sources */,
+				5A9E54810A47C1850068486F /* EnvVariable.m in Sources */,
+				5A9E54820A47C1850068486F /* CommentLine.m in Sources */,
+				5A9E54830A47C1850068486F /* SasStringTest.m in Sources */,
+				5A9E54840A47C1850068486F /* SasString.m in Sources */,
+				5A9E54850A47C1850068486F /* EnvVariableTest.m in Sources */,
+				5A9E54860A47C1850068486F /* CrInfoCommentLine.m in Sources */,
+				5A9E54870A47C1850068486F /* SimpleLine.m in Sources */,
+				5A9E54880A47C1850068486F /* UnparsedLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,76 +1048,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		5A1349000857416600909BFC /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = CronniX;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		5A1349010857416600909BFC /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = CronniX;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		5A1349020857416600909BFC /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = CronniX;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
 		5A1349040857416700909BFC /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1054,34 +1112,166 @@
 		5A1349080857416700909BFC /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
 		5A1349090857416700909BFC /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;
 		};
 		5A13490A0857416700909BFC /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Default;
+		};
+		5A9E544C0A47C1850068486F /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-CronniX__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = CronniX;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		5A9E544D0A47C1850068486F /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-CronniX__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = CronniX;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		5A9E544E0A47C1850068486F /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-CronniX__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = CronniX;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		5A9E548F0A47C1850068486F /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "All Tests";
+				REZ_EXECUTABLE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		5A9E54900A47C1850068486F /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "All Tests";
+				REZ_EXECUTABLE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		5A9E54910A47C1850068486F /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "All Tests";
+				REZ_EXECUTABLE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
 			};
 			name = Default;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5A1348FF0857416600909BFC /* Build configuration list for PBXApplicationTarget "CronniX" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5A1349000857416600909BFC /* Development */,
-				5A1349010857416600909BFC /* Deployment */,
-				5A1349020857416600909BFC /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
 		5A1349030857416700909BFC /* Build configuration list for PBXToolTarget "CronniXTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1098,6 +1288,26 @@
 				5A1349080857416700909BFC /* Development */,
 				5A1349090857416700909BFC /* Deployment */,
 				5A13490A0857416700909BFC /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		5A9E544B0A47C1850068486F /* Build configuration list for PBXNativeTarget "CronniX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A9E544C0A47C1850068486F /* Development */,
+				5A9E544D0A47C1850068486F /* Deployment */,
+				5A9E544E0A47C1850068486F /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		5A9E548E0A47C1850068486F /* Build configuration list for PBXNativeTarget "CronniXTest (Upgraded)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A9E548F0A47C1850068486F /* Development */,
+				5A9E54900A47C1850068486F /* Deployment */,
+				5A9E54910A47C1850068486F /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

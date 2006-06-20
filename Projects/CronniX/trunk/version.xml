@@ -6,10 +6,11 @@ ropertyList-1.0.dtd">
         <key>Product</key>
         <string>CronniX</string>
 		<key>Version</key>
-		<string>3.0.1</string>
+		<string>3.0.2</string>
 		<key>Changes</key>
 		<array>
-      <string>Universal binary</string>
+      <string>*Really* a Universal binary</string>
+      <string>Fixed homepage URL (Help menu)</string>
 		</array>
 </dict>
 </plist>
