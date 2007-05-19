@@ -8,15 +8,15 @@
 
 <p>The system's scheduler "cron" is a Unix program that is automatically started at system startup. Every minute, it checks so-called "crontabs" for tasks that should be executed. Every user of a system and the system itself can have <b>one</b> crontab. CronniX allows you to edit all of these crontabs one at a time.</p>
 
-<p>Let's have a look at CronniX' user interface:</p>
+<p>Let's have a look at CronniX's user interface:</p>
 
 <a href="screenshot.html" target="_right"><IMG SRC=screenshot2.jpg ALT=screenshot></a>
 
 <h3>Main Window</h3>
 
-<p>The front window is CronniX' main window. It shows line by line all the tasks that comprise this crontab. The status icon in the toolbar displays whose crontab's being edited. If the toolbar is hidden the window title will take over. On startup the current user's crontab is read and displayed.</p>
+<p>The front window is CronniX's main window. It shows line by line all the tasks that comprise this crontab. The status icon in the toolbar displays whose crontab's being edited. If the toolbar is hidden, the window title will take over., The current user's crontab is read and displayed on startup.</p>
 
-<p>The toolbar is customizable with the default set containing all items. They are: New, Delete, Open, Save, Status, and Edit. Except for the status icon all toolbar icons have correspoding menu items. Here's what they do:</p>
+<p>The toolbar is customizable with the default set containing all items. They are: New, Delete, Open, Save, Status, and Edit. Except for the status icon, all toolbar icons have corresponding menu items. Here's what they do:</p>
 
 <table>
 
@@ -37,7 +37,7 @@
 
 <tr><td valign=top>
 <b>Status</b></td> 
-<td>Shows whose crontab is being displayed. For the system crontab this will read "system".</td></tr>
+<td>Shows whose crontab is being displayed. For the system crontab, this will read "system".</td></tr>
 
 <tr><td valign=top>
 <b>Edit</b></td> 
@@ -49,13 +49,13 @@
 
 </table>
 
-<p>Below the toolbar you the the list of tasks in this crontab. The crontab fields can be edited by double clicking. See the section about the <a href="crontab_syntax.html" target="_right">crontab syntax</a> for information on the fields in a crontab entry / task. The checkbox in front of each line allows you to activate/deactivate a task.</p>
+<p>Below the toolbar, you see the list of tasks in this crontab. The crontab fields can be edited by double clicking. See the section about the <a href="crontab_syntax.html" target="_right">crontab syntax</a> for information on the fields in a crontab entry / task. The checkbox in front of each line allows you to activate/deactivate a task.</p>
 
 <p>There's a context menu for task specific commands available. Right click on a task to select a task and display the menu.</p>
        
 <h3>Task Info</h3>
 
-<p>In version 2.0 a text field for task comments was added below the task list. The seperator between this info field and the task list can be dragged up and down to resize the views. Clicking on a task shows its description (as entered by the user) in the info field. Just edit the text in the info field and it will be saved along with the task.
+<p>In version 2.0, a text field for task comments was added below the task list. The separator between this info field and the task list can be dragged up and down to resize the views. Clicking on a task shows its description (as entered by the user) in the info field. Just edit the text in the info field and it will be saved along with the task.
 
 <h3>Environment Variables Window</h3>
 
@@ -99,11 +99,11 @@
 
 <h3><a name="run_now">"Run Now" Command</a></h3>
 
-<p>If you don't want to stay up all night to see your script executing at 3 AM there's a feature that allows you to run a command immediately. The command will be executed in a shell (tcsh) and it's output will be displayed in a window.</p>
+<p>If you don't want to stay up all night to see your script executing at 3 AM there's a feature that allows you to run a command immediately. The command will be executed in a shell (tcsh) and its output will be displayed in a window.</p>
 
-<p>Note that even though this might be useful for testing, the tcsh environment is not the same as the cron daemon's. On some occasions your tcsh might have a program in its path for example while the cron daemon can't find it. On the other hand if a command runs in cron's environment you shouldn't have problems using the "Run now" command.</p>
+<p>Note that even though this might be useful for testing, the tcsh environment is not the same as the cron daemon's. On some occasions, your tcsh might have a program in its path, for example, while the cron daemon can't find it. On the other hand if a command runs in cron's environment you shouldn't have problems using the "Run now" command.</p>
 
-<p>This is only true for tasks running in your own crontab. Currently, the 'Run Now' command does not use sudo to run a task for the user whose crontab you are editing. So, if you are viewing the system crontab, using the 'Run Now' command will not do much good, because unless you run CronniX as 'root' you will not have premission to run the maintenance scripts for example. (Well, to be technically correct, you can run the scripts, but what's inside them does things a regular user isn't allowed to do so that in effect executing the content of the maintenance scripts will fail.)
+<p>This is only true for tasks running in your own crontab. Currently, the 'Run Now' command does not use sudo to run a task for the user whose crontab you are editing. So, if you are viewing the system crontab, using the 'Run Now' command will not do much good, because unless you run CronniX as 'root' you will not have permission to run the maintenance scripts for example. (Well, to be technically correct, you can run the scripts, but what's inside them does things a regular user isn't allowed to do so that in effect executing the content of the maintenance scripts will fail.)
 
 <p>Improvement of the 'Run Now' feature is high on my todo list.
 
@@ -112,9 +112,9 @@
 
 <p>Version 2.1 brought import and export of crontabs. You can find the corresponding menu items in the file menu. CronniX will save and read files. The default extension for crontabs is "crontab". The commands are "safe", i.e. you will be asked to save changes (if any) before importing a crontab.</p>
 
-<p>CronniX will remain a single document application for now. Therefore it doesn't register as a handler for "crontab" files right now, because CronniX will not be able to pop up another crontab window but instead would replace your current crontab with the file. Making CronniX a multi document application would mean more work than I can currently handle.</p>
+<p>CronniX will remain a single document application for now. Therefore, it doesn't register as a handler for "crontab" files right now, because CronniX will not be able to pop up another crontab window, but instead would replace your current crontab with the file. Making CronniX a multi document application would mean more work than I can currently handle.</p>
 
-<p>Please note that after importing/exporting the edited crontab remains in its original context, meaning that it will still be associated with your user crontab, the system crontab, etc... It is not a representation of the file you loaded/saved but rather the new content of the crontab you were previously editing. The changes are not commited until you save (install) the crontab again.</p>
+<p>Please note that after importing/exporting, the edited crontab remains in its original context, meaning that it will still be associated with your user crontab, the system crontab, etc. It is not a representation of the file you loaded/saved,  but rather the new content of the crontab you were previously editing. The changes are not commited until you save (install) the crontab again.</p>
 
 <p>The next feature request will be appending of crontabs from files, I guess... Consider it planned.</p>
 
