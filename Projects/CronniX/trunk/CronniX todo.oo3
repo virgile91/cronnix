@@ -3,18 +3,19 @@
 <outline xmlns="http://www.omnigroup.com/namespace/OmniOutliner/v3">
   <style-attribute-registry>
     <style-attribute version="0" key="font-family" group="font" name="family" class="string">Helvetica</style-attribute>
-    <style-attribute version="0" key="font-fill" group="font" name="fill color" class="color">
-      <color catalog="System" name="textColor"/>
+    <style-attribute version="1" key="font-fill" group="font" name="fill color" class="color">
+      <color w="0"/>
     </style-attribute>
     <style-attribute version="0" key="font-italic" group="font" name="italic" class="bool">no</style-attribute>
     <style-attribute version="0" key="font-size" group="font" name="size" class="number">12</style-attribute>
+    <style-attribute version="0" key="font-weight" group="font" name="weight" class="number">5</style-attribute>
     <style-attribute version="0" key="item-gutter-color(com.omnigroup.OmniOutliner)" group="row" name="gutter color" class="color">
       <color w="0" a="0"/>
     </style-attribute>
     <style-attribute version="0" key="paragraph-first-line-head-indent" group="paragraph" name="first line head indent" class="number">0</style-attribute>
     <style-attribute version="0" key="paragraph-head-indent" group="paragraph" name="head indent" class="number">0</style-attribute>
-    <style-attribute version="0" key="underline-color" group="underline" name="color" class="color">
-      <color catalog="System" name="textColor"/>
+    <style-attribute version="1" key="underline-color" group="underline" name="color" class="color">
+      <color w="0"/>
     </style-attribute>
     <style-attribute version="1" key="underline-style" group="underline" name="style" class="enum">
       <enum-name-table default-value="0">
@@ -36,9 +37,9 @@
   </settings>
   <editor content-size="{567, 660}">
     <note-split-view is-note-expanded="no"/>
-    <selected-rows ids="iKUIFs1ON_u"/>
+    <selected-rows ids="g1eqA67Erz4"/>
     <selected-columns ids="f00822ae3c666f44095581d7"/>
-    <selected-characters range="{23, 0}"/>
+    <selected-characters range="{0, 0}"/>
   </editor>
   <columns>
     <column id="c11a4aaa3d6f41824a2b0104" type="text" width="18" minimum-width="18" maximum-width="18" text-export-width="1" is-note-column="yes">
@@ -57,6 +58,166 @@
     </column>
   </columns>
   <root>
+    <item id="nVA3JqnqiAg" expanded="yes">
+      <style/>
+      <style>
+        <value key="font-size">11</value>
+      </style>
+      <values>
+        <text>
+          <p>
+            <run>
+              <lit>3.1 Todo, bugs</lit>
+            </run>
+          </p>
+        </text>
+      </values>
+      <children>
+        <item id="g1eqA67Erz4">
+          <values>
+            <text>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-weight">9</value>
+                    <value key="paragraph-head-indent">35</value>
+                  </style>
+                  <lit>From: </lit>
+                </run>
+                <run>
+                  <style>
+                    <value key="paragraph-head-indent">35</value>
+                  </style>
+                  <lit>James Grubic </lit>
+                </run>
+                <run>
+                  <style>
+                    <value key="paragraph-head-indent">35</value>
+                  </style>
+                  <lit><cell href="mailto:james.grubic@bsd7.org" name="james.grubic@bsd7.org"/></lit>
+                </run>
+                <run>
+                  <style>
+                    <value key="paragraph-head-indent">35</value>
+                  </style>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-weight">9</value>
+                    <value key="paragraph-head-indent">31</value>
+                  </style>
+                  <lit>Date: </lit>
+                </run>
+                <run>
+                  <style>
+                    <value key="paragraph-head-indent">31</value>
+                  </style>
+                  <lit>18. Mai 2007 18:39:56 MESZ</lit>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-weight">9</value>
+                    <value key="paragraph-head-indent">21</value>
+                  </style>
+                  <lit>To: </lit>
+                </run>
+                <run>
+                  <style>
+                    <value key="paragraph-head-indent">21</value>
+                  </style>
+                  <lit><cell href="mailto:info@abstracture.de" name="info@abstracture.de"/></lit>
+                </run>
+                <run>
+                  <style>
+                    <value key="paragraph-head-indent">21</value>
+                  </style>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-weight">9</value>
+                    <value key="paragraph-head-indent">47</value>
+                  </style>
+                  <lit>Subject: Bug in Cronnix?</lit>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-size">12</value>
+                  </style>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-size">12</value>
+                  </style>
+                  <lit>Hello,</lit>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-size">12</value>
+                  </style>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-size">12</value>
+                  </style>
+                  <lit>I think I found a bug in Cronnix.</lit>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-size">12</value>
+                  </style>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-size">12</value>
+                  </style>
+                  <lit>When I drag a job from the bottom of the list to the top, the user field (root) became embedded into the command (/bru/checkschedule). This really messed up everything in the Crontab file and I had to start completely from scratch by deleting all entries and entering them again.</lit>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-size">12</value>
+                  </style>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-size">12</value>
+                  </style>
+                </run>
+              </p>
+              <p>
+                <run>
+                  <style>
+                    <value key="font-size">12</value>
+                  </style>
+                  <lit>James</lit>
+                </run>
+              </p>
+            </text>
+          </values>
+        </item>
+      </children>
+    </item>
     <item id="eIIXh84TNk-" expanded="yes" state="indeterminate">
       <values>
         <text>
