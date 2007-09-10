@@ -292,8 +292,8 @@
 		5A9817D503C741FF00000104 /* SasString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SasString.h; sourceTree = "<group>"; };
 		5A9817D603C741FF00000104 /* SasString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SasString.m; sourceTree = "<group>"; };
 		5A9E544F0A47C1850068486F /* Info-CronniX__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Info-CronniX__Upgraded_.plist"; sourceTree = "<group>"; };
-		5A9E54500A47C1850068486F /* CronniX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CronniX.app; path = build/Deployment/CronniX.app; sourceTree = "<group>"; };
-		5A9E54920A47C1850068486F /* All Tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "All Tests"; path = "build/Deployment/All Tests"; sourceTree = "<group>"; };
+		5A9E54500A47C1850068486F /* CronniX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CronniX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A9E54920A47C1850068486F /* All Tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "All Tests"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC77FEF0624869D004BBB50 /* CrInfoCommentLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrInfoCommentLine.h; sourceTree = "<group>"; };
 		5AC77FF00624869D004BBB50 /* CrInfoCommentLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrInfoCommentLine.m; sourceTree = "<group>"; };
 		5ACBB10503DB2BA900000104 /* createImage.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; path = createImage.sh; sourceTree = "<group>"; };
